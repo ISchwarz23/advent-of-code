@@ -16,7 +16,8 @@ The correctness is checked using a JUnit 5 tests. There is one test file for eac
 `Day01Test`). These tests use the sample input from the puzzle explanation to check if the code is correct. Thereafter, the 
 code is called with the real puzzle input.  
 This input data is stored in text files in the project resources. The file name pattern of the input files is `DayXX.txt` 
-(e.g. `Day01.txt`). The mentioned sample data is stored in files with the name pattern `DayXX_test.txt` (e.g. `Day01_test.txt`).
+(e.g. `Day01.txt`). The mentioned sample data is stored in files with the name pattern `DayXX_test.txt` (e.g. `Day01_test.txt`).  
+To generate a new set of files for a new das run `make new_day DAY="<day>"` (e.g. `make new_day DAY="01"`).
 
 ## Log of my AoC Journey
 I tried to log my results and thoughts for each puzzle after solving it.
