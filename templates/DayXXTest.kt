@@ -2,40 +2,40 @@ package aoc2022
 
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.readInputAsInts
+import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
-internal class Day01Test {
+internal class DayXXTest {
 
-    private val testInput = readInputAsInts("Day01_test")
-    private val input = readInputAsInts("Day01")
+    private val testInput = readInput("DayXX_test")
+    private val input = readInput("DayXX")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day01.part1(testInput)
+        val result = DayXX.part1(testInput)
 
         // then
         assertEquals(0, result)
 
         // get solution
-        println("Result of Day 01 - Part 1: ${Day01.part1(input)}")
+        println("Result of Day XX - Part 1: ${DayXX.part1(input)}")
     }
 
     @Test
     internal fun testPart2() {
         // when
-        val result = Day01.part2(testInput)
+        val result = DayXX.part2(testInput)
 
         // then
         assertEquals(0, result)
 
         // get solution
-        println("Result of Day 01 - Part 2: ${Day01.part2(input)}")
+        println("Result of Day XX - Part 2: ${DayXX.part2(input)}")
     }
 
 }
