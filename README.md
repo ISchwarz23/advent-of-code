@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=1&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=2&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=2&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=4&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -32,33 +32,33 @@ To generate a new set of files for a new das run `make new_day DAY="<day>"` (e.g
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
-| #   | Name      | Stars | Comment |
-| --- | --------- | ----- | ------- |
-| 1   | [Calorie Counting][1]  | ⭐⭐    | _       |
-| 2   | [???][2]  |       | _       |
-| 3   | [???][3]  |       | _       |
-| 4   | [???][4]  |       | _       |
-| 5   | [???][5]  |       | _       |
-| 6   | [???][6]  |       | _       |
-| 7   | [???][7]  |       | _       |
-| 8   | [???][8]  |       | _       |
-| 9   | [???][9]  |       | _       |
-| 10  | [???][10] |       | _       |
-| 11  | [???][11] |       | _       |
-| 12  | [???][12] |       | _       |
-| 13  | [???][13] |       | _       |
-| 14  | [???][14] |       | _       |
-| 15  | [???][15] |       | _       |
-| 16  | [???][16] |       | _       |
-| 17  | [???][17] |       | _       |
-| 18  | [???][18] |       | _       |
-| 19  | [???][19] |       | _       |
-| 20  | [???][20] |       | _       |
-| 21  | [???][21] |       | _       |
-| 22  | [???][22] |       | _       |
-| 23  | [???][23] |       | _       |
-| 24  | [???][24] |       | _       |
-| 25  | [???][24] |       | _       |
+| #   | Name                     | Stars | Comment |
+| --- |--------------------------| ----- | ------- |
+| 1   | [Calorie Counting][1]    | ⭐⭐    | _       |
+| 2   | [Rock Paper Scissors][2] | ⭐⭐    | _       |
+| 3   | [???][3]                 |       | _       |
+| 4   | [???][4]                 |       | _       |
+| 5   | [???][5]                 |       | _       |
+| 6   | [???][6]                 |       | _       |
+| 7   | [???][7]                 |       | _       |
+| 8   | [???][8]                 |       | _       |
+| 9   | [???][9]                 |       | _       |
+| 10  | [???][10]                |       | _       |
+| 11  | [???][11]                |       | _       |
+| 12  | [???][12]                |       | _       |
+| 13  | [???][13]                |       | _       |
+| 14  | [???][14]                |       | _       |
+| 15  | [???][15]                |       | _       |
+| 16  | [???][16]                |       | _       |
+| 17  | [???][17]                |       | _       |
+| 18  | [???][18]                |       | _       |
+| 19  | [???][19]                |       | _       |
+| 20  | [???][20]                |       | _       |
+| 21  | [???][21]                |       | _       |
+| 22  | [???][22]                |       | _       |
+| 23  | [???][23]                |       | _       |
+| 24  | [???][24]                |       | _       |
+| 25  | [???][24]                |       | _       |
 
 [aoc]: https://adventofcode.com
 
