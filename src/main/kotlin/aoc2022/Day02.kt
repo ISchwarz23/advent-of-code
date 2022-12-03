@@ -24,7 +24,7 @@ object Day02 {
             points += 3
         } else {
             val rule =
-                RULES.find { it.me == match.second } ?: throw RuntimeException("No rule found for ${match.second}")
+                RULES.find { it.own == match.second } ?: throw RuntimeException("No rule found for ${match.second}")
             if (match.first == rule.winsAgainst) {
                 points += 6
             }
@@ -40,10 +40,10 @@ object Day02 {
             Result.WIN -> 6
         }
 
-        val rule = RULES.find { it.me == match.first } ?: throw RuntimeException("No rule found for ${match.second}")
+        val rule = RULES.find { it.own == match.first } ?: throw RuntimeException("No rule found for ${match.second}")
         val handToPlay = when (match.second) {
             Result.LOOSE -> rule.winsAgainst
-            Result.DRAW -> rule.me
+            Result.DRAW -> rule.own
             Result.WIN -> rule.loosesAgainst
         }
         points += when (handToPlay) {
@@ -89,7 +89,7 @@ enum class Result {
     WIN
 }
 
-data class Rule(val me: Hand, val loosesAgainst: Hand, val winsAgainst: Hand)
+data class Rule(val own: Hand, val loosesAgainst: Hand, val winsAgainst: Hand)
 
 val RULES = arrayOf(
     Rule(Hand.ROCK, Hand.PAPER, Hand.SCISSORS),
