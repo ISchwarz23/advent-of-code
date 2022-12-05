@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=4&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=8&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=5&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=10&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -38,7 +38,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 2   | [Rock Paper Scissors][2]     | ⭐⭐    | Gues there is a more performant way, but I focused more on readability.                   |
 | 3   | [Rucksack Reorganization][3] | ⭐⭐    | In my opinion this was the most easy puzzle so far.                                       |
 | 4   | [Camp Cleanup][4]            | ⭐⭐    | Also a pretty easy one, when sorting the pair of section assignments.                     |
-| 5   | [???][5]                     |       |                                                                                           |
+| 5   | [Supply Stacks][5]           | ⭐⭐    | Today, parsing the input was more difficult than the actual puzzle.                       |
 | 6   | [???][6]                     |       |                                                                                           |
 | 7   | [???][7]                     |       |                                                                                           |
 | 8   | [???][8]                     |       |                                                                                           |
