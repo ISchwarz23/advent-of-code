@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=6&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=12&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=7&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=14&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -40,7 +40,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 4   | [Camp Cleanup][4]            | ⭐⭐    | Also a pretty easy one, when sorting the pair of section assignments.                     |
 | 5   | [Supply Stacks][5]           | ⭐⭐    | Today, parsing the input was more difficult than the actual puzzle.                       |
 | 6   | [Tuning Trouble][6]          | ⭐⭐    | Pretty short puzzle today. Took me less than 10 minutes for both parts.                   |
-| 7   | [???][7]                     |       |                                                                                           |
+| 7   | [No Space Left On Device][7] | ⭐⭐    | Produced very ugly code. I'm not happy with the solution... But it works :P               |
 | 8   | [???][8]                     |       |                                                                                           |
 | 9   | [???][9]                     |       |                                                                                           |
 | 10  | [???][10]                    |       |                                                                                           |
