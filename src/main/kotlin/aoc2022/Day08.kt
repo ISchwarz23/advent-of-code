@@ -14,19 +14,19 @@ object Day08 {
 }
 
 private fun getScenicScore(x: Int, y: Int, forest: Forest): Int {
-    return getViewDistance(forest.getColumn(x), y) { it - 1 } * // distance top
-            getViewDistance(forest.getColumn(x), y) { it + 1 } * // distance bottom
-            getViewDistance(forest.getRow(y), x) { it - 1 } * // distance left
-            getViewDistance(forest.getRow(y), x) { it + 1 } // distance right
+    return getViewDistance(forest.getTreeColumn(x), y) { it - 1 } * // distance top
+            getViewDistance(forest.getTreeColumn(x), y) { it + 1 } * // distance bottom
+            getViewDistance(forest.getTreeRow(y), x) { it - 1 } * // distance left
+            getViewDistance(forest.getTreeRow(y), x) { it + 1 } // distance right
 }
 
-private fun getViewDistance(viewLine: List<Int>, startPos: Int, getNextPos: (Int) -> Int): Int {
+private fun getViewDistance(lineOfTrees: List<Int>, startTreePos: Int, getNextTreePos: (Int) -> Int): Int {
     var viewDistance = 0
-    var currentPos = startPos
-    while (currentPos > 0 && currentPos < viewLine.size - 1) {
-        currentPos = getNextPos(currentPos)
+    var currentPos = startTreePos
+    while (currentPos > 0 && currentPos < lineOfTrees.size - 1) {
+        currentPos = getNextTreePos(currentPos)
         viewDistance++
-        if (viewLine[currentPos] >= viewLine[startPos]) return viewDistance
+        if (lineOfTrees[currentPos] >= lineOfTrees[startTreePos]) return viewDistance
     }
     return viewDistance
 }
@@ -37,17 +37,17 @@ private fun isVisible(x: Int, y: Int, forest: Forest): Boolean {
     if (x == 0 || x == forest.width - 1) return true
 
     // check inside
-    return isVisible(forest.getColumn(x), y) { it - 1 } // check top
-            || isVisible(forest.getColumn(x), y) { it + 1 } // check bottom
-            || isVisible(forest.getRow(y), x) { it - 1 } // check left
-            || isVisible(forest.getRow(y), x) { it + 1 } // check right
+    return isVisible(forest.getTreeColumn(x), y) { it - 1 } // check top
+            || isVisible(forest.getTreeColumn(x), y) { it + 1 } // check bottom
+            || isVisible(forest.getTreeRow(y), x) { it - 1 } // check left
+            || isVisible(forest.getTreeRow(y), x) { it + 1 } // check right
 }
 
-private fun isVisible(viewLine: List<Int>, startPos: Int, getNextPos: (Int) -> Int): Boolean {
-    var currentPos = startPos
-    while (currentPos > 0 && currentPos < viewLine.size - 1) {
-        currentPos = getNextPos(currentPos)
-        if (viewLine[currentPos] >= viewLine[startPos]) return false
+private fun isVisible(lineOfTrees: List<Int>, startTreePos: Int, getNextTreePos: (Int) -> Int): Boolean {
+    var currentTreePos = startTreePos
+    while (currentTreePos > 0 && currentTreePos < lineOfTrees.size - 1) {
+        currentTreePos = getNextTreePos(currentTreePos)
+        if (lineOfTrees[currentTreePos] >= lineOfTrees[startTreePos]) return false
     }
     return true
 }
@@ -57,11 +57,11 @@ class Forest(private val trees: List<List<Int>>) {
     val height: Int = trees.size
     val width: Int = trees[0].size
 
-    fun getRow(y: Int): List<Int> {
+    fun getTreeRow(y: Int): List<Int> {
         return trees[y]
     }
 
-    fun getColumn(x: Int): List<Int> {
+    fun getTreeColumn(x: Int): List<Int> {
         return trees.indices.map { y -> trees[y][x] }
     }
 
