@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=8&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=16&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=9&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=18&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -42,7 +42,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 6   | [Tuning Trouble][6]          | ⭐⭐    | Pretty short puzzle today. Took me less than 10 minutes for both parts.                           |
 | 7   | [No Space Left On Device][7] | ⭐⭐    | Produced very ugly code. I'm not happy with the solution... But it works :P                       |
 | 8   | [Treetop Tree House][8]      | ⭐⭐    | Found a pretty generic solution to 'iterate' over the trees. Don't know it is easy to understand. |
-| 9   | [???][9]                     |       |                                                                                                   |
+| 9   | [Rope Bridge][9]             | ⭐⭐    | Unfortunatelly I had to spend a long time debugging, as I had a bug when moving diagonal.         |
 | 10  | [???][10]                    |       |                                                                                                   |
 | 11  | [???][11]                    |       |                                                                                                   |
 | 12  | [???][12]                    |       |                                                                                                   |

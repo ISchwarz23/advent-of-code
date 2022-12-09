@@ -1,0 +1,50 @@
+package aoc2022
+
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.TestMethodOrder
+import utils.readInput
+import kotlin.test.Test
+import kotlin.test.assertEquals
+
+@TestMethodOrder(
+    MethodOrderer.Alphanumeric::class
+)
+internal class Day09Test {
+
+    private val testInput = readMovementInstructions("Day09_test")
+    private val test2Input = readMovementInstructions("Day09_test_complex")
+    private val input = readMovementInstructions("Day09")
+
+    @Test
+    internal fun testPart1() {
+        // when
+        val result = Day09.part1(testInput)
+
+        // then
+        assertEquals(13, result)
+
+        // get solution
+        println("Result of Day 09 - Part 1: ${Day09.part1(input)}")
+    }
+
+    @Test
+    internal fun testPart2() {
+        // when
+        val result = Day09.part2(test2Input)
+
+        // then
+        assertEquals(36, result)
+
+        // get solution
+        println("Result of Day 09 - Part 2: ${Day09.part2(input)}")
+    }
+
+}
+
+private fun readMovementInstructions(name: String): List<Movement> {
+    return readInput(name).map { it.split(" ") }.map { Movement(it[0].toDirection(), it[1].toInt()) }
+}
+
+private fun String.toDirection(): Direction {
+    return Direction.fromString(this)
+}
