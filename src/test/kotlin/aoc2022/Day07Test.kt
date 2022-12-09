@@ -39,3 +39,18 @@ internal class Day07Test {
     }
 
 }
+
+
+private fun print(dir: Directory, indent: Int = 0) {
+    repeat(indent) { print(" ") }
+    println("- ${dir.name} (dir, size=${dir.size})")
+
+    for (file in dir.files) {
+        if (file is File) {
+            repeat(indent) { print(" ") }
+            println("  - ${file.name} (file, size=${file.size})")
+        } else if (file is Directory) {
+            print(file, indent + 2)
+        }
+    }
+}
