@@ -1,4 +1,5 @@
-.gradle
-.idea
-build
-bin
+.gradle/
+.idea/
+build/
+bin/
+session.txt

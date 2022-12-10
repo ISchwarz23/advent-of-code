@@ -11,9 +11,8 @@ import kotlin.test.assertEquals
 )
 internal class Day09Test {
 
-    private val testInput = readMovementInstructions("Day09_test")
-    private val test2Input = readMovementInstructions("Day09_test_complex")
-    private val input = readMovementInstructions("Day09")
+    private val testInput = readInput("Day09_test")
+    private val input = readInput("Day09")
 
     @Test
     internal fun testPart1() {
@@ -21,7 +20,7 @@ internal class Day09Test {
         val result = Day09.part1(testInput)
 
         // then
-        assertEquals(13, result)
+        assertEquals(0, result)
 
         // get solution
         println("Result of Day 09 - Part 1: ${Day09.part1(input)}")
@@ -30,21 +29,13 @@ internal class Day09Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day09.part2(test2Input)
+        val result = Day09.part2(testInput)
 
         // then
-        assertEquals(36, result)
+        assertEquals(0, result)
 
         // get solution
         println("Result of Day 09 - Part 2: ${Day09.part2(input)}")
     }
 
-}
-
-private fun readMovementInstructions(name: String): List<Movement> {
-    return readInput(name).map { it.split(" ") }.map { Movement(it[0].toDirection(), it[1].toInt()) }
-}
-
-private fun String.toDirection(): Direction {
-    return Direction.fromString(this)
 }

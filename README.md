@@ -26,7 +26,9 @@ This input data is stored in text files in the project resources. The file name 
 is `DayXX.txt`
 (e.g. `Day01.txt`). The mentioned sample data is stored in files with the name pattern `DayXX_test.txt` (
 e.g. `Day01_test.txt`).  
-To generate a new set of files for a new das run `make new_day DAY="<day>"` (e.g. `make new_day DAY="01"`).
+To generate a new set of files for a new das run `make new_day DAY=<day>` (e.g. `make new_day DAY=1`).  
+
+*Hint: The actual input is downloaded when executing the `make new_day DAY=...` command, when the puzzle is for the requested day is already released and you stored your session cookie to the file `session.txt` in the project root. (File content should look like `session=abc...xyz`.)*
 
 ## Log of my AoC Journey
 
