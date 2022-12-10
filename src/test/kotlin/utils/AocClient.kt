@@ -11,7 +11,7 @@ val DEFAULT_COOKIE_FILE = File("session.txt")
 
 class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
 
-    private val cookies = cookieFile.readLines()[0]
+    private val cookies = if (cookieFile.exists()) cookieFile.readLines()[0] else ""
     private val client = HttpClient.newBuilder().build()
 
     fun submit(year: Int, day: Int, level: Int, answer: Long): String = submit(year, day, level, "$answer")

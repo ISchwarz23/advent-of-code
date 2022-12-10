@@ -28,10 +28,7 @@ internal class DayXXTest {
 
         // get solution
         val answer = DayXX.part1(input)
-        var submissionResultString = ""
-        if(DEFAULT_COOKIE_FILE.exists()) {
-            submissionResultString += "(Submission: ${aocClient.submit(2022, XX, 1, answer)})"
-        }
+        var submissionResultString = "(Submission: ${aocClient.submit(2022, XX, 1, answer)})"
         println("Result of Day XX - Part 1: $answer $submissionResultString")
     }
 
@@ -45,10 +42,7 @@ internal class DayXXTest {
 
         // get solution
         val answer = DayXX.part2(input)
-        var submissionResult = ""
-        if(DEFAULT_COOKIE_FILE.exists()) {
-            submissionResult += "(Submission: ${aocClient.submit(2022, XX, 2, answer)})"
-        }
+        var submissionResult = "(Submission: ${aocClient.submit(2022, XX, 2, answer)})"
         println("Result of Day XX - Part 2: $answer $submissionResult")
     }
 
