@@ -50,7 +50,7 @@ object Day10 {
 }
 
 private fun print(screen: List<MutableList<String>>) {
-    screen.forEach { println(it.joinToString("")) }
+    screen.map { it.joinToString("") }.forEach { println(it) }
     println()
 }
 
