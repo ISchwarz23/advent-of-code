@@ -34,12 +34,12 @@ object Day10 {
         var spritePos = 1
 
         for (op in operations) {
-            val sprite = (spritePos-1)..(spritePos+1)
+            val sprite = (spritePos - 1)..(spritePos + 1)
 
             repeat(op.cycles) {
-                val posX = cycle.mod(40)
-                val posY = cycle / 40
-                screen[posY][posX] = if(posX in sprite) "#" else "."
+                val screenPosX = cycle.mod(40)
+                val screenPosY = cycle / 40
+                screen[screenPosY][screenPosX] = if (screenPosX in sprite) "#" else "."
                 cycle++
             }
             spritePos += op.value
@@ -50,10 +50,8 @@ object Day10 {
 }
 
 private fun print(screen: List<MutableList<String>>) {
-    for (row in screen) {
-        row.forEach { print(it) }
-        println()
-    }
+    screen.forEach { println(it.joinToString("")) }
+    println()
 }
 
 private fun getSignalStrength(cycle: Int, value: Int): Int = cycle * value
@@ -64,7 +62,7 @@ private fun toOperation(operationStr: String): Operation {
 
 sealed class Operation(val cycles: Int, val value: Int) {
 
-    class NoOperation() : Operation(1, 0)
+    class NoOperation : Operation(1, 0)
     class AddXOperation(numberToAdd: Int) : Operation(2, numberToAdd)
 
 }
