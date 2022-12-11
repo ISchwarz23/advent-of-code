@@ -1,38 +1,9 @@
 package utils
 
-import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.math.absoluteValue
 import kotlin.math.pow
-
-/**
- * Reads lines from the given input txt file.
- */
-fun readInput(name: String) = File("src/main/resources", "$name.txt").readLines()
-
-/**
- * Reads lines from the given input txt file as in values.
- */
-fun readInputAsInts(name: String) = readInput(name).map { it.toInt() }
-
-/**
- * Reads one line as String.
- */
-fun readOneLineInputAsString(name: String): String {
-    return readInput(name)[0]
-}
-
-/**
- * Reads one line and map to Ints.
- */
-fun readOneLineInputAsInts(name: String, delimiter: String = ","): List<Int> {
-    return readInput(name)[0].split(delimiter).map { it.toInt() }
-}
-
-fun readInputAs2dIntArray(name: String, delimiter: String = ""): List<List<Int>> {
-    return readInput(name).map { it.toCharArray().map { c -> c.digitToInt() } }
-}
 
 /**
  * Converts string to com.schwarz.aoc.utils.md5 hash.
@@ -51,15 +22,17 @@ fun String.split(
 ): Pair<String, String> {
     val firstEndIndex: Int
     val secondStartIndex: Int
-    when(behavior) {
+    when (behavior) {
         SplitCharBehavior.ADD_CHAR_AT_SPLIT_INDEX_TO_FIRST -> {
             firstEndIndex = index + 1
             secondStartIndex = index + 1
         }
+
         SplitCharBehavior.ADD_CHAR_AT_SPLIT_INDEX_TO_SECOND -> {
             firstEndIndex = index
             secondStartIndex = index
         }
+
         SplitCharBehavior.OMIT_CHAR_AT_SPLIT_INDEX -> {
             firstEndIndex = index
             secondStartIndex = index + 1

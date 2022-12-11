@@ -14,8 +14,8 @@ internal class Day11Test {
 
     private val aocClient = AocClient()
 
-    private val testInput = readInput("Day11_test")
-    private val input = readInput("Day11")
+    private val testInput = readInput("aoc2022/Day11_test.txt")
+    private val input = readInput("aoc2022/Day11.txt")
 
     @Test
     internal fun testPart1() {

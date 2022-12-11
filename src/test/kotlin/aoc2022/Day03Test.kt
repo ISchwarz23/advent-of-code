@@ -11,8 +11,8 @@ import kotlin.test.assertEquals
 )
 internal class Day03Test {
 
-    private val testInput = readInput("Day03_test")
-    private val input = readInput("Day03")
+    private val testInput = readInput("aoc2022/Day03_test.txt")
+    private val input = readInput("aoc2022/Day03.txt")
 
     @Test
     internal fun testPart1() {

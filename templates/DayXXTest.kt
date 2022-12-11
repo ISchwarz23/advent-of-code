@@ -1,9 +1,8 @@
-package aoc2022
+package aocYYYY
 
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
-import utils.DEFAULT_COOKIE_FILE
 import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,8 +14,8 @@ internal class DayXXTest {
 
     private val aocClient = AocClient()
 
-    private val testInput = readInput("DayXX_test")
-    private val input = readInput("DayXX")
+    private val testInput = readInput("aocYYYY/DayXX_test.txt")
+    private val input = readInput("aocYYYY/DayXX.txt")
 
     @Test
     internal fun testPart1() {
@@ -28,7 +27,7 @@ internal class DayXXTest {
 
         // submit answer
         val answer = DayXX.part1(input)
-        val submissionResult = "(Submission: ${aocClient.submit(2022, XX, 1, answer)})"
+        val submissionResult = "(Submission: ${aocClient.submit(YYYY, XX, 1, answer)})"
         println("Result of Day XX - Part 1: $answer $submissionResult")
     }
 
@@ -42,7 +41,7 @@ internal class DayXXTest {
 
         // submit answer
         val answer = DayXX.part2(input)
-        val submissionResult = "(Submission: ${aocClient.submit(2022, XX, 2, answer)})"
+        val submissionResult = "(Submission: ${aocClient.submit(YYYY, XX, 2, answer)})"
         println("Result of Day XX - Part 2: $answer $submissionResult")
     }
 
