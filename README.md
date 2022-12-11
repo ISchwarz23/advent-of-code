@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=10&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=20&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=11&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=22&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -25,10 +25,19 @@ code is called with the real puzzle input.
 This input data is stored in text files in the project resources. The file name pattern of the input files
 is `DayXX.txt`
 (e.g. `Day01.txt`). The mentioned sample data is stored in files with the name pattern `DayXX_test.txt` (
-e.g. `Day01_test.txt`).  
-To generate a new set of files for a new das run `make new_day DAY=<day>` (e.g. `make new_day DAY=1`).  
+e.g. `Day01_test.txt`).
 
-*Hint: The actual input is downloaded when executing the `make new_day DAY=...` command, when the puzzle is for the requested day is already released and you stored your session cookie to the file `session.txt` in the project root. (File content should look like `session=abc...xyz`.)*
+## Usage
+
+The described files described in the section "Repo Structure" can be generated for a specific day using the
+command `make new_day DAY=<day>` (e.g. `make new_day DAY=1`).
+
+## Setup
+
+To download the actual puzzle input when executing the `make new_day DAY=...` command (only possible when the puzzle for
+the requested day was already released) and be able to automatically upload your puzzle answers, you need to store your
+session cookie to the file `session.txt` in the project root.
+The file content should look like `session=abc...xyz`.
 
 ## Log of my AoC Journey
 
@@ -46,7 +55,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 8   | [Treetop Tree House][8]      | ⭐⭐    | Found a pretty generic solution to 'iterate' over the trees. Don't know it is easy to understand.                                      |
 | 9   | [Rope Bridge][9]             | ⭐⭐    | Unfortunatelly I had to spend a long time debugging, as I had a bug when moving diagonal.                                              |
 | 10  | [Cathode-Ray Tube][10]       | ⭐⭐    | Very sub-optimal circumstances today. First I started more than half an hour late, then it took me ages to understand the second part. |
-| 11  | [???][11]                    |       |                                                                                                                                        |
+| 11  | [Monkey in the Middle][11]   | ⭐⭐    | A lot of parsing today. But puzzle itself was not that hard.                                                                           |
 | 12  | [???][12]                    |       |                                                                                                                                        |
 | 13  | [???][13]                    |       |                                                                                                                                        |
 | 14  | [???][14]                    |       |                                                                                                                                        |
