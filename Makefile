@@ -7,6 +7,6 @@ new_day:
 	@sed -i 's/XX/${DAY_WITH_PADDING}/g' src/test/kotlin/aoc2022/Day${DAY_WITH_PADDING}Test.kt
 	@touch src/main/resources/Day${DAY_WITH_PADDING}.txt
 	@touch src/main/resources/Day${DAY_WITH_PADDING}_test.txt
-	@sh -c "if [ -f ./session.txt ]; then \
-		curl -s -b $(shell head -1 ./session.txt) https://adventofcode.com/2022/day/${DAY}/input -o src/main/resources/Day${DAY_WITH_PADDING}.txt; \
+	@sh -c "if [ -f './session.txt' ]; then \
+		curl -s -b $(shell head -n 1 ./session.txt 2> /dev/null) https://adventofcode.com/2022/day/${DAY}/input -o src/main/resources/Day${DAY_WITH_PADDING}.txt; \
 	fi"
