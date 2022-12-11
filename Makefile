@@ -10,3 +10,4 @@ new_day:
 	@sh -c "if [ -f './session.txt' ]; then \
 		curl -s -b $(shell head -n 1 ./session.txt 2> /dev/null) https://adventofcode.com/2022/day/${DAY}/input -o src/main/resources/Day${DAY_WITH_PADDING}.txt; \
 	fi"
+	@echo "Template created for puzzle https://adventofcode.com/2022/day/${DAY}"
