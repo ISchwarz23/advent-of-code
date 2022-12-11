@@ -3,7 +3,6 @@ package aoc2022
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
-import utils.DEFAULT_COOKIE_FILE
 import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -26,10 +25,10 @@ internal class Day11Test {
         // then
         assertEquals(10605, result)
 
-        // get solution
+        // submit answer
         val answer = Day11.part1(input)
-        var submissionResultString = "(Submission: ${aocClient.submit(2022, 11, 1, answer)})"
-        println("Result of Day 11 - Part 1: $answer $submissionResultString")
+        val submissionResult = "(Submission: ${aocClient.submit(2022, 11, 1, answer)})"
+        println("Result of Day 11 - Part 1: $answer $submissionResult")
     }
 
     @Test
@@ -40,9 +39,9 @@ internal class Day11Test {
         // then
         assertEquals(2713310158, result)
 
-        // get solution
+        // submit answer
         val answer = Day11.part2(input)
-        var submissionResult = "(Submission: ${aocClient.submit(2022, 11, 2, answer)})"
+        val submissionResult = "(Submission: ${aocClient.submit(2022, 11, 2, answer)})"
         println("Result of Day 11 - Part 2: $answer $submissionResult")
     }
 

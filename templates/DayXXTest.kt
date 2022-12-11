@@ -26,10 +26,10 @@ internal class DayXXTest {
         // then
         assertEquals(0, result)
 
-        // get solution
+        // submit answer
         val answer = DayXX.part1(input)
-        var submissionResultString = "(Submission: ${aocClient.submit(2022, XX, 1, answer)})"
-        println("Result of Day XX - Part 1: $answer $submissionResultString")
+        val submissionResult = "(Submission: ${aocClient.submit(2022, XX, 1, answer)})"
+        println("Result of Day XX - Part 1: $answer $submissionResult")
     }
 
     @Test
@@ -40,9 +40,9 @@ internal class DayXXTest {
         // then
         assertEquals(0, result)
 
-        // get solution
+        // submit answer
         val answer = DayXX.part2(input)
-        var submissionResult = "(Submission: ${aocClient.submit(2022, XX, 2, answer)})"
+        val submissionResult = "(Submission: ${aocClient.submit(2022, XX, 2, answer)})"
         println("Result of Day XX - Part 2: $answer $submissionResult")
     }
 
