@@ -11,7 +11,7 @@ val DEFAULT_COOKIE_FILE = File("session.txt")
 
 class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
 
-    private val cookies = if (cookieFile.exists()) cookieFile.readLines()[0] else ""
+    private val cookies = if (cookieFile.exists()) cookieFile.readLines()[0] else null
     private val client = HttpClient.newBuilder().build()
 
     fun submit(year: Int, day: Int, level: Int, answer: Long): String = submit(year, day, level, "$answer")
@@ -19,6 +19,8 @@ class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
     fun submit(year: Int, day: Int, level: Int, answer: Int): String = submit(year, day, level, answer.toLong())
 
     fun submit(year: Int, day: Int, level: Int, answer: String): String {
+        if (cookies == null) return "Unable to submit, as no session cookie provided"
+
         val values = mapOf("level" to "$level", "answer" to answer)
 
         val request = HttpRequest.newBuilder()
