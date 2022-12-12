@@ -1,5 +1,6 @@
+DAY?=$(shell date +%d)
 DAY_WITH_PADDING=$(shell printf "%02d" ${DAY})
-YEAR?=2022
+YEAR?=$(shell date +%Y)
 
 new_day:
 	@# ensure directories exist

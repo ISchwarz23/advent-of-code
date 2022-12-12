@@ -55,6 +55,17 @@ fun Int.calcPartialSum(): Int {
     return if (this < 0) -value else value
 }
 
+fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
+    return flatMapIndexed { index, x ->
+            when {
+                index == 0 || index == lastIndex -> listOf(index)
+                predicate(x) -> listOf(index - 1, index + 1)
+                else -> emptyList()
+            }
+        }
+        .windowed(size = 2, step = 2) { (from, to) -> slice(from..to) }
+}
+
 
 infix fun Int.pow(exponent: Int): Int {
     return this.toDouble().pow(exponent).toInt()
