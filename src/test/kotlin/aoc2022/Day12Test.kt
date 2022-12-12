@@ -4,12 +4,14 @@ import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
 import utils.readInput
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
+@Ignore
 internal class Day12Test {
 
     private val aocClient = AocClient()

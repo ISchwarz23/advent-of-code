@@ -5,7 +5,7 @@ import java.io.File
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = File("src/main/resources", name).readLines()
+fun readInput(name: String) = File("input", name).readLines()
 
 /**
  * Reads lines from the given input txt file as in values.
