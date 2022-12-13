@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 )
 internal class Day09Test {
 
-    private val testInput = readMovementInstructions("aoc2022/Day08_test.txt")
+    private val testInput = readMovementInstructions("aoc2022/Day09_test.txt")
     private val test2Input = readMovementInstructions("aoc2022/Day09_test_complex.txt")
     private val input = readMovementInstructions("aoc2022/Day09.txt")
 
