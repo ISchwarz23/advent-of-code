@@ -1,5 +1,6 @@
 package aoc2022
 
+import java.lang.Integer.max
 import kotlin.math.abs
 
 object Day15 {
@@ -9,11 +10,11 @@ object Day15 {
         return getCheckedCoordsAsRanges(entries, y).flatMap { it.toList() }.filterNot { it in beaconPositionX }.size
     }
 
-    fun part2(entries: List<Pair<Coords, Coords>>, areaSize: Int): Int {
+    fun part2(entries: List<Pair<Coords, Coords>>, areaSize: Int): Long {
         for(y in 0..areaSize) {
             val checkedCoordsAsRanges = getCheckedCoordsAsRanges(entries, y, 0..areaSize)
             if(checkedCoordsAsRanges.size > 1) {
-                return checkedCoordsAsRanges[0].last + 1 * 4_000_000 + y
+                return (checkedCoordsAsRanges[0].last + 1).toLong() * 4_000_000 + y
             }
         }
         return 0
@@ -39,7 +40,7 @@ private fun getCheckedCoordsAsRanges(entries: List<Pair<Coords, Coords>>, y: Int
         if(lastRange == null) {
             lastRange = nextRange
         } else if(nextRange.first <= lastRange.last) {
-            lastRange = lastRange.first..nextRange.last
+            lastRange = lastRange.first..max(lastRange.last, nextRange.last)
         } else {
             reducedRanges += lastRange
             lastRange = nextRange
