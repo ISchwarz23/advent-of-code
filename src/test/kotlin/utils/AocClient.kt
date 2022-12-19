@@ -30,12 +30,18 @@ class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
             .header("Content-Type", "application/x-www-form-urlencoded")
             .build()
 
-        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+
+        val response = try {
+            client.send(request, HttpResponse.BodyHandlers.ofString())
+        } catch (t: Throwable) {
+            return "Unable to connect to AoC"
+        }
+
         return if (response.statusCode() in 200..299) {
             val body = response.body().toString()
             if (body.contains("That's not the right answer")) {
                 var wait = ""
-                if(body.contains("please wait ")) {
+                if (body.contains("please wait ")) {
                     wait += "; please wait "
                     wait += body.substringAfter("please wait ").substringBefore(" before trying again")
                 }
@@ -50,7 +56,7 @@ class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
                 body
             }
         } else {
-            "Unable to submit answer"
+            "Unable to submit answer; Status: ${response.statusCode()}"
         }
     }
 
