@@ -31,16 +31,31 @@ class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
             .build()
 
         val response = client.send(request, HttpResponse.BodyHandlers.ofString())
-        return if(response.statusCode() in 200..299) {
+        return if (response.statusCode() in 200..299) {
             val body = response.body().toString()
-            if(body.contains("That's not the right answer.")) "Wrong answer" else "Correct answer"
+            if (body.contains("That's not the right answer")) {
+                var wait = ""
+                if(body.contains("please wait ")) {
+                    wait += "; please wait "
+                    wait += body.substringAfter("please wait ").substringBefore(" before trying again")
+                }
+                "Wrong answer$wait"
+            } else if (body.contains("You gave an answer too recently")) {
+                "Please wait ${body.substringAfter("You have ").substringBefore(" left to wait")}"
+            } else if (body.contains("That's the right answer")) {
+                "Correct answer"
+            } else if (body.contains("You don't seem to be solving the right level")) {
+                "Already submitted"
+            } else {
+                body
+            }
         } else {
             "Unable to submit answer"
         }
     }
 
     private fun toFormData(data: Map<String, String>): HttpRequest.BodyPublisher? {
-        val res = data.map {(k, v) -> "${(k.utf8())}=${v.utf8()}"}.joinToString("&")
+        val res = data.map { (k, v) -> "${(k.utf8())}=${v.utf8()}" }.joinToString("&")
         return HttpRequest.BodyPublishers.ofString(res)
     }
 
