@@ -34,4 +34,8 @@ data class Vector2(val x: Long, val y: Long) {
     infix fun plusY(y: Long): Vector2 = Vector2(this.x, this.y + y)
     infix fun minusY(y: Int): Vector2 = Vector2(this.x, this.y - y)
     infix fun minusY(y: Long): Vector2 = Vector2(this.x, this.y - y)
+
+    override fun toString(): String {
+        return "($x, $y)"
+    }
 }

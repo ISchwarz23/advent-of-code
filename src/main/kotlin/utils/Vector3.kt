@@ -38,4 +38,8 @@ data class Vector3(val x: Long, val y: Long, val z: Long) {
     fun minusZ(z: Long): Vector3 = Vector3(this.x, this.y, this.z - z)
     fun plusZ(z: Int): Vector3 = Vector3(this.x, this.y, this.z + z)
     fun plusZ(z: Long): Vector3 = Vector3(this.x, this.y, this.z + z)
+
+    override fun toString(): String {
+        return "($x, $y, $z)"
+    }
 }

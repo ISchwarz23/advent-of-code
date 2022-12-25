@@ -15,44 +15,46 @@ class KdTreeTest {
     //            /            \
     //     (60, 80)            (40, 95)
 
-    private val tree = KdTree(Vector2::x, Vector2::y)
+    private val tree2d = KdTree(Vector2::x, Vector2::y, enableBalancing = false)
+    private val tree3d = KdTree(Vector3::x, Vector3::y, Vector3::z, enableBalancing = false)
 
     @BeforeEach
     internal fun setup() {
-        tree += Vector2(70, 20)
-        tree += Vector2(50, 90)
-        tree += Vector2(80, 10)
-        tree += Vector2(60, 80)
-        tree += Vector2(40, 95)
+        tree2d += Vector2(70, 20)
+        tree2d += Vector2(50, 90)
+        tree2d += Vector2(80, 10)
+        tree2d += Vector2(60, 80)
+        tree2d += Vector2(40, 95)
+//        println(tree)
     }
 
     @AfterEach
     internal fun tearDown() {
-        tree.clear()
+        tree2d.clear()
     }
 
     @Test
     internal fun shouldGiveCorrectSize() {
-        assertFalse(tree.isEmpty)
-        assertEquals(5, tree.size)
+        assertFalse(tree2d.isEmpty)
+        assertEquals(5, tree2d.size)
     }
 
     @Test
     internal fun shouldFindClosest() {
-        val nearest = tree.findClosest(Vector2(60, 30))
+        val nearest = tree2d.findClosest(Vector2(60, 30))
         assertEquals(Vector2(70, 20), nearest)
     }
 
     @Test
     internal fun shouldFindItemsInRange() {
-        val itemsInRange = tree.findInRange(50.0..80.0, 80.0..90.0)
+        val itemsInRange = tree2d.findInRange(50.0..80.0, 80.0..90.0)
         assertEquals(listOf(Vector2(50, 90), Vector2(60, 80)), itemsInRange)
     }
 
     @Test
     internal fun shouldCheckIfItemContained() {
-        assertTrue(Vector2(50, 90) in tree)
-        assertFalse(Vector2(50, 80) in tree)
+        assertTrue(Vector2(50, 90) in tree2d)
+        assertFalse(Vector2(50, 80) in tree2d)
     }
 
 }
