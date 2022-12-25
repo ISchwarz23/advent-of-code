@@ -32,7 +32,7 @@ class KdTreeTest {
         tree3d += Vector3(30, 30, 30)
         tree3d += Vector3(40, 40, 40)
         tree3d += Vector3(50, 50, 50)
-        println(tree3d)
+//        println(tree3d)
     }
 
     @AfterEach
