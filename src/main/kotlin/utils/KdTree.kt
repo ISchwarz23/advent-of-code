@@ -13,7 +13,6 @@ class KdTree<T>(private val dimensionExtractors: Array<(T) -> Double>, private v
 
     /*
     * TODO:
-    *   - test with more than 2 dimensions
     *   - removing items
     */
 
