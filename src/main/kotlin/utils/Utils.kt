@@ -71,6 +71,10 @@ infix fun Int.pow(exponent: Int): Int {
     return this.toDouble().pow(exponent).toInt()
 }
 
+infix fun Long.pow(exponent: Int): Long {
+    return this.toDouble().pow(exponent).toLong()
+}
+
 fun Char.repeat(i: Int): String {
     var result = ""
     repeat(i) { result += this }
