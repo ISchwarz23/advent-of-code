@@ -6,13 +6,13 @@ import kotlin.math.abs
 object Day25 {
 
     fun part1(input: List<String>): String {
-        val decimal = input.sumOf { safuToDecimal(it) }
-        return decimalToSafu(decimal)
+        val decimalSum = input.sumOf { convertSafuToDecimal(it) }
+        return convertDecimalToSafu(decimalSum)
     }
 
 }
 
-fun safuToDecimal(safu: String): Long {
+private fun convertSafuToDecimal(safu: String): Long {
     return safu.chunked(1)
         .map { safuDigitToDecimalDigit(it) }
         .reversed()
@@ -21,7 +21,7 @@ fun safuToDecimal(safu: String): Long {
         }
 }
 
-fun decimalToSafu(decimal: Long): String {
+private fun convertDecimalToSafu(decimal: Long): String {
 
     fun getMaxRestValue(exponent: Int): Long {
         return (0 until exponent).sumOf { 2L * (5L pow it) } // Could be cached
@@ -49,7 +49,7 @@ fun decimalToSafu(decimal: Long): String {
     return digits.joinToString("") { decimalDigitToSafuDigit(it) }
 }
 
-fun safuDigitToDecimalDigit(safu: String): Long {
+private fun safuDigitToDecimalDigit(safu: String): Long {
     return when (safu) {
         "=" -> -2
         "-" -> -1
@@ -60,7 +60,7 @@ fun safuDigitToDecimalDigit(safu: String): Long {
     }
 }
 
-fun decimalDigitToSafuDigit(value: Int): String {
+private fun decimalDigitToSafuDigit(value: Int): String {
     return when (value) {
         -2 -> "="
         -1 -> "-"
