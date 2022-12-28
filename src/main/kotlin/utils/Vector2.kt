@@ -1,9 +1,10 @@
 package utils
 
 import kotlin.math.abs
+import kotlin.math.min
 import kotlin.math.sign
 
-data class Vector2(val x: Long, val y: Long) {
+data class Vector2(val x: Long, val y: Long) : Comparable<Vector2> {
 
     constructor(x: Int, y: Int) : this(x.toLong(), y.toLong())
 
@@ -35,7 +36,66 @@ data class Vector2(val x: Long, val y: Long) {
     infix fun minusY(y: Int): Vector2 = Vector2(this.x, this.y - y)
     infix fun minusY(y: Long): Vector2 = Vector2(this.x, this.y - y)
 
+    operator fun rangeTo(other: Vector2) = Vector2Progression(this, other)
+
+    override fun compareTo(other: Vector2): Int {
+        var result = this.x - other.x
+        if (result == 0L) result = this.y - other.y
+        return result.toInt()
+    }
+
     override fun toString(): String {
         return "($x, $y)"
     }
+
+}
+
+class Vector2Progression(
+    override val start: Vector2,
+    override val endInclusive: Vector2,
+    private val stepSize: Long = 1
+) : Iterable<Vector2>, ClosedRange<Vector2> {
+
+    override fun contains(other: Vector2): Boolean {
+        TODO("Not implemented")
+    }
+
+    override fun iterator(): Iterator<Vector2> = Vector2Iterator(start, endInclusive, stepSize)
+
+    infix fun step(days: Long) = Vector2Progression(start, endInclusive, days)
+
+    override fun toString(): String {
+        return "$start..$endInclusive"
+    }
+}
+
+class Vector2Iterator(
+    start: Vector2,
+    private val endInclusive: Vector2,
+    private val stepSize: Long = 1): Iterator<Vector2> {
+
+    private var currentVal = start
+
+    init {
+        val stepX = min(endInclusive.x - currentVal.x, stepSize)
+        val stepY = min(endInclusive.y - currentVal.y, stepSize)
+        currentVal = Vector2(currentVal.x - stepX, currentVal.y - stepY)
+    }
+
+    override fun hasNext(): Boolean {
+        return currentVal < endInclusive
+    }
+
+    override fun next(): Vector2 {
+        val deltaX = endInclusive.x - currentVal.x
+        val deltaY = endInclusive.y - currentVal.y
+        if(deltaX == 0L && deltaY == 0L) error("No more items")
+
+        val stepX = min(deltaX, stepSize)
+        val stepY = min(deltaY, stepSize)
+
+        currentVal = Vector2(currentVal.x + stepX, currentVal.y + stepY)
+        return currentVal
+    }
+
 }
