@@ -1,5 +1,5 @@
 ![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=19&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=39&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=40&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -61,7 +61,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 13  | [Distress Signal][13]          | ⭐⭐    |                                                                                                                                                                                                                                           |
 | 14  | [Regolith Reservoir][14]       | ⭐⭐    |                                                                                                                                                                                                                                           |
 | 15  | [Beacon Exclusion Zone][15]    | ⭐⭐    | Pretty easy compared to the ones before.                                                                                                                                                                                                  |
-| 16  | [Proboscidea Volcanium][16]    |       |                                                                                                                                                                                                                                           |
+| 16  | [Proboscidea Volcanium][16]    | ⭐     | Created a very slow algorithm, but it dit it's job at least for part 1                                                                                                                                                                    |
 | 17  | [Pyroclastic Flow][17]         | ⭐⭐    | This one was really fun! :)                                                                                                                                                                                                               |
 | 18  | [Boiling Boulders][18]         | ⭐⭐    |                                                                                                                                                                                                                                           |
 | 19  | [Not Enough Minerals][19]      |       |                                                                                                                                                                                                                                           |
