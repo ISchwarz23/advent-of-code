@@ -1,32 +1,61 @@
 package aoc2022
 
+import kotlin.math.max
+
 
 object Day16 {
 
     fun part1(input: List<String>): Long {
-        val flowRateByValve = mutableMapOf<String, Int>()
-        val tunnelConnections = mutableMapOf<String, List<String>>()
-        input.map { parse(it) }.forEach {
-            flowRateByValve[it.first] = it.second
-            tunnelConnections[it.first] = it.third
-        }
-        val map = CaveTunnelMap(tunnelConnections)
-
-        return getMaxReleasedPressure("AA", 30, flowRateByValve, map)
+        cache.clear()
+        return getMaxReleasedPressure("AA", 30, parseFlowRateByValve(input), parseCaveMap(input))
     }
 
-    fun part2(input: List<String>): Int {
-        return -1
+    fun part2(input: List<String>): Long {
+        cache.clear()
+
+        val caveMap = parseCaveMap(input)
+        val flowRateByValve = parseFlowRateByValve(input)
+        val relevantValves = flowRateByValve.entries.filter { it.value > 0 }.map { it.key }
+
+        var maxReleasedPressure = 0L
+        for(i in 1 until (1 shl relevantValves.size)) {
+            if(i % 100 == 0) cache.clear() // required to avoid OutOfMemoryException
+
+            // split work half-half between elf and elephant
+            if(i.countOneBits() != relevantValves.size / 2 && i.countOneBits() != (relevantValves.size + 1) / 2) continue
+
+            // find best result for elephant
+            val flowRateByValveElephant = flowRateByValve.toMutableMap()
+            relevantValves.filterIndexed { index, _ -> (i and (1 shl index)) != 0 }.forEach { flowRateByValveElephant[it] = 0 }
+            val releasePressureElephant = getMaxReleasedPressure("AA", 26, flowRateByValveElephant, caveMap)
+
+            // find best result for elf
+            val flowRateByValveElf = flowRateByValve.toMutableMap()
+            relevantValves.filterIndexed { index, _ -> (i and (1 shl index)) == 0 }.forEach { flowRateByValveElf[it] = 0 }
+            val releasePressureElf = getMaxReleasedPressure("AA", 26, flowRateByValveElf, caveMap)
+
+            // find best result
+            maxReleasedPressure = max(maxReleasedPressure, releasePressureElephant + releasePressureElf)
+        }
+        return maxReleasedPressure
     }
 }
 
 private val cache: MutableMap<VolcanoState, Long> = mutableMapOf()
 
+private fun parseFlowRateByValve(input: List<String>): Map<String, Int> {
+    return input.map { parse(it) }.associate { it.first to it.second }
+}
+
+private fun parseCaveMap(input: List<String>): CaveTunnelMap {
+    return CaveTunnelMap(input.map { parse(it) }.associate { it.first to it.third })
+}
+
 private fun getMaxReleasedPressure(
     currentLocation: String,
     minutesToEruption: Int,
     flowRateByValve: Map<String, Int>,
-    map: CaveTunnelMap
+    caveMap: CaveTunnelMap
 ): Long {
     // abort if time is over
     if (minutesToEruption <= 1) return 0L
@@ -49,16 +78,17 @@ private fun getMaxReleasedPressure(
             currentLocation,
             remainingTime,
             newFlowRateByValve,
-            map
+            caveMap
         )
     }
 
     // go to other locations
-    val remainingLocations = flowRateByValve.entries.filter { it.value > 0 }.map { it.key }.filter { it != currentLocation }
+    val remainingLocations =
+        flowRateByValve.entries.filter { it.value > 0 }.map { it.key }.filter { it != currentLocation }
     for (nextLocation in remainingLocations) {
-        val remainingTime = minutesToEruption - map.getDistanceInMinutes(currentLocation, nextLocation)
-        if( remainingTime > 1) {
-            results += getMaxReleasedPressure(nextLocation, remainingTime, flowRateByValve, map)
+        val remainingTime = minutesToEruption - caveMap.getDistanceInMinutes(currentLocation, nextLocation)
+        if (remainingTime > 1) {
+            results += getMaxReleasedPressure(nextLocation, remainingTime, flowRateByValve, caveMap)
         }
     }
 
@@ -93,7 +123,7 @@ private class CaveTunnelMap(private val tunnelConnections: Map<String, List<Stri
 private data class VolcanoState(
     val location: String,
     val flowRateByValve: Map<String, Int>,
-    val timeToEruption: Int,
+    val timeToEruption: Int
 )
 
 private fun parse(input: String): Triple<String, Int, List<String>> {
