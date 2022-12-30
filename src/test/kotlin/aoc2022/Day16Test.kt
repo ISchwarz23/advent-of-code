@@ -4,11 +4,9 @@ import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
 import utils.readInput
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@Ignore
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
