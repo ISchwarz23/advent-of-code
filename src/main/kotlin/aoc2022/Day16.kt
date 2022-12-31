@@ -22,7 +22,7 @@ object Day16 {
             if(i % 100 == 0) cache.clear() // required to avoid OutOfMemoryException
 
             // split work half-half between elf and elephant
-            if(i.countOneBits() != relevantValves.size / 2 && i.countOneBits() != (relevantValves.size + 1) / 2) continue
+            if(i.countOneBits() != relevantValves.size / 2) continue
 
             // find best result for elephant
             val flowRateByValveElephant = flowRateByValve.toMutableMap()

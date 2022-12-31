@@ -4,6 +4,7 @@ import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
 import utils.readInput
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -32,6 +33,7 @@ internal class Day16Test {
     }
 
     @Test
+    @Ignore
     internal fun testPart2() {
         // when
         val result = Day16.part2(testInput)
