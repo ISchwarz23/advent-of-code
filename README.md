@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=20&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=41&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=22&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=45&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -67,7 +67,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 19  | [Not Enough Minerals][19]      | ⭐⭐    |                                                                                                                                                                                                                                           |
 | 20  | [Grove Positioning System][20] | ⭐⭐    |                                                                                                                                                                                                                                           |
 | 21  | [Monkey Math][21]              | ⭐⭐    | Really liked this one! 'Cause Maths ;)                                                                                                                                                                                                    |
-| 22  | [Monkey Map][22]               |       |                                                                                                                                                                                                                                           |
+| 22  | [Monkey Map][22]               | ⭐⭐    | Cool puzzle, but I was not able to implement a general solution for part 2. So for now I use hardcoded rules only working for the given input.                                                                                            |
 | 23  | [Unstable Diffusion][23]       |       |                                                                                                                                                                                                                                           |
 | 24  | [Blizzard Basin][24]           |       |                                                                                                                                                                                                                                           |
 | 25  | [Full of Hot Air][25]          | ⭐     |                                                                                                                                                                                                                                           |
@@ -77,51 +77,27 @@ I tried to log my results and thoughts for each puzzle after solving it.
 [kotlin]: https://kotlinlang.org
 
 [1]: https://adventofcode.com/2022/day/1
-
 [2]: https://adventofcode.com/2022/day/2
-
 [3]: https://adventofcode.com/2022/day/3
-
 [4]: https://adventofcode.com/2022/day/4
-
 [5]: https://adventofcode.com/2022/day/5
-
 [6]: https://adventofcode.com/2022/day/6
-
 [7]: https://adventofcode.com/2022/day/7
-
 [8]: https://adventofcode.com/2022/day/8
-
 [9]: https://adventofcode.com/2022/day/9
-
 [10]: https://adventofcode.com/2022/day/10
-
 [11]: https://adventofcode.com/2022/day/11
-
 [12]: https://adventofcode.com/2022/day/12
-
 [13]: https://adventofcode.com/2022/day/13
-
 [14]: https://adventofcode.com/2022/day/14
-
 [15]: https://adventofcode.com/2022/day/15
-
 [16]: https://adventofcode.com/2022/day/16
-
 [17]: https://adventofcode.com/2022/day/17
-
 [18]: https://adventofcode.com/2022/day/18
-
 [19]: https://adventofcode.com/2022/day/19
-
 [20]: https://adventofcode.com/2022/day/20
-
 [21]: https://adventofcode.com/2022/day/21
-
 [22]: https://adventofcode.com/2022/day/22
-
 [23]: https://adventofcode.com/2022/day/23
-
 [24]: https://adventofcode.com/2022/day/24
-
 [25]: https://adventofcode.com/2022/day/25
