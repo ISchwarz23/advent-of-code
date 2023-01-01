@@ -3,8 +3,8 @@ package aoc2022
 import aoc2022.day17.Day17
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.AocClient
 import utils.Vector2
+import utils.aocClient
 import utils.readOneLineInputAsString
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -14,15 +14,13 @@ import kotlin.test.assertEquals
 )
 internal class Day17Test {
 
-    private val aocClient = AocClient()
-
-    private val testInput = readInputAsWind("aoc2022/Day17_test.txt")
-    private val input = readInputAsWind("aoc2022/Day17.txt")
+    private val input = readInputAsWind("aoc2022/day17.txt")
+    private val inputExample = readInputAsWind("aoc2022/day17_example.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day17.part1(testInput)
+        val result = Day17.part1(inputExample)
 
         // then
         assertEquals(3068, result)
@@ -36,7 +34,7 @@ internal class Day17Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day17.part2(testInput)
+        val result = Day17.part2(inputExample)
 
         // then
         assertEquals(1514285714288, result)

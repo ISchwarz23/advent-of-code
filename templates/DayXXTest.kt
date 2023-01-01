@@ -3,7 +3,7 @@ package aocYYYY
 import aocYYYY.dayXX.DayXX
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.AocClient
+import utils.aocClient
 import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,8 +15,8 @@ internal class DayXXTest {
 
     private val aocClient = AocClient()
 
-    private val inputExample = readInput("aocYYYY/dayXX_example.txt")
     private val input = readInput("aocYYYY/dayXX.txt")
+    private val inputExample = readInput("aocYYYY/dayXX_example.txt")
 
     @Test
     internal fun testPart1() {

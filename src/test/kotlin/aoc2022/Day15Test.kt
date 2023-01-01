@@ -4,7 +4,7 @@ import aoc2022.day12.Coords
 import aoc2022.day15.Day15
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.AocClient
+import utils.aocClient
 import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -14,15 +14,13 @@ import kotlin.test.assertEquals
 )
 internal class Day15Test {
 
-    private val aocClient = AocClient()
-
-    private val testInput = readInputAsCoordinatePairs("aoc2022/Day15_test.txt")
-    private val input = readInputAsCoordinatePairs("aoc2022/Day15.txt")
+    private val input = readInputAsCoordinatePairs("aoc2022/day15.txt")
+    private val inputExample = readInputAsCoordinatePairs("aoc2022/day15_example.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day15.part1(testInput, 10)
+        val result = Day15.part1(inputExample, 10)
 
         // then
         assertEquals(26, result)
@@ -36,10 +34,10 @@ internal class Day15Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day15.part2(testInput, 20)
+        val result = Day15.part2(inputExample, 20)
 
         // then
-         assertEquals(56000011, result)
+        assertEquals(56000011, result)
 
         // submit answer
         val answer = Day15.part2(input, 4_000_000)

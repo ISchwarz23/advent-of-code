@@ -12,13 +12,13 @@ import kotlin.test.assertEquals
 )
 internal class Day10Test {
 
-    private val testInput = readInput("aoc2022/Day10_test.txt")
-    private val input = readInput("aoc2022/Day10.txt")
+    private val input = readInput("aoc2022/day10.txt")
+    private val inputExample = readInput("aoc2022/day10_example.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day10.part1(testInput)
+        val result = Day10.part1(inputExample)
 
         // then
         assertEquals(13140, result)
@@ -30,7 +30,7 @@ internal class Day10Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day10.part2(testInput)
+        val result = Day10.part2(inputExample)
 
         // then
         assertEquals(0, result)

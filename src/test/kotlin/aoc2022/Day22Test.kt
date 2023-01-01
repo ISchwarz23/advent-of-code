@@ -3,8 +3,8 @@ package aoc2022
 import aoc2022.day22.*
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.AocClient
 import utils.Vector2
+import utils.aocClient
 import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -14,17 +14,15 @@ import kotlin.test.assertEquals
 )
 internal class Day22Test {
 
-    private val aocClient = AocClient()
-
-    private val testInputMap = readInputAsMap("aoc2022/Day22_test.txt")
-    private val testInputMoves = readInputAsMovementInstructions("aoc2022/Day22_test.txt")
-    private val inputMap = readInputAsMap("aoc2022/Day22.txt")
-    private val inputMoves = readInputAsMovementInstructions("aoc2022/Day22.txt")
+    private val inputMap = readInputAsMap("aoc2022/day22.txt")
+    private val inputMoves = readInputAsMovementInstructions("aoc2022/day22.txt")
+    private val inputExampleMap = readInputAsMap("aoc2022/day22_example.txt")
+    private val inputExampleMoves = readInputAsMovementInstructions("aoc2022/day22_example.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day22.part1(testInputMap, testInputMoves)
+        val result = Day22.part1(inputExampleMap, inputExampleMoves)
 
         // then
         assertEquals(6032, result)
@@ -38,7 +36,7 @@ internal class Day22Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day22.part2(testInputMap, testInputMoves)
+        val result = Day22.part2(inputExampleMap, inputExampleMoves)
 
         // then
         assertEquals(5031, result)
@@ -52,7 +50,8 @@ internal class Day22Test {
 }
 
 private fun readInputAsMap(name: String): Map<Vector2, FieldType> {
-    return readInput(name).takeWhile { it.isNotEmpty() }.flatMapIndexed { index, row -> toMapFields(index + 1, row) }.toMap()
+    return readInput(name).takeWhile { it.isNotEmpty() }.flatMapIndexed { index, row -> toMapFields(index + 1, row) }
+        .toMap()
 }
 
 private fun toMapFields(rowIndex: Int, rowData: String): List<Pair<Vector2, FieldType>> {

@@ -13,13 +13,13 @@ import kotlin.test.assertEquals
 )
 internal class Day05Test {
 
-    private val testInput = parseInput(readInput("aoc2022/Day05_test.txt"))
-    private val input = parseInput(readInput("aoc2022/Day05.txt"))
+    private val input = parseInput(readInput("aoc2022/day05.txt"))
+    private val inputExample = parseInput(readInput("aoc2022/day05_example.txt"))
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day05.part1(testInput.first, testInput.second)
+        val result = Day05.part1(inputExample.first, inputExample.second)
 
         // then
         assertEquals("CMZ", result)
@@ -31,7 +31,7 @@ internal class Day05Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day05.part2(testInput.first, testInput.second)
+        val result = Day05.part2(inputExample.first, inputExample.second)
 
         // then
         assertEquals("MCD", result)

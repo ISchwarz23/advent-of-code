@@ -3,7 +3,7 @@ package aoc2022
 import aoc2022.day11.Day11
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.AocClient
+import utils.aocClient
 import utils.readInput
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -13,15 +13,13 @@ import kotlin.test.assertEquals
 )
 internal class Day11Test {
 
-    private val aocClient = AocClient()
-
-    private val testInput = readInput("aoc2022/Day11_test.txt")
-    private val input = readInput("aoc2022/Day11.txt")
+    private val input = readInput("aoc2022/day11.txt")
+    private val inputExample = readInput("aoc2022/day11_example.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day11.part1(testInput)
+        val result = Day11.part1(inputExample)
 
         // then
         assertEquals(10605, result)
@@ -35,7 +33,7 @@ internal class Day11Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day11.part2(testInput)
+        val result = Day11.part2(inputExample)
 
         // then
         assertEquals(2713310158, result)

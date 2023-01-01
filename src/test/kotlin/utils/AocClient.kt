@@ -9,6 +9,8 @@ import java.net.http.HttpResponse
 
 val DEFAULT_COOKIE_FILE = File("session.txt")
 
+val aocClient = AocClient()
+
 class AocClient(cookieFile: File = DEFAULT_COOKIE_FILE) {
 
     private val cookies = if (cookieFile.exists()) cookieFile.readLines()[0] else null
