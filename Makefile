@@ -10,11 +10,13 @@ new_day:
 
 	@# create source file from template
 	@cp templates/DayXX.kt src/main/kotlin/aoc${YEAR}/day${DAY_WITH_PADDING}/Day${DAY_WITH_PADDING}.kt
+	@sed -i 's/xx/${DAY}/g' src/main/kotlin/aoc${YEAR}/day${DAY_WITH_PADDING}/Day${DAY_WITH_PADDING}.kt
 	@sed -i 's/XX/${DAY_WITH_PADDING}/g' src/main/kotlin/aoc${YEAR}/day${DAY_WITH_PADDING}/Day${DAY_WITH_PADDING}.kt
 	@sed -i 's/YYYY/${YEAR}/g' src/main/kotlin/aoc${YEAR}/day${DAY_WITH_PADDING}/Day${DAY_WITH_PADDING}.kt
 
 	@# create test file from template
 	@cp templates/DayXXTest.kt src/test/kotlin/aoc${YEAR}/Day${DAY_WITH_PADDING}Test.kt
+	@sed -i 's/xx/${DAY}/g' src/test/kotlin/aoc${YEAR}/Day${DAY_WITH_PADDING}Test.kt
 	@sed -i 's/XX/${DAY_WITH_PADDING}/g' src/test/kotlin/aoc${YEAR}/Day${DAY_WITH_PADDING}Test.kt
 	@sed -i 's/YYYY/${YEAR}/g' src/test/kotlin/aoc${YEAR}/Day${DAY_WITH_PADDING}Test.kt
 
