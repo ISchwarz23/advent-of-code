@@ -1,9 +1,9 @@
 package aoc2022
 
+import aoc2022.day18.Day18
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
-import utils.readInput
 import utils.readInputAsVector3D
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -41,6 +41,10 @@ fun String.split(
     return Pair(substring(trimStart, firstEndIndex), substring(secondStartIndex, length - trimEnd))
 }
 
+
+val String.allCharsUnique: Boolean
+    get() = all(hashSetOf<Char>()::add)
+
 enum class SplitCharBehavior {
     ADD_CHAR_AT_SPLIT_INDEX_TO_FIRST,
     ADD_CHAR_AT_SPLIT_INDEX_TO_SECOND,

@@ -1,5 +1,7 @@
 package aoc2022
 
+import aoc2022.day19.Blueprint
+import aoc2022.day19.Day19
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
@@ -15,8 +17,8 @@ internal class Day19Test {
 
     private val aocClient = AocClient()
 
-    private val testInput = readInput("aoc2022/Day19_test.txt")
-    private val input = readInput("aoc2022/Day19.txt")
+    private val testInput = readInputAsBlueprint("aoc2022/Day19_test.txt")
+    private val input = readInputAsBlueprint("aoc2022/Day19.txt")
 
     @Test
     internal fun testPart1() {
@@ -47,4 +49,9 @@ internal class Day19Test {
         println("Result of Day 19 - Part 2: $answer (Submission: $submissionResult)")
     }
 
+}
+
+
+private fun readInputAsBlueprint(name: String): List<Blueprint> {
+    return readInput(name).map { Blueprint.of(it) }
 }

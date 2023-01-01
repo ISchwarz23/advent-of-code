@@ -1,5 +1,6 @@
 package aoc2022
 
+import aoc2022.day03.Day03
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

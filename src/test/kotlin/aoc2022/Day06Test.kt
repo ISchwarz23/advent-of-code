@@ -1,8 +1,8 @@
 package aoc2022
 
+import aoc2022.day06.Day06
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.readInput
 import utils.readOneLineInputAsString
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,5 +1,6 @@
 package aocYYYY
 
+import aocYYYY.dayXX.DayXX
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
@@ -14,13 +15,13 @@ internal class DayXXTest {
 
     private val aocClient = AocClient()
 
-    private val testInput = readInput("aocYYYY/DayXX_test.txt")
-    private val input = readInput("aocYYYY/DayXX.txt")
+    private val inputExample = readInput("aocYYYY/dayXX_example.txt")
+    private val input = readInput("aocYYYY/dayXX.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = DayXX.part1(testInput)
+        val result = DayXX.part1(inputExample)
 
         // then
         assertEquals(0, result)
@@ -34,7 +35,7 @@ internal class DayXXTest {
     @Test
     internal fun testPart2() {
         // when
-        val result = DayXX.part2(testInput)
+        val result = DayXX.part2(inputExample)
 
         // then
         assertEquals(0, result)

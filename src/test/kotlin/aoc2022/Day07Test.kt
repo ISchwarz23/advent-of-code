@@ -1,5 +1,8 @@
 package aoc2022
 
+import aoc2022.day07.Day07
+import aoc2022.day07.Directory
+import aoc2022.day07.File
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

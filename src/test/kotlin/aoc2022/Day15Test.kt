@@ -1,5 +1,7 @@
 package aoc2022
 
+import aoc2022.day12.Coords
+import aoc2022.day15.Day15
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.AocClient
