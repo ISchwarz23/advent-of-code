@@ -26,6 +26,13 @@ fun readInputAsVector3D(name: String, delimiter: String = ",") =
     readInput(name).map { it.split(delimiter) }.map { Vector3(it[0].toInt(), it[1].toInt(), it[2].toInt()) }
 
 /**
+ * Reads chars from given input file and passes it with its x and y indices to the given transform function.
+ */
+fun <T> readInput2dIndexed(name: String, transform: (x: Int, y: Int, data: Char) -> T?): List<T> {
+    return readInput(name).flatMapIndexed{ y, row -> row.mapIndexed{ x, data -> transform(x, y, data) } }.filterNotNull()
+}
+
+/**
  * Reads one line as String.
  */
 fun readOneLineInputAsString(name: String): String {

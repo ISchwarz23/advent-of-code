@@ -25,6 +25,7 @@ data class Vector2(val x: Long, val y: Long) : Comparable<Vector2> {
     fun linearMagnitude(): Long = this.x + this.y
     fun abs(): Vector2 = Vector2(abs(this.x), abs(this.y))
     fun manhattanDistance(): Long = this.abs().linearMagnitude()
+    fun manhattanDistanceTo(other: Vector2): Long = (this - other).abs().linearMagnitude()
     fun sign(): Vector2 = Vector2(this.x.sign.toLong(), this.y.sign.toLong())
 
     infix fun plusX(x: Int): Vector2 = Vector2(this.x + x, this.y)

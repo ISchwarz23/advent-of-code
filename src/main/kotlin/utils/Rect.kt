@@ -8,8 +8,8 @@ data class Rect(val xRange: LongRange, val yRange: LongRange) {
     )
 
     constructor(xStart: Long, width: Long, yStart: Long, height: Long) : this(
-        xStart..xStart + width,
-        yStart..yStart + height
+        xStart until xStart + width,
+        yStart until yStart + height
     )
 
     constructor(xStart: Int, width: Int, yStart: Int, height: Int) : this(
