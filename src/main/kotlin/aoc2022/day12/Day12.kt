@@ -17,7 +17,8 @@ object Day12 {
 
     fun part2(input: List<String>): Int {
         val map = toTopologyMap(input)
-        val shortestPath = map.getCoords('a').mapNotNull { getShortestPath(map, it) }.minByOrNull { it.size } ?: error("No path found :(")
+        val shortestPath = map.getCoords('a').mapNotNull { getShortestPath(map, it) }.minByOrNull { it.size }
+            ?: error("No path found :(")
         println(toAnsiColoredString(map, shortestPath))
         return shortestPath.size - 1
     }

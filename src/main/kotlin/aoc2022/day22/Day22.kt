@@ -1,9 +1,6 @@
 package aoc2022.day22
 
-import utils.ANSI_GREEN
-import utils.ANSI_RESET
-import utils.Rect
-import utils.Vector2
+import utils.*
 
 object Day22 {
 
@@ -18,7 +15,7 @@ object Day22 {
     }
 }
 
-private fun calculatePassword(endLocation: Vector2, endFacing: Facing) =
+private fun calculatePassword(endLocation: Vector2, endFacing: Heading) =
     1000 * endLocation.y + 4 * endLocation.x + endFacing.value
 
 private fun executeMovementInstructions(
@@ -26,13 +23,13 @@ private fun executeMovementInstructions(
     moves: List<MoveInstruction>,
     wrappingStrategy: WrappingStrategy,
     startLocation: Vector2 = Vector2(mapOfTheBoard.keys.filter { it.y == 1L }.minOf { it.x }, 1),
-    startFacing: Facing = Facing.RIGHT
-): Pair<Vector2, Facing> {
+    startFacing: Heading = Heading.EAST
+): Pair<Vector2, Heading> {
     var currentLocation = startLocation
     var currentFacing = startFacing
 
     // used for debugging
-    val path = mutableMapOf<Vector2, Facing>()
+    val path = mutableMapOf<Vector2, Heading>()
 
     for (move in moves) {
         currentFacing = currentFacing.turn(move.turnDirection)
@@ -59,7 +56,7 @@ private fun executeMovementInstructions(
     return Pair(currentLocation, currentFacing)
 }
 
-private fun printDebugInfo(path: Map<Vector2, Facing>, mapOfTheBoard: Map<Vector2, FieldType>) {
+private fun printDebugInfo(path: Map<Vector2, Heading>, mapOfTheBoard: Map<Vector2, FieldType>) {
     val width = mapOfTheBoard.keys.maxOf { it.x }
     val height = mapOfTheBoard.keys.maxOf { it.y }
     for (y in 1..height) {
@@ -67,11 +64,11 @@ private fun printDebugInfo(path: Map<Vector2, Facing>, mapOfTheBoard: Map<Vector
             val location = Vector2(x, y)
             if (path.contains(location)) {
                 when (path[location]) {
-                    Facing.RIGHT -> print("${ANSI_GREEN}>${ANSI_RESET}")
-                    Facing.DOWN -> print("${ANSI_GREEN}v${ANSI_RESET}")
-                    Facing.LEFT -> print("${ANSI_GREEN}<${ANSI_RESET}")
-                    Facing.UP -> print("${ANSI_GREEN}^${ANSI_RESET}")
-                    null -> error("Unknown Facing")
+                    Heading.EAST -> print("${ANSI_GREEN}>${ANSI_RESET}")
+                    Heading.SOUTH -> print("${ANSI_GREEN}v${ANSI_RESET}")
+                    Heading.WEST -> print("${ANSI_GREEN}<${ANSI_RESET}")
+                    Heading.NORTH -> print("${ANSI_GREEN}^${ANSI_RESET}")
+                    null -> error("Unknown Heading")
                 }
             } else if (mapOfTheBoard.containsKey(location)) {
                 when (mapOfTheBoard[location]) {
@@ -88,7 +85,7 @@ private fun printDebugInfo(path: Map<Vector2, Facing>, mapOfTheBoard: Map<Vector
 
 private sealed interface WrappingStrategy {
 
-    fun apply(currentLocation: Vector2, currentFacing: Facing): Pair<Vector2, Facing>
+    fun apply(currentLocation: Vector2, currentFacing: Heading): Pair<Vector2, Heading>
 
     object HardcodedEdges : WrappingStrategy {
 
@@ -96,79 +93,79 @@ private sealed interface WrappingStrategy {
 
         init {
             // rules for example (only required ones)
-            rules += TranslationRule(Rect(13..13, 5..8), Facing.RIGHT) {
+            rules += TranslationRule(Rect(13..13, 5..8), Heading.EAST) {
                 val normedVal = it.y - 4
-                Pair(Vector2(17 - normedVal, 9), Facing.DOWN)
+                Pair(Vector2(17 - normedVal, 9), Heading.SOUTH)
             }
-            rules += TranslationRule(Rect(9..12, 13..13), Facing.DOWN) {
+            rules += TranslationRule(Rect(9..12, 13..13), Heading.SOUTH) {
                 val normedVal = it.x - 8
-                Pair(Vector2(5 - normedVal, 8), Facing.UP)
+                Pair(Vector2(5 - normedVal, 8), Heading.NORTH)
             }
-            rules += TranslationRule(Rect(5..8, 4..4), Facing.UP) {
+            rules += TranslationRule(Rect(5..8, 4..4), Heading.NORTH) {
                 val normedVal = it.x - 4
-                Pair(Vector2(9, normedVal), Facing.RIGHT)
+                Pair(Vector2(9, normedVal), Heading.EAST)
             }
 
             // rules for given input (clockwise)
-            rules += TranslationRule(Rect(51..100, 0..0), Facing.UP) {
+            rules += TranslationRule(Rect(51..100, 0..0), Heading.NORTH) {
                 val normedVal = it.x - 50
-                Pair(Vector2(1, 150 + normedVal), Facing.RIGHT)
+                Pair(Vector2(1, 150 + normedVal), Heading.EAST)
             }
-            rules += TranslationRule(Rect(101..150, 0..0), Facing.UP) {
+            rules += TranslationRule(Rect(101..150, 0..0), Heading.NORTH) {
                 val normedVal = it.x - 100
-                Pair(Vector2(normedVal, 200), Facing.UP)
+                Pair(Vector2(normedVal, 200), Heading.NORTH)
             }
-            rules += TranslationRule(Rect(151..151, 1..50), Facing.RIGHT) {
+            rules += TranslationRule(Rect(151..151, 1..50), Heading.EAST) {
                 val normedVal = it.y
-                Pair(Vector2(100, 151 - normedVal), Facing.LEFT)
+                Pair(Vector2(100, 151 - normedVal), Heading.WEST)
             }
-            rules += TranslationRule(Rect(101..150, 51..51), Facing.DOWN) {
+            rules += TranslationRule(Rect(101..150, 51..51), Heading.SOUTH) {
                 val normedVal = it.x - 100
-                Pair(Vector2(100, 50 + normedVal), Facing.LEFT)
+                Pair(Vector2(100, 50 + normedVal), Heading.WEST)
             }
-            rules += TranslationRule(Rect(101..101, 51..100), Facing.RIGHT) {
+            rules += TranslationRule(Rect(101..101, 51..100), Heading.EAST) {
                 val normedVal = it.y - 50
-                Pair(Vector2(100 + normedVal, 50), Facing.UP)
+                Pair(Vector2(100 + normedVal, 50), Heading.NORTH)
             }
-            rules += TranslationRule(Rect(101..101, 101..150), Facing.RIGHT) {
+            rules += TranslationRule(Rect(101..101, 101..150), Heading.EAST) {
                 val normedVal = it.y - 100
-                Pair(Vector2(150, 51 - normedVal), Facing.LEFT)
+                Pair(Vector2(150, 51 - normedVal), Heading.WEST)
             }
-            rules += TranslationRule(Rect(51..100, 151..151), Facing.DOWN) {
+            rules += TranslationRule(Rect(51..100, 151..151), Heading.SOUTH) {
                 val normedVal = it.x - 50
-                Pair(Vector2(50, 150 + normedVal), Facing.LEFT)
+                Pair(Vector2(50, 150 + normedVal), Heading.WEST)
             }
-            rules += TranslationRule(Rect(51..51, 151..200), Facing.RIGHT) {
+            rules += TranslationRule(Rect(51..51, 151..200), Heading.EAST) {
                 val normedVal = it.y - 150
-                Pair(Vector2(50 + normedVal, 150), Facing.UP)
+                Pair(Vector2(50 + normedVal, 150), Heading.NORTH)
             }
-            rules += TranslationRule(Rect(1..50, 201..201), Facing.DOWN) {
+            rules += TranslationRule(Rect(1..50, 201..201), Heading.SOUTH) {
                 val normedVal = it.x
-                Pair(Vector2(100 + normedVal, 1), Facing.DOWN)
+                Pair(Vector2(100 + normedVal, 1), Heading.SOUTH)
             }
-            rules += TranslationRule(Rect(0..0, 151..200), Facing.LEFT) {
+            rules += TranslationRule(Rect(0..0, 151..200), Heading.WEST) {
                 val normedVal = it.y - 150
-                Pair(Vector2(50 + normedVal, 1), Facing.DOWN)
+                Pair(Vector2(50 + normedVal, 1), Heading.SOUTH)
             }
-            rules += TranslationRule(Rect(0..0, 101..150), Facing.LEFT) {
+            rules += TranslationRule(Rect(0..0, 101..150), Heading.WEST) {
                 val normedVal = it.y - 100
-                Pair(Vector2(51, 51 - normedVal), Facing.RIGHT)
+                Pair(Vector2(51, 51 - normedVal), Heading.EAST)
             }
-            rules += TranslationRule(Rect(1..50, 100..100), Facing.UP) {
+            rules += TranslationRule(Rect(1..50, 100..100), Heading.NORTH) {
                 val normedVal = it.x
-                Pair(Vector2(51, 50 + normedVal), Facing.RIGHT)
+                Pair(Vector2(51, 50 + normedVal), Heading.EAST)
             }
-            rules += TranslationRule(Rect(50..50, 51..100), Facing.LEFT) {
+            rules += TranslationRule(Rect(50..50, 51..100), Heading.WEST) {
                 val normedVal = it.y - 50
-                Pair(Vector2(normedVal, 101), Facing.DOWN)
+                Pair(Vector2(normedVal, 101), Heading.SOUTH)
             }
-            rules += TranslationRule(Rect(50..50, 1..50), Facing.LEFT) {
+            rules += TranslationRule(Rect(50..50, 1..50), Heading.WEST) {
                 val normedVal = it.y
-                Pair(Vector2(1, 151 - normedVal), Facing.RIGHT)
+                Pair(Vector2(1, 151 - normedVal), Heading.EAST)
             }
         }
 
-        override fun apply(currentLocation: Vector2, currentFacing: Facing): Pair<Vector2, Facing> {
+        override fun apply(currentLocation: Vector2, currentFacing: Heading): Pair<Vector2, Heading> {
             val newLocation = currentLocation + currentFacing.movementVector
             val translationRule = rules.find { currentFacing == it.matchingFacing && newLocation in it.matchingRect }
                 ?: error("Missing TranslationRule for '$newLocation' facing '$currentFacing'")
@@ -177,34 +174,34 @@ private sealed interface WrappingStrategy {
 
         data class TranslationRule(
             val matchingRect: Rect,
-            val matchingFacing: Facing,
-            val translate: (location: Vector2) -> Pair<Vector2, Facing>
+            val matchingFacing: Heading,
+            val translate: (location: Vector2) -> Pair<Vector2, Heading>
         )
     }
 
     class BeamingEdges(private val mapOfTheBoard: Map<Vector2, FieldType>) : WrappingStrategy {
 
-        override fun apply(currentLocation: Vector2, currentFacing: Facing): Pair<Vector2, Facing> {
+        override fun apply(currentLocation: Vector2, currentFacing: Heading): Pair<Vector2, Heading> {
             val newLocation = when (currentFacing) {
-                Facing.RIGHT -> {
+                Heading.EAST -> {
                     val newY = currentLocation.y
                     val newX = mapOfTheBoard.keys.filter { it.y == newY }.minOf { it.x }
                     Vector2(newX, newY)
                 }
 
-                Facing.DOWN -> {
+                Heading.SOUTH -> {
                     val newX = currentLocation.x
                     val newY = mapOfTheBoard.keys.filter { it.x == newX }.minOf { it.y }
                     Vector2(newX, newY)
                 }
 
-                Facing.LEFT -> {
+                Heading.WEST -> {
                     val newY = currentLocation.y
                     val newX = mapOfTheBoard.keys.filter { it.y == newY }.maxOf { it.x }
                     Vector2(newX, newY)
                 }
 
-                Facing.UP -> {
+                Heading.NORTH -> {
                     val newX = currentLocation.x
                     val newY = mapOfTheBoard.keys.filter { it.x == newX }.maxOf { it.y }
                     Vector2(newX, newY)
@@ -218,9 +215,9 @@ private sealed interface WrappingStrategy {
 private fun executeMovementInstruction(
     mapOfTheBoard: Map<Vector2, FieldType>,
     currentLocation: Vector2,
-    currentFacing: Facing,
+    currentFacing: Heading,
     wrappingStrategy: WrappingStrategy
-): Pair<Vector2, Facing> {
+): Pair<Vector2, Heading> {
     val newLocation = currentLocation + currentFacing.movementVector
     val fieldAtLocation = mapOfTheBoard[newLocation]
     return if (fieldAtLocation == null) {
@@ -238,3 +235,20 @@ private fun executeMovementInstruction(
         }
     }
 }
+
+
+fun Heading.turn(direction: TurnDirection): Heading {
+    return when (direction) {
+        TurnDirection.LEFT -> turn90DegreeLeft()
+        TurnDirection.RIGHT -> turn90DegreeRight()
+        TurnDirection.NONE -> this
+    }
+}
+
+val Heading.value: Int
+    get() {
+        var index = Heading.values().indexOf(this)
+        index -= 1
+        if (index < 0) index += Heading.values().size
+        return index
+    }

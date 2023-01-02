@@ -1,5 +1,6 @@
 package aoc2022.day24
 
+import utils.Heading
 import utils.Rect
 import utils.Vector2
 import java.util.*

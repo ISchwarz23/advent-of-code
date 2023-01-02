@@ -24,6 +24,7 @@ private fun toRange(rangeString: String): IntRange {
 fun IntRange.contains(other: IntRange): Boolean {
     return this.contains(other.first) && this.contains(other.last)
 }
+
 fun IntRange.overlaps(other: IntRange): Boolean {
     return this.contains(other.first) || this.contains(other.last)
 }

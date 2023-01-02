@@ -13,7 +13,7 @@ object Day02 {
     }
 
     private fun getPointsDependingOnHand(match: Pair<Hand, Hand>): Int {
-        var points = 0;
+        var points = 0
         points += when (match.second) {
             Hand.ROCK -> 1
             Hand.PAPER -> 2
@@ -33,7 +33,7 @@ object Day02 {
     }
 
     private fun getPointsDependingOnResult(match: Pair<Hand, Result>): Int {
-        var points = 0;
+        var points = 0
         points += when (match.second) {
             Result.LOOSE -> 0
             Result.DRAW -> 3

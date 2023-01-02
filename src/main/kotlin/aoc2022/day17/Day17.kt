@@ -39,7 +39,7 @@ private fun simulateRocks(horizontalMoves: List<Vector2>, numberOfRocks: Long): 
                 repeatingStartFillHeight = cave.fillHeight
                 repeatingStartRockNumber = i
                 repeatingStartWindIndex = cave.windIndex
-            } else if(cave.windIndex == repeatingStartWindIndex) {
+            } else if (cave.windIndex == repeatingStartWindIndex) {
                 val deltaY = cave.fillHeight - repeatingStartFillHeight
                 val deltaRocks = i - repeatingStartRockNumber!!
 

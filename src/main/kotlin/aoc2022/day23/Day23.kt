@@ -1,5 +1,6 @@
 package aoc2022.day23
 
+import utils.Heading
 import utils.Rect
 
 /**

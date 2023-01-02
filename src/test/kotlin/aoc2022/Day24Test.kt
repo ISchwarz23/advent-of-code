@@ -2,7 +2,6 @@ package aoc2022
 
 import aoc2022.day24.Blizzard
 import aoc2022.day24.Day24
-import aoc2022.day24.Heading
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.*

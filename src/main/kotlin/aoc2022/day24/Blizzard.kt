@@ -1,5 +1,6 @@
 package aoc2022.day24
 
+import utils.Heading
 import utils.Vector2
 
 data class Blizzard(val location: Vector2, val heading: Heading) {

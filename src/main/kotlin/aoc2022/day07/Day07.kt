@@ -40,7 +40,8 @@ private fun parseDir(dir: Directory, input: InputHelper) {
     while (line != null && line != "$ cd ..") {
         if (line.startsWith("$ cd ")) {
             val targetFolderName = line.split(" ")[2]
-            val subDir = dir.getSubDirByName(targetFolderName) ?: throw RuntimeException("Unknown folder $targetFolderName")
+            val subDir =
+                dir.getSubDirByName(targetFolderName) ?: throw RuntimeException("Unknown folder $targetFolderName")
             parseDir(subDir, input)
         }
         line = input.getNextLine()

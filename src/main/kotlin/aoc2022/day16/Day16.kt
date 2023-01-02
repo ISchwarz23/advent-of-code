@@ -17,20 +17,22 @@ object Day16 {
         val relevantValves = flowRateByValve.entries.filter { it.value > 0 }.map { it.key }
 
         var maxReleasedPressure = 0L
-        for(i in 1 until (1 shl relevantValves.size)) {
-            if(i % 100 == 0) cache.clear() // required to avoid OutOfMemoryException
+        for (i in 1 until (1 shl relevantValves.size)) {
+            if (i % 100 == 0) cache.clear() // required to avoid OutOfMemoryException
 
             // split work half-half between elf and elephant
-            if(i.countOneBits() != relevantValves.size / 2) continue
+            if (i.countOneBits() != relevantValves.size / 2) continue
 
             // find best result for elephant
             val flowRateByValveElephant = flowRateByValve.toMutableMap()
-            relevantValves.filterIndexed { index, _ -> (i and (1 shl index)) != 0 }.forEach { flowRateByValveElephant[it] = 0 }
+            relevantValves.filterIndexed { index, _ -> (i and (1 shl index)) != 0 }
+                .forEach { flowRateByValveElephant[it] = 0 }
             val releasePressureElephant = getMaxReleasedPressure("AA", 26, flowRateByValveElephant, caveMap)
 
             // find best result for elf
             val flowRateByValveElf = flowRateByValve.toMutableMap()
-            relevantValves.filterIndexed { index, _ -> (i and (1 shl index)) == 0 }.forEach { flowRateByValveElf[it] = 0 }
+            relevantValves.filterIndexed { index, _ -> (i and (1 shl index)) == 0 }
+                .forEach { flowRateByValveElf[it] = 0 }
             val releasePressureElf = getMaxReleasedPressure("AA", 26, flowRateByValveElf, caveMap)
 
             // find best result

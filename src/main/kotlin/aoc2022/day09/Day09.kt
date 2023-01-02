@@ -40,7 +40,7 @@ private fun moveTail(headPosition: Position, tailPosition: Position): Position {
         var moveY = diffY - 1
         if (diffX > diffY) {
             ++moveY
-        } else if(diffY > diffX) {
+        } else if (diffY > diffX) {
             ++moveX
         }
         moveY = if (tailPosition.y > headPosition.y) moveY * -1 else moveY

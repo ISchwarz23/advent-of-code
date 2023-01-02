@@ -28,11 +28,13 @@ private fun resolveVariable(operationResult: Long, job: Job): Long {
 
     val mathOperationJob = job as Job.YellMathOperationResult
     return if (mathOperationJob.first.containsVariable) {
-        val newResult = mathOperationJob.operation.inverseOperation.execute(operationResult, mathOperationJob.second.value!!)
+        val newResult =
+            mathOperationJob.operation.inverseOperation.execute(operationResult, mathOperationJob.second.value!!)
         resolveVariable(newResult, mathOperationJob.first)
     } else {
         if (mathOperationJob.operation.isAssociative) {
-            val newResult = mathOperationJob.operation.inverseOperation.execute(operationResult, mathOperationJob.first.value!!)
+            val newResult =
+                mathOperationJob.operation.inverseOperation.execute(operationResult, mathOperationJob.first.value!!)
             resolveVariable(newResult, mathOperationJob.second)
         } else {
             val newResult = mathOperationJob.operation.execute(mathOperationJob.first.value!!, operationResult)

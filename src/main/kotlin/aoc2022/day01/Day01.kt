@@ -5,6 +5,7 @@ object Day01 {
     fun part1(input: List<String>): Int {
         return getCalorieSums(input).maxOrNull() ?: 0
     }
+
     fun part2(input: List<String>): Int {
         val calorieSums = getCalorieSums(input)
         calorieSums.sortDescending()
@@ -15,11 +16,11 @@ object Day01 {
         val sums = mutableListOf<Int>()
         for (calories in input) {
             if (calories.isEmpty()) {
-                sums += 0;
+                sums += 0
             } else {
                 var sum = sums.removeLastOrNull() ?: 0
                 sum += calories.toInt()
-                sums += sum;
+                sums += sum
             }
         }
         return sums
