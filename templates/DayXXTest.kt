@@ -13,8 +13,6 @@ import kotlin.test.assertEquals
 )
 internal class DayXXTest {
 
-    private val aocClient = AocClient()
-
     private val input = readInput("aocYYYY/dayXX.txt")
     private val inputExample = readInput("aocYYYY/dayXX_example.txt")
 
