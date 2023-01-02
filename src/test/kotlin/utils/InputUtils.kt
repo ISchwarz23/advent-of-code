@@ -29,7 +29,8 @@ fun readInputAsVector3(name: String, delimiter: String = ",") =
  * Reads chars from given input file and passes it with its x and y indices to the given transform function.
  */
 fun <T> readInput2dIndexed(name: String, transform: (x: Int, y: Int, data: Char) -> T?): List<T> {
-    return readInput(name).flatMapIndexed{ y, row -> row.mapIndexed{ x, data -> transform(x, y, data) } }.filterNotNull()
+    return readInput(name).flatMapIndexed { y, row -> row.mapIndexed { x, data -> transform(x, y, data) } }
+        .filterNotNull()
 }
 
 /**
@@ -46,6 +47,9 @@ fun readOneLineInputAsInts(name: String, delimiter: String = ","): List<Int> {
     return readInput(name)[0].split(delimiter).map { it.toInt() }
 }
 
+/**
+ * Reads input as 2d-Int-Array.
+ */
 fun readInputAs2dIntArray(name: String, delimiter: String = ""): List<List<Int>> {
-    return readInput(name).map { it.toCharArray().map { c -> c.digitToInt() } }
+    return readInput(name).map { it.split(delimiter).filter { s -> s.isNotBlank() }.map { s -> s.toInt() } }
 }
