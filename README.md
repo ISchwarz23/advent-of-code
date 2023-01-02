@@ -1,4 +1,29 @@
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=48&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=97&color=yellow&style=flat-square)
+
 # Advent of Code
+
+```
+                            |                         _...._
+                         \  _  /                    .::o:::::.
+                          (\o/)                    .:::'''':o:.
+                      ---  / \  ---                :o:_    _:::
+                           >*<                     `:}_>()<_{:'
+                          >0<@<                 @    `'//\\'`    @
+                         >>>@<<*              @ #     //  \\     # @
+                        >@>*<0<<<           __#_#____/'____'\____#_#__
+                       >*>>@<<<@<<         [__________________________]
+                      >@>>0<<<*<<@<         |=_- .-/\ /\ /\ /\--. =_-|
+                     >*>>0<<@<<<@<<<        |-_= | \ \\ \\ \\ \ |-_=-|
+                    >@>>*<<@<>*<<0<*<       |_=-=| / // // // / |_=-_|
+      \*/          >0>>*<<@<>0><<*<@<<      |=_- |`-'`-'`-'`-'  |=_=-|
+  ___\\U//___     >*>>@><0<<*>>@><*<0<<     | =_-| o          o |_==_|
+  |\\ | | \\|    >@>>0<*<<0>>@<<0<<<*<@<    |=_- | !     (    ! |=-_=|
+  | \\| | _(UU)_ >((*))_>0><*<0><@<<<0<*<  _|-,-=| !    ).    ! |-_-=|_
+  |\ \| || / //||.*.*.*.|>>@<<*<<@>><0<<@>>>>>|  ( ~~~ )/   (((((((())))))))
+      ~~~~~~~~         '""""`------'  `w---w`     `------------'
+```
+
 
 In this repository, I'm about to provide solutions for the Advent of Code[^aoc] puzzles using [Kotlin][kotlin] language.
 
@@ -100,6 +125,12 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 23  | [Amphipod][2021-23]                | ⭐⭐    | Solution is working for part 1, but is too slow for part 2. Unfortunately, I have no idea how to improve it. _Edit: The improvement for part 2 was pretty simple. I just had to reduce the size of the known locations by storing the hash of it instead of the complete objects._                  |
 | 24  | [Arithmetic Logic Unit][2021-24]   |       | _Comment: Was not able to participate for now, as family was in house._                                                                                                                                                                                                                             |
 | 25  | [Sea Cucumber][2021-25]            | ⭐     | Implemented a very nice solution for part 1 which is not only fast, but also adaptable. The order of the movement can be specified. Unfortunately I don't have enough stars to attempt part 2, so I have to come back to it later.                                                                  |
+
+
+[^aoc]:
+    [Advent of Code][aoc] – an annual event in December since 2015.
+    Every year since then, with the first day of December, a programming puzzles contest is published every day for twenty-four days.
+    A set of Christmas-oriented challenges provide any input you have to use to answer using the language of your choice.
 
 [aoc]: https://adventofcode.com
 [kotlin]: https://kotlinlang.org
