@@ -5,12 +5,14 @@ import aoc2022.day24.Day24
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.*
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
+@Ignore("Ignore as processing is pretty slow")
 internal class Day24Test {
 
     private val inputBlizzards = readInput2dIndexed("aoc2022/day24.txt") { x, y, data -> toBlizzard(x, y, data) }

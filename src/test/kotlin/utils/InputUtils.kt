@@ -15,14 +15,14 @@ fun readInputAsInts(name: String) = readInput(name).map { it.toInt() }
 /**
  * Reads lines from the given input file as Vector2D
  */
-fun readInputAsVector2D(name: String, delimiter: String = ",") =
+fun readInputAsVector2(name: String, delimiter: String = ",") =
     readInput(name).map { it.split(delimiter) }.map { Vector2(it[0].toInt(), it[1].toInt()) }
 
 
 /**
  * Reads lines from the given input file as Vector3D
  */
-fun readInputAsVector3D(name: String, delimiter: String = ",") =
+fun readInputAsVector3(name: String, delimiter: String = ",") =
     readInput(name).map { it.split(delimiter) }.map { Vector3(it[0].toInt(), it[1].toInt(), it[2].toInt()) }
 
 /**

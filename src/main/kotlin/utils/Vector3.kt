@@ -23,7 +23,6 @@ data class Vector3(val x: Long, val y: Long, val z: Long) {
 
     fun linearMagnitude(): Long = this.x + this.y + this.z
     fun abs(): Vector3 = Vector3(abs(this.x), abs(this.y), abs(this.z))
-    fun manhattanDistance(): Long = this.abs().linearMagnitude()
     fun sign(): Vector3 = Vector3(this.x.sign.toLong(), this.y.sign.toLong(), this.z.sign.toLong())
 
     fun minusX(x: Int): Vector3 = Vector3(this.x - x, this.y, this.z)

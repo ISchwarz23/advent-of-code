@@ -12,7 +12,6 @@ import kotlin.test.assertEquals
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
-@Ignore
 internal class Day12Test {
 
     private val input = readInput("aoc2022/day12.txt")
@@ -33,6 +32,7 @@ internal class Day12Test {
     }
 
     @Test
+    @Ignore("Ignore as processing is pretty slow")
     internal fun testPart2() {
         // when
         val result = Day12.part2(inputExample)

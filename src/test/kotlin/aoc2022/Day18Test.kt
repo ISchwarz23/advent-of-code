@@ -4,7 +4,7 @@ import aoc2022.day18.Day18
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.aocClient
-import utils.readInputAsVector3D
+import utils.readInputAsVector3
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -13,8 +13,8 @@ import kotlin.test.assertEquals
 )
 internal class Day18Test {
 
-    private val input = readInputAsVector3D("aoc2022/day18.txt")
-    private val inputExample = readInputAsVector3D("aoc2022/day18_example.txt")
+    private val input = readInputAsVector3("aoc2022/day18.txt")
+    private val inputExample = readInputAsVector3("aoc2022/day18_example.txt")
 
     @Test
     internal fun testPart1() {
