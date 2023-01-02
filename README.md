@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=22&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=45&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=23&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=47&color=yellow&style=flat-square)
 
 # Advent of Code (2022)
 
@@ -68,7 +68,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 20  | [Grove Positioning System][20] | ⭐⭐    |                                                                                                                                                                                                                                           |
 | 21  | [Monkey Math][21]              | ⭐⭐    | Really liked this one! 'Cause Maths ;)                                                                                                                                                                                                    |
 | 22  | [Monkey Map][22]               | ⭐⭐    | Cool puzzle, but I was not able to implement a general solution for part 2. So for now I use hardcoded rules only working for the given input.                                                                                            |
-| 23  | [Unstable Diffusion][23]       |       |                                                                                                                                                                                                                                           |
+| 23  | [Unstable Diffusion][23]       | ⭐⭐    | Pretty easy one                                                                                                                                                                                                                           |
 | 24  | [Blizzard Basin][24]           |       |                                                                                                                                                                                                                                           |
 | 25  | [Full of Hot Air][25]          | ⭐     |                                                                                                                                                                                                                                           |
 
