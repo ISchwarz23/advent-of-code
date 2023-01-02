@@ -1,0 +1,108 @@
+mul x 0     // x = 0
+add x z     // x = z
+mod x 26    // x = z % 26
+div z c     // z = z / c
+add x a     // x = ((z / c) % 26) + a
+eql x w     // x = (((z / c) % 26) + a) == w
+eql x 0     // x = 0 || 1
+mul y 0     // y = 0
+add y 25    // y = 25
+mul y x     // y = 25 * x
+add y 1     // y = (25 * x) + 1
+mul z y     // z = (z / c) * ((25 * x) + 1)
+mul y 0     // y = 0
+add y w     // y = w
+add y b     // y = w + b
+mul y x     // y = (w + b) * x
+add z y     // z = ((z / c) * ((25 * x) + 1)) + ((w + b) * x)
+
+mul x 0     //
+add x z     //
+mod x 26    //
+div z c     //
+add x a     //
+eql x w     // x = (((z / c) % 26) + a) == w
+eql x 0     // x = 0 || 1
+mul y 0     //
+add y 25    //
+mul y x     //
+add y 1     //
+mul z y     //
+mul y 0     //
+add y w     //
+add y b     //
+mul y x     //
+add z y     // z = ((z / c) * ((25 * x) + 1)) + ((w + b) * x)
+
+
+
+    |   1 |   2 |
+----+-----+-----+
+a   |  13 |  12 |
+b   |   8 |  16 |
+c   |   1 |   1 |
+
+
+
+if ((((z / c) % 26) + a) == w)
+    z = z / c
+else
+    z = ((z / c) * 26) + (w + b)
+
+
+
+a=13
+b=8
+c=1
+
+a=12
+b=16
+c=1
+
+a=10
+b=4
+c=1
+
+a=-11
+b=1
+c=26
+
+a=14
+b=13
+c=1
+
+a=13
+b=5
+c=1
+
+a=12
+b=0
+c=1
+
+a=-5
+b=10
+c=26
+
+a=10
+b=7
+c=1
+
+a=0
+b=2
+c=26
+
+a=-11
+b=13
+c=26
+
+a=-13
+b=15
+c=26
+
+a=-13
+b=14
+c=26
+
+a=-11
+b=9
+c=26

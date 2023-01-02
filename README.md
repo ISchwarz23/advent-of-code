@@ -22,10 +22,10 @@ pattern `DayXXTest` (e.g.
 `Day01Test`). These tests use the sample input from the puzzle explanation to check if the code is correct. Thereafter,
 the
 code is called with the real puzzle input.  
-This input data is stored in text files in the project resources. The file name pattern of the input files
-is `DayXX.txt`
-(e.g. `Day01.txt`). The mentioned sample data is stored in files with the name pattern `DayXX_test.txt` (
-e.g. `Day01_test.txt`).
+This input data is stored in text files in the "input" folder on the project root. The file name pattern of the input files
+is `dayXX.txt`
+(e.g. `day01.txt`). The mentioned sample data is stored in files with the name pattern `dayXX_example.txt` (
+e.g. `day01_example.txt`).
 
 ## Usage
 
