@@ -70,7 +70,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 22  | [Monkey Map][22]               | ⭐⭐    | Cool puzzle, but I was not able to implement a general solution for part 2. So for now I use hardcoded rules only working for the given input.                                                                                            |
 | 23  | [Unstable Diffusion][23]       | ⭐⭐    | Pretty easy one                                                                                                                                                                                                                           |
 | 24  | [Blizzard Basin][24]           | ⭐⭐    | Solved using A*                                                                                                                                                                                                                           |
-| 25  | [Full of Hot Air][25]          | ⭐*    |                                                                                                                                                                                                                                           |
+| 25  | [Full of Hot Air][25]          | ⭐⭐    |                                                                                                                                                                                                                                           |
 
 [aoc]: https://adventofcode.com
 
