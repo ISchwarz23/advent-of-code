@@ -2,6 +2,9 @@ package utils
 
 data class Rect(val xRange: LongRange, val yRange: LongRange) {
 
+    val width: Long = xRange.last - xRange.first + 1
+    val height: Long = yRange.last - yRange.first + 1
+
     constructor(x: IntRange, y: IntRange) : this(
         x.first.toLong()..x.last,
         y.first.toLong()..y.last
