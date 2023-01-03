@@ -1,10 +1,12 @@
 package aoc2021
 
+import aoc2021.day22.Day22
+import aoc2021.day22.RebootAction
+import aoc2021.day22.RebootStep
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput
 import java.lang.RuntimeException
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

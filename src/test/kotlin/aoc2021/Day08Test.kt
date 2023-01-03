@@ -1,5 +1,8 @@
 package aoc2021
 
+import aoc2021.day08.Day08
+import aoc2021.day08.Pattern
+import aoc2021.day08.SignalInput
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

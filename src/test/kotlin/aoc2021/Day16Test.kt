@@ -1,9 +1,8 @@
 package aoc2021
 
+import aoc2021.day16.Day16
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
-import utils.readInput
-import utils.readOneLineInputAsInts
 import utils.readOneLineInputAsString
 import kotlin.test.Test
 import kotlin.test.assertEquals

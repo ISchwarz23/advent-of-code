@@ -1,5 +1,9 @@
 package aoc2021
 
+import aoc2021.day13.Day13
+import aoc2021.day13.Dot
+import aoc2021.day13.FoldInstruction
+import aoc2021.day13.FoldOrientation
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

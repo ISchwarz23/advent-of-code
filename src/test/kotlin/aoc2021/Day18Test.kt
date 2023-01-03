@@ -1,5 +1,7 @@
 package aoc2021
 
+import aoc2021.day18.Day18
+import aoc2021.day18.SnailfishNumber
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.SplitCharBehavior

@@ -1,5 +1,8 @@
 package aoc2021
 
+import aoc2021.day20.Day20
+import aoc2021.day20.Filter
+import aoc2021.day20.Image
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

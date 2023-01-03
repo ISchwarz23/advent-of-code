@@ -1,5 +1,7 @@
 package aoc2021
 
+import aoc2021.day11.Day11
+import aoc2021.day11.OctopusField
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

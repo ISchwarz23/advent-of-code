@@ -1,9 +1,9 @@
 package aoc2021
 
+import aoc2021.day24.Day24
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput
-import kotlin.test.Ignore
 import kotlin.test.Test
 
 @TestMethodOrder(

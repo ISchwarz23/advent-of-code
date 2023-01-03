@@ -1,5 +1,8 @@
 package aoc2021
 
+import aoc2021.day19.Day19
+import aoc2021.day19.Position3D
+import aoc2021.day19.ScannerResult
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

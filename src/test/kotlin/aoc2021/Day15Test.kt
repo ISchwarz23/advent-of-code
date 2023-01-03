@@ -1,5 +1,7 @@
 package aoc2021
 
+import aoc2021.day15.Cave
+import aoc2021.day15.Day15
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInputAs2dIntArray

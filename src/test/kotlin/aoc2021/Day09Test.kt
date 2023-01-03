@@ -1,5 +1,7 @@
 package aoc2021
 
+import aoc2021.day09.Day09
+import aoc2021.day09.HeightMap
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput

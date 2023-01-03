@@ -1,5 +1,8 @@
 package aoc2021
 
+import aoc2021.day05.Coords
+import aoc2021.day05.Day05
+import aoc2021.day05.Line
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput
