@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=48&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=97&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=50&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=100&color=yellow&style=flat-square)
 
 # Advent of Code
 
@@ -123,8 +123,8 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 21  | [Dirac Dice][2021-21]              | ⭐⭐    | Part 1 was too easy, so expected part 2 to be very hard and I was right. Nevertheless I guess my solution was very good, as it finds the correct solution in about 500ms.                                                                                                                           |
 | 22  | [Reactor Reboot][2021-22]          | ⭐⭐    | I created an improved version for part 2, but it was not fast enough. I would need to invest more time to find a better solution for part 2. _Edit: The improvement for part 2 was pretty simple. I just adapted the splitting logic of the clusters, to produce the least number of sub-clusters._ |
 | 23  | [Amphipod][2021-23]                | ⭐⭐    | Solution is working for part 1, but is too slow for part 2. Unfortunately, I have no idea how to improve it. _Edit: The improvement for part 2 was pretty simple. I just had to reduce the size of the known locations by storing the hash of it instead of the complete objects._                  |
-| 24  | [Arithmetic Logic Unit][2021-24]   |       | _Comment: Was not able to participate for now, as family was in house._                                                                                                                                                                                                                             |
-| 25  | [Sea Cucumber][2021-25]            | ⭐     | Implemented a very nice solution for part 1 which is not only fast, but also adaptable. The order of the movement can be specified. Unfortunately I don't have enough stars to attempt part 2, so I have to come back to it later.                                                                  |
+| 24  | [Arithmetic Logic Unit][2021-24]   | ⭐⭐    | Was finally able to solve the puzzle after over 1 year with a lot of help from the internet.                                                                                                                                                                                                        |
+| 25  | [Sea Cucumber][2021-25]            | ⭐⭐    | Implemented a very nice solution for part 1 which is not only fast, but also adaptable. The order of the movement can be specified. Unfortunately I don't have enough stars to attempt part 2, so I have to come back to it later.                                                                  |
 
 
 [^aoc]:
