@@ -22,7 +22,7 @@ internal class DayXXTest {
         val result = DayXX.part1(inputExample)
 
         // then
-        assertEquals(0, result)
+        assertEquals(-1, result)
 
         // submit answer
         val answer = DayXX.part1(input)
@@ -36,7 +36,7 @@ internal class DayXXTest {
         val result = DayXX.part2(inputExample)
 
         // then
-        assertEquals(0, result)
+        assertEquals(-1, result)
 
         // submit answer
         val answer = DayXX.part2(input)
