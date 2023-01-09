@@ -1,29 +1,19 @@
 package aoc2022.day01
 
+import utils.split
+
 object Day01 {
 
     fun part1(input: List<String>): Int {
-        return getCalorieSums(input).maxOrNull() ?: 0
+        return input.split { it.isEmpty() }.maxOf { backpackItems -> backpackItems.sumOf { it.toInt() } }
     }
 
     fun part2(input: List<String>): Int {
-        val calorieSums = getCalorieSums(input)
-        calorieSums.sortDescending()
-        return calorieSums.subList(0, 3).sum()
-    }
-
-    private fun getCalorieSums(input: List<String>): MutableList<Int> {
-        val sums = mutableListOf<Int>()
-        for (calories in input) {
-            if (calories.isEmpty()) {
-                sums += 0
-            } else {
-                var sum = sums.removeLastOrNull() ?: 0
-                sum += calories.toInt()
-                sums += sum
-            }
-        }
-        return sums
+        return input.split { it.isEmpty() }
+            .map { backpackItems -> backpackItems.sumOf { it.toInt() } }
+            .sortedDescending()
+            .take(3)
+            .sum()
     }
 
 }
