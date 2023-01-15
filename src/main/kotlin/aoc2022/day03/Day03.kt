@@ -7,38 +7,28 @@ object Day03 {
     fun part1(input: List<String>): Int {
         return input.map { it.split(it.length / 2) }
             .map { findCommonChar(it.first, it.second) }
-            .sumOf { getValue(it) }
+            .sumOf { toPriority(it) }
     }
 
     fun part2(input: List<String>): Int {
-        return input.windowed(3, 3, false)
+        return input.chunked(3)
             .map { findCommonChar(it[0], it[1], it[2]) }
-            .sumOf { getValue(it) }
+            .sumOf { toPriority(it) }
     }
 }
 
-private fun findCommonChar(first: String, second: String, third: String = second): Char? {
-    val firstArray = first.toCharArray().sortedArray()
-    val secondArray = second.toCharArray().sortedArray()
-    val thirdArray = third.toCharArray().sortedArray()
-
-    for (c in firstArray) {
-        if (secondArray.contains(c) && thirdArray.contains(c)) {
-            return c
-        }
-    }
-    return null
+private fun findCommonChar(first: String, vararg second: String): Char? {
+    return first.toCharArray().find { c -> second.all { it.contains(c) } }
 }
 
-private fun getValue(c: Char?): Int {
-    if (c == null) {
-        return 0
-    }
+private fun toPriority(c: Char?): Int {
+    if (c == null) return 0
 
-    val charValue = c.code
-    return if (charValue >= 'a'.code) {
-        charValue - 'a'.code + 1
+    return if (c.code >= 'a'.code) {
+        // 'a' through 'z' have priorities 1 through 26
+        c.code - 'a'.code + 1
     } else {
-        charValue - 'A'.code + 27
+        // 'A' through 'Z' have priorities 27 through 52
+        c.code - 'A'.code + 27
     }
 }
