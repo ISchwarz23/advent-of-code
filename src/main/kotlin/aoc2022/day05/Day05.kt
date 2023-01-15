@@ -6,7 +6,7 @@ object Day05 {
 
         for (procedure in procedures) {
             repeat(procedure.numberOfItems) {
-                stacks[procedure.targetStack - 1].add(stacks[procedure.originStack - 1].removeLast())
+                stacks[procedure.targetStackIndex] += stacks[procedure.originStackIndex].removeLast()
             }
         }
         return stacks.map { it.last() }.joinToString("")
@@ -15,17 +15,12 @@ object Day05 {
     fun part2(stacks: List<ArrayDeque<Char>>, procedures: List<Procedure>): String {
 
         for (procedure in procedures) {
-            val index = stacks[procedure.originStack - 1].size - procedure.numberOfItems
+            val index = stacks[procedure.originStackIndex].size - procedure.numberOfItems
             repeat(procedure.numberOfItems) {
-                stacks[procedure.targetStack - 1].add(stacks[procedure.originStack - 1].removeAt(index))
+                stacks[procedure.targetStackIndex] += stacks[procedure.originStackIndex].removeAt(index)
             }
         }
         return stacks.map { it.last() }.joinToString("")
     }
 }
 
-data class Procedure(
-    val numberOfItems: Int,
-    val originStack: Int,
-    val targetStack: Int
-)
