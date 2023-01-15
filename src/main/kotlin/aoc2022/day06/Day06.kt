@@ -15,5 +15,7 @@ object Day06 {
 }
 
 private fun getIndexOfStartSequence(message: String, startSequenceLength: Int): Int {
-    return message.windowed(startSequenceLength, 1).takeWhile { !it.allCharsUnique }.count() + startSequenceLength
+    return message.windowed(startSequenceLength)
+        .takeWhile { it.allCharsUnique.not() }
+        .count() + startSequenceLength
 }
