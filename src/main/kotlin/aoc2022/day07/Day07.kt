@@ -3,30 +3,22 @@ package aoc2022.day07
 object Day07 {
 
     fun part1(input: List<String>): Long {
-        val rootDir = parseInput(input)
-        return getDirectorySizes(rootDir).filter { it < 100000 }.sum()
+        val rootDir = parseDir(Directory("/"), InputReader(input))
+        return getDirectorySizes(rootDir).filter { it < 100_000 }.sum()
     }
 
     fun part2(input: List<String>): Long {
-        val rootDir = parseInput(input)
-        val spaceToFreeUp = rootDir.size - 70000000 + 30000000
-        return getDirectorySizes(rootDir).sorted().find { it > spaceToFreeUp }!!
+        val rootDir = parseDir(Directory("/"), InputReader(input))
+        val spaceToFreeUp = rootDir.size - 70_000_000 + 30_000_000
+        return getDirectorySizes(rootDir).sorted().find { it > spaceToFreeUp } ?: error("No dir to delete found")
     }
 }
 
-private fun parseInput(input: List<String>): Directory {
-    val inputReader = InputHelper(input)
-    inputReader.getNextLine()
-    val rootDir = Directory("/")
-    parseDir(rootDir, inputReader)
-    return rootDir
-}
+private fun parseDir(dir: Directory, input: InputReader): Directory {
+    if (input.getNextLine() != "$ ls") error("Missing ls command")
 
-private fun parseDir(dir: Directory, input: InputHelper) {
-    if (input.getNextLine() != "$ ls") throw RuntimeException("Missing ls command")
-
-    var line = input.getNextLine()
-    while (line != null && !line.startsWith("$ ")) {
+    var line = input.getNextLine() ?: return dir
+    while (!line.startsWith("$ ")) {
         if (line.startsWith("dir ")) {
             val parts = line.split(" ")
             dir.files += Directory(parts[1])
@@ -34,21 +26,22 @@ private fun parseDir(dir: Directory, input: InputHelper) {
             val parts = line.split(" ")
             dir.files += File(parts[1], parts[0].toLong())
         }
-        line = input.getNextLine()
+        line = input.getNextLine() ?: return dir
     }
 
-    while (line != null && line != "$ cd ..") {
+    while (line != "$ cd ..") {
         if (line.startsWith("$ cd ")) {
             val targetFolderName = line.split(" ")[2]
-            val subDir =
-                dir.getSubDirByName(targetFolderName) ?: throw RuntimeException("Unknown folder $targetFolderName")
+            val subDir = dir.getSubDirByName(targetFolderName) ?: error("Unknown folder $targetFolderName")
             parseDir(subDir, input)
         }
-        line = input.getNextLine()
+        line = input.getNextLine() ?: return dir
     }
+
+    return dir
 }
 
-private fun getDirectorySizes(dir: Directory): MutableList<Long> {
+private fun getDirectorySizes(dir: Directory): List<Long> {
     val sizes = mutableListOf<Long>()
 
     for (file in dir.files) {
@@ -60,42 +53,3 @@ private fun getDirectorySizes(dir: Directory): MutableList<Long> {
     return sizes
 }
 
-private class InputHelper(private val input: List<String>) {
-    private var lineIndex = -1
-
-    fun getNextLine(): String? {
-        return if (moreLinesAvailable()) {
-            input[++lineIndex]
-        } else {
-            null
-        }
-    }
-
-    fun moreLinesAvailable(): Boolean {
-        return input.size - 1 > lineIndex
-    }
-
-}
-
-sealed interface FileSystemItem {
-    val name: String
-    val size: Long
-}
-
-data class Directory(
-    override val name: String,
-    val files: MutableList<FileSystemItem> = mutableListOf()
-) : FileSystemItem {
-
-    override val size: Long
-        get() = files.sumOf { it.size }
-
-    fun getSubDirByName(name: String): Directory? {
-        return files.filterIsInstance<Directory>().find { it.name == name }
-    }
-}
-
-data class File(
-    override val name: String,
-    override val size: Long
-) : FileSystemItem
