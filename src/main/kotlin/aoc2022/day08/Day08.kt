@@ -1,78 +1,54 @@
 package aoc2022.day08
 
+import utils.Heading
+import utils.Vector2
+
+
 object Day08 {
 
     fun part1(input: List<List<Int>>): Int {
         val forest = Forest(input)
-        return forest.getCoordinateIterator().count { isVisible(it.first, it.second, forest) }
+        return forest.getCoordinateIterator().count { isVisible(forest, it) }
     }
 
     fun part2(input: List<List<Int>>): Int {
         val forest = Forest(input)
-        return forest.getCoordinateIterator().maxOf { getScenicScore(it.first, it.second, forest) }
+        return forest.getCoordinateIterator().maxOf { getScenicScore(forest, it) }
     }
 }
 
-private fun getScenicScore(x: Int, y: Int, forest: Forest): Int {
-    return getViewDistance(forest.getTreeColumn(x), y) { it - 1 } * // distance top
-            getViewDistance(forest.getTreeColumn(x), y) { it + 1 } * // distance bottom
-            getViewDistance(forest.getTreeRow(y), x) { it - 1 } * // distance left
-            getViewDistance(forest.getTreeRow(y), x) { it + 1 } // distance right
+private fun getScenicScore(forest: Forest, pos: Vector2): Int {
+    return getViewDistance(forest, pos) { it + Heading.NORTH.movementVector } * // distance top
+            getViewDistance(forest, pos) { it + Heading.SOUTH.movementVector } * // distance bottom
+            getViewDistance(forest, pos) { it + Heading.WEST.movementVector } * // distance left
+            getViewDistance(forest, pos) { it + Heading.EAST.movementVector } // distance right
 }
 
-private fun getViewDistance(lineOfTrees: List<Int>, startTreePos: Int, getNextTreePos: (Int) -> Int): Int {
-    var viewDistance = 0
-    var currentPos = startTreePos
-    while (currentPos > 0 && currentPos < lineOfTrees.size - 1) {
-        currentPos = getNextTreePos(currentPos)
-        viewDistance++
-        if (lineOfTrees[currentPos] >= lineOfTrees[startTreePos]) return viewDistance
-    }
-    return viewDistance
-}
+private fun getViewDistance(forest: Forest, startPos: Vector2, getNextTreePos: (Vector2) -> Vector2): Int {
+    var currentTreePos = getNextTreePos(startPos)
+    var distance = 0
 
-private fun isVisible(x: Int, y: Int, forest: Forest): Boolean {
-    // check on boarder
-    if (y == 0 || y == forest.height - 1) return true
-    if (x == 0 || x == forest.width - 1) return true
-
-    // check inside
-    return isVisible(forest.getTreeColumn(x), y) { it - 1 } // check top
-            || isVisible(forest.getTreeColumn(x), y) { it + 1 } // check bottom
-            || isVisible(forest.getTreeRow(y), x) { it - 1 } // check left
-            || isVisible(forest.getTreeRow(y), x) { it + 1 } // check right
-}
-
-private fun isVisible(lineOfTrees: List<Int>, startTreePos: Int, getNextTreePos: (Int) -> Int): Boolean {
-    var currentTreePos = startTreePos
-    while (currentTreePos > 0 && currentTreePos < lineOfTrees.size - 1) {
+    while (currentTreePos in forest) {
+        distance++
+        if (forest.getTreeHeight(currentTreePos) >= forest.getTreeHeight(startPos)) break
         currentTreePos = getNextTreePos(currentTreePos)
-        if (lineOfTrees[currentTreePos] >= lineOfTrees[startTreePos]) return false
+    }
+    return distance
+}
+
+private fun isVisible(forest: Forest, pos: Vector2): Boolean {
+    return forest.isAtBorder(pos) // trees on the forest border are always visible
+            || isVisible(forest, pos) { it + Heading.NORTH.movementVector } // check top
+            || isVisible(forest, pos) { it + Heading.SOUTH.movementVector } // check bottom
+            || isVisible(forest, pos) { it + Heading.WEST.movementVector } // check left
+            || isVisible(forest, pos) { it + Heading.EAST.movementVector } // check right
+}
+
+private fun isVisible(forest: Forest, startPos: Vector2, getNextTreePos: (Vector2) -> Vector2): Boolean {
+    var currentTreePos = getNextTreePos(startPos)
+    while (currentTreePos in forest) {
+        if (forest.getTreeHeight(currentTreePos) >= forest.getTreeHeight(startPos)) return false
+        currentTreePos = getNextTreePos(currentTreePos)
     }
     return true
-}
-
-class Forest(private val trees: List<List<Int>>) {
-
-    val height: Int = trees.size
-    val width: Int = trees[0].size
-
-    fun getTreeRow(y: Int): List<Int> {
-        return trees[y]
-    }
-
-    fun getTreeColumn(x: Int): List<Int> {
-        return trees.indices.map { y -> trees[y][x] }
-    }
-
-    fun getTreeHeight(x: Int, y: Int): Int {
-        return trees[y][x]
-    }
-
-    fun getCoordinateIterator(): List<Pair<Int, Int>> {
-        val yRange = trees.indices
-        val xRange = trees[0].indices
-        return xRange.flatMap { x -> yRange.map { y -> Pair(x, y) } }
-    }
-
 }
