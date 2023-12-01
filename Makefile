@@ -1,4 +1,4 @@
-DAY?=$(shell date +%d)
+DAY?=$(shell date +%-d)
 DAY_WITH_PADDING=$(shell printf "%02d" ${DAY})
 YEAR?=$(shell date +%Y)
 
