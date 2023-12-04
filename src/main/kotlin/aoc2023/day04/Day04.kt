@@ -10,8 +10,8 @@ object Day04 {
 
     fun part1(input: List<String>): Int {
         return input.map { line -> parseCard(line) }
-            .filter { card -> card.numberOfMatchingvALUES > 0 }
-            .sumOf { card -> 2 pow (card.numberOfMatchingvALUES - 1) }
+            .filter { card -> card.numberOfMatchingValues > 0 }
+            .sumOf { card -> 2 pow (card.numberOfMatchingValues - 1) }
     }
 
     fun part2(input: List<String>): Int {
@@ -19,10 +19,10 @@ object Day04 {
         val countByCardId = cardIdRange.associateWith { 1 }.toMutableMap()
 
         input.map { line -> parseCard(line) }
-            .filter { card -> card.numberOfMatchingvALUES > 0 }
+            .filter { card -> card.numberOfMatchingValues > 0 }
             .sortedBy { card -> card.id } // could be removed, as input is already sorted
             .forEach { currentCard ->
-                val cardCopyRange = (currentCard.id + 1)..(currentCard.id + currentCard.numberOfMatchingvALUES)
+                val cardCopyRange = (currentCard.id + 1)..(currentCard.id + currentCard.numberOfMatchingValues)
                 cardCopyRange.forEach { cardToCopy ->
                     countByCardId[cardToCopy] = countByCardId[cardToCopy]!! + countByCardId[currentCard.id]!!
                 }
@@ -54,6 +54,6 @@ private data class Card(
 ) {
 
     val matchingNumbers: List<Int> = myValues.filter { myCard -> winningValues.contains(myCard) }
-    val numberOfMatchingvALUES: Int = matchingNumbers.size
+    val numberOfMatchingValues: Int = matchingNumbers.size
 
 }
