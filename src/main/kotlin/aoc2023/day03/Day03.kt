@@ -1,7 +1,7 @@
 package aoc2023.day03
 
-import aoc2022.day04.overlaps
 import utils.Vector2
+import utils.overlaps
 
 /**
  * My solution for day 3 of Advent of Code 2023.

@@ -1,7 +1,7 @@
 package aoc2022.day15
 
-import aoc2022.day04.overlaps
 import aoc2022.day12.Coords
+import utils.overlaps
 import java.lang.Integer.max
 import kotlin.math.abs
 

@@ -1,5 +1,8 @@
 package aoc2022.day04
 
+import utils.contains
+import utils.overlaps
+
 object Day04 {
 
     fun part1(input: List<String>): Int {
@@ -7,7 +10,7 @@ object Day04 {
     }
 
     fun part2(input: List<String>): Int {
-        return input.map { toRangePair(it) }.count { it.first.overlaps(it.second) }
+        return input.map { toRangePair(it) }.count { it.first overlaps it.second }
     }
 }
 
@@ -19,12 +22,4 @@ private fun toRangePair(rangePairString: String): Pair<IntRange, IntRange> {
 private fun toRange(rangeString: String): IntRange {
     val rangeParts = rangeString.split("-")
     return rangeParts[0].toInt()..rangeParts[1].toInt()
-}
-
-fun IntRange.contains(other: IntRange): Boolean {
-    return this.contains(other.first) && this.contains(other.last)
-}
-
-fun IntRange.overlaps(other: IntRange): Boolean {
-    return this.contains(other.first) || this.contains(other.last)
 }
