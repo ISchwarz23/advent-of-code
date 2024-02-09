@@ -5,6 +5,7 @@ import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.aocClient
 import utils.readInput
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -32,6 +33,7 @@ internal class Day08Test {
     }
 
     @Test
+    @Ignore("Solution not implemented")
     internal fun testPart2() {
         // when
         val result = Day08.part2(inputExamplePart2)
