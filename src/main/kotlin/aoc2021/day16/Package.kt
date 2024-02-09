@@ -5,6 +5,7 @@ sealed interface Package {
     val version: Int
     val type: Int
     fun getValue(): Long
+    fun getVersionSum(): Int
 
     data class Literal(
         override val version: Int,
@@ -12,7 +13,9 @@ sealed interface Package {
         val literal: Long
     ) : Package {
 
+        override fun getVersionSum(): Int = version
         override fun getValue(): Long = literal
+
         override fun toString(): String = "$literal"
     }
 
@@ -21,6 +24,7 @@ sealed interface Package {
         override val type: Int,
         val subPackages: List<Package>
     ) : Package {
+        override fun getVersionSum(): Int = version + subPackages.sumOf { it.getVersionSum() }
 
         override fun getValue(): Long {
             return when (type) {

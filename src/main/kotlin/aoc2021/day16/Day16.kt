@@ -7,7 +7,7 @@ object Day16 {
     fun part1(hexInput: String): Int {
         val binaryInput = convertHexToBin(hexInput)
         val pack = parsePackage(binaryInput).result
-        return getVersionSum(pack)
+        return pack.getVersionSum()
     }
 
     fun part2(input: String): Long {
@@ -17,53 +17,46 @@ object Day16 {
     }
 }
 
-private fun getVersionSum(pack: Package): Int {
-    return when (pack) {
-        is Package.Literal -> pack.version
-        is Package.Operator -> pack.version + pack.subPackages.sumOf { getVersionSum(it) }
-    }
-}
-
 private fun parsePackage(binaryInput: String): ParseResult<Package> {
 
-    var readResult = binaryInput.split(3)
-    val version = readResult.first.toInt(2)
+    val (versionBin, rest1) = binaryInput.split(3)
+    val version = versionBin.toInt(2)
 
-    readResult = readResult.second.split(3)
-    val type = readResult.first.toInt(2)
+    val (typeBin, rest2) = rest1.split(3)
+    val type = typeBin.toInt(2)
 
     if (type == 4) {
-        val literal = parseLiteralValue(readResult.second)
+        val literal = parseLiteralValue(rest2)
         return ParseResult(Package.Literal(version, type, literal.result), literal.numberOfParsedBits + 6)
     } else {
-        readResult = readResult.second.split(1)
-        return when (readResult.first) {
+        val (lengthTypeBin, rest3) = rest2.split(1)
+        return when (lengthTypeBin) {
             "0" -> {
-                readResult = readResult.second.split(15)
-                val length = readResult.first.toInt(2)
-                var restPayload = readResult.second.substring(0, length)
+                val (lengthBin, rest4) = rest3.split(15)
+                val length = lengthBin.toInt(2)
+                var restPayload = rest4.substring(0, length)
 
                 val subPackages = mutableListOf<Package>()
                 while (restPayload.contains("1")) {
-                    val result = parsePackage(restPayload)
-                    subPackages += result.result
-                    restPayload = restPayload.substring(result.numberOfParsedBits)
+                    val (parsedPackets, numberOfParsedBits) = parsePackage(restPayload)
+                    subPackages += parsedPackets
+                    restPayload = restPayload.substring(numberOfParsedBits)
                 }
                 ParseResult(Package.Operator(version, type, subPackages), length + 6 + 1 + 15)
             }
 
             "1" -> {
-                readResult = readResult.second.split(11)
-                val numberOfPackages = readResult.first.toInt(2)
-                var restInput = readResult.second
+                val (numOfPacketsBin, rest4) = rest3.split(11)
+                val numberOfPackages = numOfPacketsBin.toInt(2)
+                var restPayload = rest4
                 var length = 0
 
                 val subPackages = mutableListOf<Package>()
                 repeat(numberOfPackages) {
-                    val result = parsePackage(restInput)
-                    subPackages += result.result
-                    length += result.numberOfParsedBits
-                    restInput = restInput.substring(result.numberOfParsedBits)
+                    val (parsedPackets, numberOfParsedBits) = parsePackage(restPayload)
+                    subPackages += parsedPackets
+                    length += numberOfParsedBits
+                    restPayload = restPayload.substring(numberOfParsedBits)
                 }
                 ParseResult(Package.Operator(version, type, subPackages), length + 6 + 1 + 11)
             }
@@ -73,19 +66,21 @@ private fun parsePackage(binaryInput: String): ParseResult<Package> {
     }
 }
 
-private fun parseLiteralValue(binaryInput: String): ParseResult<Long> {
+private fun parseLiteralValue(inputBits: String): ParseResult<Long> {
 
-    var length = 0
-    var binaryValue = ""
-    var restInput = binaryInput
+    var parsedBits = 0
+    var literalValueBin = ""
+    var restInputBits = inputBits
     do {
-        val splitResult = restInput.split(5)
-        val currentBits = splitResult.first
-        restInput = splitResult.second
-        binaryValue += currentBits.substring(1, 5)
-        length += 5
-    } while (currentBits.first() == '1')
-    return ParseResult(binaryValue.toLong(2), length)
+        val (currentBit, restBits) = restInputBits.split(5)
+        restInputBits = restBits
+
+        val (continueBit, valueBits) = currentBit.split(1)
+        literalValueBin += valueBits
+        parsedBits += 5
+    } while (continueBit == "1")
+
+    return ParseResult(literalValueBin.toLong(2), parsedBits)
 }
 
 private fun convertHexToBin(hexString: String): String {
