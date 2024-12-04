@@ -16,3 +16,5 @@ fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
         return listOf(this.take(idx)) + this.drop(idx + 1).split(predicate)
     }
 }
+
+fun <E> Iterable<E>.indexesOf(e: E) = mapIndexedNotNull{ index, elem -> index.takeIf{ elem == e } }

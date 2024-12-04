@@ -5,7 +5,12 @@ import java.io.File
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = File("input", name).readLines()
+fun readInput(name: String): List<String> = File("input", name).readLines()
+
+/**
+ * Reads lines from the given input txt file.
+ */
+fun readInputAsChars(name: String): List<List<Char>> = File("input", name).readLines().map { it.toCharArray().map { it } }
 
 /**
  * Reads lines from the given input txt file as in values.
