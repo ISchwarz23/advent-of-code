@@ -40,7 +40,7 @@ endif
 endif
 
 	@# open files in IntelliJ
-	@idea input/aoc${YEAR}/day${DAY_WITH_PADDING}_example.txt src/test/kotlin/aoc${YEAR}/Day${DAY_WITH_PADDING}Test.kt input/aoc${YEAR}/day${DAY_WITH_PADDING}.txt src/main/kotlin/aoc${YEAR}/day${DAY_WITH_PADDING}/Day${DAY_WITH_PADDING}.kt > /dev/null
+	@#idea input/aoc${YEAR}/day${DAY_WITH_PADDING}_example.txt src/test/kotlin/aoc${YEAR}/Day${DAY_WITH_PADDING}Test.kt input/aoc${YEAR}/day${DAY_WITH_PADDING}.txt src/main/kotlin/aoc${YEAR}/day${DAY_WITH_PADDING}/Day${DAY_WITH_PADDING}.kt > /dev/null
 
 	@# finish by printing url to puzzle
 	@echo "Files created for puzzle https://adventofcode.com/${YEAR}/day/${DAY}"
