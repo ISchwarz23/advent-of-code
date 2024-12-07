@@ -41,7 +41,7 @@ internal class Day06Test {
 
         // submit answer
         val answer = Day06.part2(input)
-        val submissionResult = aocClient.submit(2024, 6, 2, answer)
+        val submissionResult = "" // aocClient.submit(2024, 6, 2, answer)
         println("Result of Day 06 - Part 2: $answer (Submission: $submissionResult)")
     }
 
