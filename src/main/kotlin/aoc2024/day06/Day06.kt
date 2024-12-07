@@ -1,7 +1,6 @@
 package aoc2024.day06
 
 import utils.Vector2
-import utils.indexesOf
 
 /**
  * My solution for day 6 of Advent of Code 2024.
@@ -29,10 +28,9 @@ object Day06 {
         return visitedPositions.size
     }
 
-    fun part2(input: List<List<Char>>): Int { // TODO
+    fun part2(input: List<List<Char>>): Int {
         val startPosition = input.mapIndexed { y, fields -> Vector2(fields.indexOf('^'), y) }.find { it.x >= 0 }
             ?: throw RuntimeException("No start symbol in input")
-        val obstacles = input.flatMapIndexed{ y, fields -> fields.indexesOf('#').map { x -> Vector2(x, y) } }
         var position = startPosition
         var movementDirection = movementDirections[0]
 
@@ -44,16 +42,8 @@ object Day06 {
 
             // check potential block
             val obstacle = position + movementDirection
-            val directionAfterBlock = turnRight(movementDirection)
-            var positionAfterBlock = position + directionAfterBlock
-            while (positionAfterBlock.y in input.indices && positionAfterBlock.x in input[0].indices
-                && input[positionAfterBlock.y.toInt()][positionAfterBlock.x.toInt()] != '#'
-            ) {
-                if (visitedPositions.contains(PositionState(positionAfterBlock, directionAfterBlock))) {
-                    obstaclesForCircles += obstacle
-                    break
-                }
-                positionAfterBlock += directionAfterBlock
+            if (checkLoop(position, turnRight(movementDirection), input, visitedPositions)) {
+                obstaclesForCircles += obstacle
             }
 
             // keep moving
@@ -65,13 +55,39 @@ object Day06 {
         }
 
         obstaclesForCircles -= startPosition
-        obstaclesForCircles -= obstacles.toSet()
 
         // print(input, obstaclesForCircles)
         return obstaclesForCircles.size
     }
 
+    private fun checkLoop(
+        startPosition: Vector2,
+        mov: Vector2,
+        field: List<List<Char>>,
+        visitedF: MutableSet<PositionState>
+    ): Boolean {
+
+        var position = startPosition
+        var movement = mov
+        val visitedFields = visitedF.toList().toMutableList()
+        while (position.y in field.indices && position.x in field[0].indices) {
+            if (visitedFields.contains(PositionState(position, movement))) {
+                return true
+            }
+            visitedFields += PositionState(position, movement)
+
+            position += movement
+            if (position.y in field.indices && position.x in field[0].indices && field[position.y.toInt()][position.x.toInt()] == '#') {
+                position -= movement
+                movement = turnRight(movement)
+            }
+        }
+
+        return false
+    }
+
 }
+
 
 private fun print(field: List<List<Char>>, potentialObstacles: Set<Vector2>) {
     field.forEachIndexed { y, row ->
