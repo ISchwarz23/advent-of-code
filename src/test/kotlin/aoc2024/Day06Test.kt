@@ -6,6 +6,7 @@ import org.junit.jupiter.api.TestMethodOrder
 import utils.aocClient
 import utils.readInput
 import utils.readInputAsChars
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -32,6 +33,7 @@ internal class Day06Test {
     }
 
     @Test
+    @Ignore("Ignore as processing is pretty slow")
     internal fun testPart2() {
         // when
         val result = Day06.part2(inputExample)

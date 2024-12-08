@@ -31,40 +31,29 @@ object Day06 {
     fun part2(input: List<List<Char>>): Int {
         val startPosition = input.mapIndexed { y, fields -> Vector2(fields.indexOf('^'), y) }.find { it.x >= 0 }
             ?: throw RuntimeException("No start symbol in input")
-        var position = startPosition
-        var movementDirection = movementDirections[0]
 
-        val visitedPositions = mutableSetOf<PositionState>()
-        val obstaclesForCircles = mutableSetOf<Vector2>()
-
-        while (position.y in input.indices && position.x in input[0].indices) {
-            visitedPositions += PositionState(position, movementDirection)
-
-            // check potential block
-            val obstacle = position + movementDirection
-            if (checkLoop(position, turnRight(movementDirection), input, visitedPositions)) {
-                obstaclesForCircles += obstacle
-            }
-
-            // keep moving
-            position += movementDirection
-            if (position.y in input.indices && position.x in input[0].indices && input[position.y.toInt()][position.x.toInt()] == '#') {
-                position -= movementDirection
-                movementDirection = turnRight(movementDirection)
+        var counter = 0
+        input.forEachIndexed { y, fields ->
+            fields.forEachIndexed { x, field ->
+                if (field == '.') {
+                    val copy = input.map { it.toMutableList() }
+                    copy[y][x] = '#'
+                    if (hasLoop(copy, startPosition)) {
+                        counter++
+                    }
+                }
             }
         }
 
-        obstaclesForCircles -= startPosition
-
         // print(input, obstaclesForCircles)
-        return obstaclesForCircles.size
+        return counter
     }
 
-    private fun checkLoop(
-        startPosition: Vector2,
-        mov: Vector2,
+    private fun hasLoop(
         field: List<List<Char>>,
-        visitedF: MutableSet<PositionState>
+        startPosition: Vector2,
+        mov: Vector2 = movementDirections[0],
+        visitedF: MutableSet<PositionState> = mutableSetOf()
     ): Boolean {
 
         var position = startPosition
