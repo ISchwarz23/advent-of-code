@@ -4,6 +4,7 @@ import aoc2022.day22.FieldType
 import aoc2022.day23.Day23
 import aoc2022.day23.Elf
 import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.TestMethodOrder
 import utils.Vector2
 import utils.aocClient
@@ -35,7 +36,7 @@ internal class Day23Test {
     }
 
     @Test
-    @Ignore("Ignore as processing is pretty slow")
+    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day23.part2(inputExample)

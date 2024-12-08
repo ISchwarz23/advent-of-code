@@ -2,6 +2,7 @@ package aoc2022
 
 import aoc2022.day17.Day17
 import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.TestMethodOrder
 import utils.Vector2
 import utils.aocClient
@@ -33,7 +34,7 @@ internal class Day17Test {
     }
 
     @Test
-    @Ignore("Takes too long")
+    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day17.part2(inputExample)

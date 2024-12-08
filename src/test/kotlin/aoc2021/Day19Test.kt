@@ -4,6 +4,7 @@ import aoc2021.day19.Day19
 import aoc2021.day19.Position3D
 import aoc2021.day19.ScannerResult
 import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput
 import kotlin.test.Ignore
@@ -13,13 +14,13 @@ import kotlin.test.assertEquals
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
-@Ignore("Ignore as processing is pretty slow")
 internal class Day19Test {
 
     private val testInput = readInputAsScannerResults("aoc2021/day19_example.txt")
     private val input = readInputAsScannerResults("aoc2021/day19.txt")
 
     @Test
+    @Tag("slow")
     internal fun testPart1() {
         // when
         val result = Day19.part1(testInput)
@@ -32,6 +33,7 @@ internal class Day19Test {
     }
 
     @Test
+    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day19.part2(testInput)

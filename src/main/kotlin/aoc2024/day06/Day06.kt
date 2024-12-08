@@ -44,8 +44,6 @@ object Day06 {
                 }
             }
         }
-
-        // print(input, obstaclesForCircles)
         return counter
     }
 
@@ -75,20 +73,6 @@ object Day06 {
         return false
     }
 
-}
-
-
-private fun print(field: List<List<Char>>, potentialObstacles: Set<Vector2>) {
-    field.forEachIndexed { y, row ->
-        row.forEachIndexed { x, c ->
-            if (potentialObstacles.contains(Vector2(x, y))) {
-                print('O')
-            } else {
-                print(field[y][x])
-            }
-        }
-        println()
-    }
 }
 
 

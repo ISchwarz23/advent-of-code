@@ -3,6 +3,7 @@ package aoc2022
 import aoc2022.day24.Blizzard
 import aoc2022.day24.Day24
 import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.TestMethodOrder
 import utils.*
 import kotlin.test.Ignore
@@ -12,7 +13,6 @@ import kotlin.test.assertEquals
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
-@Ignore("Ignore as processing is pretty slow")
 internal class Day24Test {
 
     private val inputBlizzards = readInput2dIndexed("aoc2022/day24.txt") { x, y, data -> toBlizzard(x, y, data) }
@@ -21,6 +21,7 @@ internal class Day24Test {
     private val inputExampleBasinDimension = readBasinDimensions("aoc2022/day24_example.txt")
 
     @Test
+    @Tag("slow")
     internal fun testPart1() {
         // when
         val result = Day24.part1(inputExampleBasinDimension, inputExample)
@@ -35,6 +36,7 @@ internal class Day24Test {
     }
 
     @Test
+    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day24.part2(inputExampleBasinDimension, inputExample)

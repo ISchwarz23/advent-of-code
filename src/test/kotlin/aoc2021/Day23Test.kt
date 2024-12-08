@@ -2,6 +2,7 @@ package aoc2021
 
 import aoc2021.day23.*
 import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.TestMethodOrder
 import utils.readInput
 import kotlin.test.Ignore
@@ -11,7 +12,6 @@ import kotlin.test.assertEquals
 @TestMethodOrder(
     MethodOrderer.Alphanumeric::class
 )
-@Ignore("Reason: Not working")
 internal class Day23Test {
 
     private val inputPart1Example = readInputAsFloorLayoutAndAmphipodLocations("aoc2021/day23_part1_example.txt")
@@ -21,6 +21,7 @@ internal class Day23Test {
     private val inputPart2 = readInputAsFloorLayoutAndAmphipodLocations("aoc2021/day23_part2.txt")
 
     @Test
+    @Tag("slow")
     internal fun testPart1() {
         // when
         val result = Day23.part1(inputPart1Example.first, inputPart1Example.second)
@@ -33,6 +34,7 @@ internal class Day23Test {
     }
 
     @Test
+    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day23.part2(inputPart2Example.first, inputPart2Example.second)
