@@ -8,22 +8,32 @@ import utils.split
  */
 object Day11 {
 
-    fun part1(input: List<Long>): Int {
-        return applyRules(input, 25).count()
+    fun part1(input: List<Long>): Long {
+        return solve(input, 25)
     }
 
-    fun part2(input: List<Long>): Int {
-        return 0
+    fun part2(input: List<Long>): Long {
+        return solve(input, 75)
     }
 
 }
 
-private fun applyRules(rocks: List<Long>, numberOfBlinks: Int): List<Long> {
-    var newRocks = rocks
+private fun solve(rocks: List<Long>, numberOfBlinks: Int): Long {
+    var rockWithNoOfOccurrence = rocks.groupBy { it }
+        .mapValues { (_, rockList) -> rockList.size.toLong() }
+        .toMutableMap()
+
     repeat(numberOfBlinks) {
-        newRocks = newRocks.flatMap { blink(it) }
+        val updatedRocks = mutableMapOf<Long, Long>()
+        rockWithNoOfOccurrence.forEach { (rock, noOfRocks) ->
+            blink(rock).forEach { newRock ->
+                updatedRocks.compute(newRock) { _, alreadyPresentNoOfNewRocks -> (alreadyPresentNoOfNewRocks ?: 0L) + noOfRocks }
+            }
+        }
+        rockWithNoOfOccurrence = updatedRocks
     }
-    return newRocks
+
+    return rockWithNoOfOccurrence.map { it.value }.sum()
 }
 
 private fun blink(rock: Long): List<Long> {
