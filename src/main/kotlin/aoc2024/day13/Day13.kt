@@ -2,6 +2,7 @@ package aoc2024.day13
 
 import utils.Vector2
 import utils.split
+import kotlin.math.abs
 
 /**
  * My solution for day 13 of Advent of Code 2024.
@@ -17,7 +18,8 @@ object Day13 {
 
     fun part2(input: List<String>): Long {
         return input.split { it.isEmpty() }.sumOf {
-            getCheapestSolution(parsePriceLocation(it[2], 10_000_000_000_000), parseButton(it[0]), parseButton(it[1])) ?: 0L
+            getCheapestSolution(parsePriceLocation(it[2], 10_000_000_000_000), parseButton(it[0]), parseButton(it[1]))
+                ?: 0L
         }
     }
 
@@ -25,30 +27,40 @@ object Day13 {
 
 private fun getCheapestSolution(priceLocation: Vector2, buttonA: Button, buttonB: Button): Long? {
 
-    var noOfButtonBPresses = (priceLocation.x / buttonB.movement.x) + 1
-    var noOfButtonAPresses = ((priceLocation.y - noOfButtonBPresses * buttonB.movement.y) / buttonA.movement.y) + 1
-    if (noOfButtonAPresses < 0) {
-        noOfButtonAPresses = 0
+    // solve LGS
+    // buttonA.movement.x * A + buttonB.movement.x * B = priceLocation.x
+    // buttonA.movement.y * A + buttonB.movement.y * B = priceLocation.y
+    val a1 = buttonA.movement.x
+    val b1 = buttonB.movement.x
+    val c1 = priceLocation.x
+    val a2 = buttonA.movement.y
+    val b2 = buttonB.movement.y
+    val c2 = priceLocation.y
+
+    // Calculate the determinant of the coefficient matrix
+    val determinant = a1 * b2 - a2 * b1
+
+    // If determinant is zero, the system has no unique solution (either infinite or none)
+    if (abs(determinant).toInt() == 0) {
+        return null
     }
 
-    while (noOfButtonBPresses >= 0) {
-        val currentLocation = buttonA.movement * noOfButtonAPresses + buttonB.movement * noOfButtonBPresses
-        if (currentLocation == priceLocation) {
-            return noOfButtonAPresses * buttonA.cost + noOfButtonBPresses * buttonB.cost
-        }
-        if (currentLocation.x > priceLocation.x || currentLocation.y > priceLocation.y) {
-            noOfButtonBPresses--
-        } else {
-            noOfButtonAPresses++
-        }
-    }
+    // Using Cramer's Rule to solve for x and y
+    val x = (c1 * b2 - c2 * b1) / determinant
+    val y = (a1 * c2 - a2 * c1) / determinant
 
-    return null
+    // double check as integer division is done before
+    return if (buttonA.movement * x + buttonB.movement * y == priceLocation) {
+        x * buttonA.cost + y * buttonB.cost
+    } else {
+        null
+    }
 }
 
 private fun parseButton(movement: String): Button {
-    val result = "Button (\\w): X\\+(\\d+), Y\\+(\\d+)".toRegex().find(movement) ?: throw RuntimeException("Malformed button input")
-    val cost = when(result.groupValues[1]) {
+    val result = "Button (\\w): X\\+(\\d+), Y\\+(\\d+)".toRegex().find(movement)
+        ?: throw RuntimeException("Malformed button input")
+    val cost = when (result.groupValues[1]) {
         "A" -> 3L
         "B" -> 1L
         else -> throw RuntimeException("Unknown button: ${result.groupValues[1]}")
