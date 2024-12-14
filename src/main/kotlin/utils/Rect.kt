@@ -20,6 +20,10 @@ data class Rect(val xRange: LongRange, val yRange: LongRange) {
         yStart.toLong(), height.toLong()
     )
 
+    constructor(width: Int, height: Int) : this(width.toLong(),height.toLong())
+
+    constructor(width: Long, height: Long) : this(0, width, 0, height)
+
     operator fun contains(other: Vector2): Boolean {
         return other.x in this.xRange && other.y in this.yRange
     }
