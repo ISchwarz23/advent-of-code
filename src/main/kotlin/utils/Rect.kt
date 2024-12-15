@@ -1,5 +1,6 @@
 package utils
 
+
 data class Rect(val xRange: LongRange, val yRange: LongRange) {
 
     val width: Long = xRange.last - xRange.first + 1
@@ -26,6 +27,14 @@ data class Rect(val xRange: LongRange, val yRange: LongRange) {
 
     operator fun contains(other: Vector2): Boolean {
         return other.x in this.xRange && other.y in this.yRange
+    }
+
+    infix fun overlaps(other: Rect): Boolean {
+        return other.xRange overlaps this.xRange && other.yRange overlaps  this.yRange
+    }
+
+    fun move(movement: Vector2): Rect {
+        return Rect(this.xRange.first + movement.x, this.width, this.yRange.first + movement.y, this.height)
     }
 
 }

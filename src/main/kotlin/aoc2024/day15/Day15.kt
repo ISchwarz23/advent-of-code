@@ -1,8 +1,8 @@
 package aoc2024.day15
 
+import utils.Rect
 import utils.Vector2
 import utils.split
-import java.text.ParseException
 
 /**
  * My solution for day 15 of Advent of Code 2024.
@@ -12,134 +12,135 @@ object Day15 {
 
     fun part1(input: List<String>): Long {
         val (warehouseInput, movementInput) = input.split { it.isEmpty() }
-        val warehouse = parseWarehouse(warehouseInput)
-        val movements = movementInput.joinToString("").toCharArray().map { Movement.fromChar(it) }
+        val warehouse = parseWarehousePart1(warehouseInput)
+        val movements = movementInput.joinToString("").toCharArray().map { movementFromChar(it) }
+
+        runMovements(warehouse, movements)
+
+        return warehouse.boxPositions.sumOf { it.yRange.first * 100 + it.xRange.first }
+    }
+
+    fun part2(input: List<String>): Long {
+        val (warehouseInput, movementInput) = input.split { it.isEmpty() }
+        val warehouse = parseWarehousePart2(warehouseInput)
+        val movements = movementInput.joinToString("").toCharArray().map { movementFromChar(it) }
+
+        runMovements(warehouse, movements)
+
+        return warehouse.boxPositions.sumOf { it.yRange.first * 100 + it.xRange.first }
+    }
+
+    private fun runMovements(warehouse: Warehouse, movements: List<Vector2>) {
+
+        // println("Initial State")
+        // warehouse.print()
+        // println()
 
         for (movement in movements) {
+            val robotPosition = warehouse.robotLocation
+            var itemsToMoveNext = listOf(WarehouseItem(robotPosition, WarehouseItemType.ROBOT))
+            val itemsToMove = mutableListOf<WarehouseItem>()
+            itemsToMove.addAll(itemsToMoveNext)
+
+            do {
+                itemsToMoveNext = itemsToMoveNext.flatMap { itemToMove ->
+                    warehouse.getItemsOverlapping(
+                        itemToMove.bounds.move(movement)
+                    ).filter { it != itemToMove }
+                }
+                itemsToMove += itemsToMoveNext
+            } while (!(itemsToMoveNext.isEmpty() || itemsToMoveNext.any { it.canBeMoved.not() }))
+
+            if (itemsToMove.all { it.canBeMoved }) {
+                itemsToMove.distinct().forEach { warehouse.moveItem(it, movement) }
+            }
+
             // println("Movement: $movement")
             // warehouse.print()
             // println()
-
-            var numberOfMoves = 0
-            val robotPosition = warehouse.robotPosition
-            var targetPosition = robotPosition
-
-            do {
-                targetPosition += movement.vector
-                numberOfMoves++
-            } while (warehouse.getItemAt(targetPosition) != null && warehouse.getItemAt(targetPosition) != MapItem.WALL)
-
-            if (warehouse.getItemAt(targetPosition) == null) {
-                (0 until numberOfMoves).reversed().forEach { distance ->
-                    warehouse.moveItemAt(robotPosition + movement.vector * distance, movement)
-                }
-            }
         }
-
-        return warehouse.boxPositions.sumOf { it.y * 100 + it.x }
-    }
-
-    fun part2(input: List<String>): Int {
-        return 0
     }
 
 }
 
-
-private enum class Movement(val vector: Vector2) {
-    UP(Vector2(0, -1)),
-    DOWN(Vector2(0, 1)),
-    LEFT(Vector2(-1, 0)),
-    RIGHT(Vector2(1, 0));
-
-    companion object {
-        fun fromChar(char: Char): Movement {
-            return when (char) {
-                '^' -> UP
-                'v' -> DOWN
-                '<' -> LEFT
-                '>' -> RIGHT
-                else -> throw ParseException("Invalid direction char: '$char'", 0)
-            }
-        }
+private fun movementFromChar(char: Char): Vector2 {
+    return when (char) {
+        '<' -> Vector2(-1, 0)
+        '>' -> Vector2(1, 0)
+        '^' -> Vector2(0, -1)
+        'v' -> Vector2(0, 1)
+        else -> throw RuntimeException("Invalid movement: '$char'")
     }
 }
 
-private fun parseWarehouse(mapInput: List<String>): Warehouse {
-    val mapData = Array(mapInput.size) { rowIndex -> Array<MapItem?>(mapInput[rowIndex].length) { null } }
-
-    mapInput.flatMapIndexed { y, row -> row.mapIndexed { x, itemChar -> Pair(Vector2(x, y), MapItem.fromChar(itemChar)) } }
-        .filter { (_, item) -> item != null }
-        .forEach { (pos, item) ->
-            mapData[pos.y.toInt()][pos.x.toInt()] = item
+private fun parseWarehousePart1(warehouseInput: List<String>): Warehouse {
+    val items = warehouseInput.flatMapIndexed { y, row -> row.mapIndexed { x, item ->
+        when (item) {
+            '#' -> WarehouseItem(Rect(x, 1, y, 1), WarehouseItemType.WALL)
+            'O' -> WarehouseItem(Rect(x, 1, y, 1), WarehouseItemType.BOX)
+            '@' -> WarehouseItem(Rect(x, 1, y, 1), WarehouseItemType.ROBOT)
+            else -> null
         }
-
-    return Warehouse(mapData)
+    } }.filterNotNull().toMutableList()
+    return Warehouse(items, Rect(warehouseInput[0].length, warehouseInput.size))
 }
 
-private data class Warehouse(private val map: Array<Array<MapItem?>>) {
-
-    val robotPosition: Vector2
-        get() = items.filter { (_, item) -> item == MapItem.ROBOT }.map { (pos, _) -> pos }.first()
-
-
-    val boxPositions: List<Vector2>
-        get() = items.filter { (_, item) -> item == MapItem.BOX }.map { (pos, _) -> pos }
-
-    private val items: List<Pair<Vector2, MapItem>>
-        get() {
-            return map.flatMapIndexed { y, row -> row.mapIndexed { x, item -> Pair(Vector2(x, y), item) } }
-                .filter { (pos, item) -> item != null }
-                .map { (pos, item) -> Pair(pos, item!!) }
+private fun parseWarehousePart2(warehouseInput: List<String>): Warehouse {
+    val items = warehouseInput.flatMapIndexed { y, row -> row.mapIndexed { x, item ->
+        when (item) {
+            '#' -> WarehouseItem(Rect(x * 2, 2, y, 1), WarehouseItemType.WALL)
+            'O' -> WarehouseItem(Rect(x * 2, 2, y, 1), WarehouseItemType.BOX)
+            '@' -> WarehouseItem(Rect(x * 2, 1, y, 1), WarehouseItemType.ROBOT)
+            else -> null
         }
+    } }.filterNotNull().toMutableList()
+    return Warehouse(items, Rect(warehouseInput[0].length * 2, warehouseInput.size))
+}
 
-    fun getItemAt(position: Vector2): MapItem? = getItemAt(position.x.toInt(), position.y.toInt())
 
-    fun getItemAt(x: Int, y: Int): MapItem? = map[y][x]
 
-    fun moveItemAt(position: Vector2, movement: Movement) {
-        val newPosition = position + movement.vector
 
-        if (getItemAt(newPosition) == null) {
-            map[newPosition.y.toInt()][newPosition.x.toInt()] = map[position.y.toInt()][position.x.toInt()]
-            map[position.y.toInt()][position.x.toInt()] = null
-        } else {
-            throw RuntimeException("Unable to move item to new position, as it is occupied")
-        }
-    }
+private data class Warehouse(private val items: MutableList<WarehouseItem>, val bounds: Rect) {
+
+    val robotLocation: Rect
+        get() = items.filter { it.type == WarehouseItemType.ROBOT }.map { (pos, _) -> pos }.first()
+
+
+    val boxPositions: List<Rect>
+        get() = items.filter { it.type == WarehouseItemType.BOX }.map { (pos, _) -> pos }
+
+    fun getItemsOverlapping(bounds: Rect): List<WarehouseItem> = items.filter { it.bounds overlaps bounds }
+
+    fun getItemsTypeAt(x: Long, y: Long): WarehouseItemType? = getItemsTypeAt(Vector2(x, y))
+
+    fun getItemsTypeAt(location: Vector2): WarehouseItemType? = getItemsOverlapping(Rect(location.x, 1, location.y, 1)).map { it.type }.firstOrNull()
 
     fun print() {
-        for (row in map) {
-            for (item in row) {
-                when(item) {
+        for (y in bounds.yRange) {
+            for (x in bounds.xRange) {
+                when(getItemsTypeAt(x, y)) {
                     null -> print(".")
-                    MapItem.WALL -> print("#")
-                    MapItem.BOX -> print("O")
-                    MapItem.ROBOT -> print("@")
+                    WarehouseItemType.WALL -> print("#")
+                    WarehouseItemType.BOX -> print("O")
+                    WarehouseItemType.ROBOT -> print("@")
                 }
             }
             println()
         }
     }
 
+    fun moveItem(item: WarehouseItem, movement: Vector2) {
+        items.remove(item)
+        items.add(WarehouseItem(item.bounds.move(movement), item.type))
+    }
+
 }
 
+private data class WarehouseItem(val bounds: Rect, val type: WarehouseItemType) {
+    val canBeMoved: Boolean
+        get() = type.canBeMoved
+}
 
-
-
-private enum class MapItem(val canBeMoved: Boolean) {
-    WALL(false),
-    BOX(true),
-    ROBOT(true);
-
-    companion object {
-        fun fromChar(char: Char): MapItem? {
-            return when (char) {
-                '#' -> WALL
-                'O' -> BOX
-                '@' -> ROBOT
-                else -> null
-            }
-        }
-    }
+private enum class WarehouseItemType(val canBeMoved: Boolean) {
+    WALL(false), BOX(true), ROBOT(true)
 }

@@ -15,6 +15,7 @@ internal class Day15Test {
 
     private val input = readInput("aoc2024/day15.txt")
     private val inputExample = readInput("aoc2024/day15_example.txt")
+    private val inputExampleSmall = readInput("aoc2024/day15_example_small.txt")
 
     @Test
     internal fun testPart1() {
@@ -32,11 +33,13 @@ internal class Day15Test {
 
     @Test
     internal fun testPart2() {
+        Day15.part2(inputExampleSmall)
+
         // when
         val result = Day15.part2(inputExample)
 
         // then
-        assertEquals(-1, result)
+        assertEquals(9021, result)
 
         // submit answer
         val answer = Day15.part2(input)
