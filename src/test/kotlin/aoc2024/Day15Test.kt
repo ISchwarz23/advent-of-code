@@ -18,6 +18,11 @@ internal class Day15Test {
     private val inputExampleSmall = readInput("aoc2024/day15_example_small.txt")
 
     @Test
+    internal fun printTest() {
+        Day15.part2(inputExampleSmall, true)
+    }
+
+    @Test
     internal fun testPart1() {
         // when
         val result = Day15.part1(inputExample)
@@ -33,8 +38,6 @@ internal class Day15Test {
 
     @Test
     internal fun testPart2() {
-        Day15.part2(inputExampleSmall)
-
         // when
         val result = Day15.part2(inputExample)
 
