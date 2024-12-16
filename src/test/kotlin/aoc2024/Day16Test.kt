@@ -36,7 +36,7 @@ internal class Day16Test {
         val result = Day16.part2(inputExample)
 
         // then
-        assertEquals(-1, result)
+        assertEquals(45, result)
 
         // submit answer
         val answer = Day16.part2(input)

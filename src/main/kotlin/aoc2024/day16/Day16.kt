@@ -12,27 +12,38 @@ object Day16 {
 
     fun part1(input: List<String>): Long {
         val maze = Maze(input.map { row -> row.map { char -> char != '#' } })
-        val initialRenderState = RenderState(maze.startLocation, RIGHT, 0)
-
-        val bestLocationCost = mutableMapOf<Vector2, RenderState>()
-        val upcomingRenderStates = PriorityQueue<RenderState> { first, second -> (first.cost - second.cost).toInt() }
-
-        var renderState: RenderState? = initialRenderState
-        while (renderState != null && renderState.location != maze.targetLocation) {
-            renderState.getPossibleNextStates(maze)
-                .filter { !bestLocationCost.containsKey(it.location) || it.cost < bestLocationCost[it.location]!!.cost }
-                .forEach {
-                    bestLocationCost[it.location] = it
-                    upcomingRenderStates += it
-                }
-            renderState = upcomingRenderStates.poll()
-        }
-
-        return renderState?.cost ?: 0
+        return calculateCheapestRoutes(maze).first().cost
     }
 
     fun part2(input: List<String>): Int {
-        return 0
+        val maze = Maze(input.map { row -> row.map { char -> char != '#' } })
+        return calculateCheapestRoutes(maze).flatMap { it.history }.groupBy { it }.count() + 1
+    }
+
+    private fun calculateCheapestRoutes(maze: Maze): MutableSet<RenderState> {
+        val initialRenderState = RenderState(maze.startLocation, RIGHT, 0)
+
+        val cheapestCostByLocation = mutableMapOf<RenderKinetics, Long>()
+        val upcomingRenderStates = PriorityQueue<RenderState> { first, second -> (first.cost - second.cost).toInt() }
+        val cheapestRoutes = mutableSetOf<RenderState>()
+
+        var renderState: RenderState? = initialRenderState
+        while (renderState != null && (cheapestRoutes.isEmpty() || renderState.cost <= cheapestRoutes.first().cost)) {
+            if (renderState.location == maze.targetLocation) {
+                cheapestRoutes += renderState
+            } else {
+                renderState.getPossibleNextStates(maze)
+                    .filter {
+                        !cheapestCostByLocation.containsKey(it.kinetics) || it.cost <= cheapestCostByLocation[it.kinetics]!!
+                    }
+                    .forEach {
+                        cheapestCostByLocation[it.kinetics] = it.cost
+                        upcomingRenderStates += it
+                    }
+            }
+            renderState = upcomingRenderStates.poll()
+        }
+        return cheapestRoutes
     }
 
 }
@@ -50,17 +61,23 @@ private data class Maze(private val data: List<List<Boolean>>) {
 
 }
 
+private data class RenderKinetics(val location: Vector2, val direction: Vector2)
 
-private data class RenderState(val location: Vector2, val direction: Vector2, val cost: Long) {
+private data class RenderState(val location: Vector2, val direction: Vector2, val cost: Long, val history: List<Vector2> = emptyList()) {
+
+    private val costMove = 1
+    private val costTurn = 1000
+
+    val kinetics: RenderKinetics = RenderKinetics(location, direction)
 
     fun getPossibleNextStates(maze: Maze): List<RenderState> {
         val leftDirection = direction.turnLeft()
         val rightDirection = direction.turnRight()
 
         return listOf(
-            RenderState(location + direction, direction, cost + 1),
-            RenderState(location + leftDirection, leftDirection, cost + 1001),
-            RenderState(location + rightDirection, rightDirection, cost + 1001)
+            RenderState(location + direction, direction, cost + costMove, history + location),
+            RenderState(location + leftDirection, leftDirection, cost + costTurn + costMove, history + location),
+            RenderState(location + rightDirection, rightDirection, cost + costTurn + costMove, history + location)
         ).filter {
             maze.canMoveTo(it.location)
         }
