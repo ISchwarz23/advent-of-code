@@ -17,7 +17,7 @@ object Day16 {
 
     fun part2(input: List<String>): Int {
         val maze = Maze(input.map { row -> row.map { char -> char != '#' } })
-        return calculateCheapestRoutes(maze).flatMap { it.history }.groupBy { it }.count() + 1
+        return calculateCheapestRoutes(maze).flatMap { it.history }.distinct().count() + 1
     }
 
     private fun calculateCheapestRoutes(maze: Maze): MutableSet<RenderState> {
