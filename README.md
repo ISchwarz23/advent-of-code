@@ -1,5 +1,5 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=74&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=145&color=yellow&style=flat-square)
+![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=75&color=blue&style=flat-square)
+![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=147&color=yellow&style=flat-square)
 
 # Advent of Code
 
@@ -65,23 +65,24 @@ The file content should look like `session=abc...xyz`.
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
-| #  | Name                            | Stars | Comment                                                                                     |
-|----|---------------------------------|-------|---------------------------------------------------------------------------------------------|
-| 1  | [Historian Hysteria][2024-1]    | ⭐⭐    | Straight forward.                                                                           |
-| 2  | [Red-Nosed Reports][2024-2]     | ⭐⭐    | Not happy with the code for part 2.                                                         |
-| 3  | [Mull It Over][2024-3]          | ⭐⭐    | Straight forward.                                                                           |
-| 4  | [Ceres Search][2024-4]          | ⭐⭐    | Straight forward.                                                                           |
-| 5  | [Print Queue][2024-5]           | ⭐⭐    | Straight forward.                                                                           |
-| 6  | [Guard Gallivant][2024-6]       | ⭐⭐    | Not happy with my part 2 solution.                                                          |
-| 7  | [Bridge Repair][2024-7]         | ⭐⭐    | Straight forward.                                                                           |
-| 8  | [Resonant Collinearity][2024-8] | ⭐⭐    | Straight forward.                                                                           |
-| 9  | [Disk Fragmenter][2024-9]       | ⭐⭐    | Didn't think about more than 1 digit numbers. This is why I had to reimplement my solution. |
-| 10 | [Hoof It][2024-10]              | ⭐⭐    | Straight forward. Part 2 was even more easy than part 1.                                    |
-| 11 | [Plutonian Pebbles][2024-11]    | ⭐⭐    | Pretty easy when using a map (instead of a list).                                           |
-| 12 | [Garden Groups][2024-12]        | ⭐⭐    | It took me a while to calculate "sides" of the gardens.                                     |
-| 13 | [Claw Contraption][2024-13]     | ⭐⭐    | It took me very long to realize the problem is a linear system of equations.                |
-| 14 | [Restroom Redoubt][2024-14]     | ⭐⭐    | Really liked the style of part 2.                                                           |
-| 15 | [Warehouse Woes][2024-15]       | ⭐⭐    | Had to reimplement everything for part 2.                                                   |
+| #  | Name                            | Stars | Comment                                                                                             |
+|----|---------------------------------|-------|-----------------------------------------------------------------------------------------------------|
+| 1  | [Historian Hysteria][2024-1]    | ⭐⭐    | Straight forward.                                                                                   |
+| 2  | [Red-Nosed Reports][2024-2]     | ⭐⭐    | Not happy with the code for part 2.                                                                 |
+| 3  | [Mull It Over][2024-3]          | ⭐⭐    | Straight forward.                                                                                   |
+| 4  | [Ceres Search][2024-4]          | ⭐⭐    | Straight forward.                                                                                   |
+| 5  | [Print Queue][2024-5]           | ⭐⭐    | Straight forward.                                                                                   |
+| 6  | [Guard Gallivant][2024-6]       | ⭐⭐    | Not happy with my part 2 solution.                                                                  |
+| 7  | [Bridge Repair][2024-7]         | ⭐⭐    | Straight forward.                                                                                   |
+| 8  | [Resonant Collinearity][2024-8] | ⭐⭐    | Straight forward.                                                                                   |
+| 9  | [Disk Fragmenter][2024-9]       | ⭐⭐    | Didn't think about more than 1 digit numbers. This is why I had to reimplement my solution.         |
+| 10 | [Hoof It][2024-10]              | ⭐⭐    | Straight forward. Part 2 was even more easy than part 1.                                            |
+| 11 | [Plutonian Pebbles][2024-11]    | ⭐⭐    | Pretty easy when using a map (instead of a list).                                                   |
+| 12 | [Garden Groups][2024-12]        | ⭐⭐    | It took me a while to calculate "sides" of the gardens.                                             |
+| 13 | [Claw Contraption][2024-13]     | ⭐⭐    | It took me very long to realize the problem is a linear system of equations.                        |
+| 14 | [Restroom Redoubt][2024-14]     | ⭐⭐    | Really liked the style of part 2.                                                                   |
+| 15 | [Warehouse Woes][2024-15]       | ⭐⭐    | Had to reimplement everything for part 2.                                                           |
+| 16 | [Reindeer Maze][2024-16]        | ⭐⭐    | Improved to much in the beginning. Part 2 forced me to remove most of the performance improvements. |
 
 ## Log of my AoC Journey 2023
 
@@ -250,3 +251,13 @@ I tried to log my results and thoughts for each puzzle after solving it.
 [2024-13]: https://adventofcode.com/2024/day/13
 [2024-14]: https://adventofcode.com/2024/day/14
 [2024-15]: https://adventofcode.com/2024/day/15
+[2024-16]: https://adventofcode.com/2024/day/16
+[2024-17]: https://adventofcode.com/2024/day/17
+[2024-18]: https://adventofcode.com/2024/day/18
+[2024-19]: https://adventofcode.com/2024/day/19
+[2024-20]: https://adventofcode.com/2024/day/20
+[2024-21]: https://adventofcode.com/2024/day/21
+[2024-22]: https://adventofcode.com/2024/day/22
+[2024-23]: https://adventofcode.com/2024/day/23
+[2024-24]: https://adventofcode.com/2024/day/24
+[2024-25]: https://adventofcode.com/2024/day/25
