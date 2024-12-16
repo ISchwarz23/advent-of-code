@@ -17,7 +17,7 @@ object Day16 {
 
     fun part2(input: List<String>): Int {
         val maze = Maze(input.map { row -> row.map { char -> char != '#' } })
-        return calculateCheapestRoutes(maze).flatMap { it.history }.distinct().count() + 1
+        return calculateCheapestRoutes(maze).flatMap { it.path }.distinct().count()
     }
 
     private fun calculateCheapestRoutes(maze: Maze): MutableSet<RenderState> {
@@ -69,6 +69,8 @@ private data class RenderState(val location: Vector2, val direction: Vector2, va
     private val costTurn = 1000
 
     val kinetics: RenderKinetics = RenderKinetics(location, direction)
+    val path: List<Vector2>
+        get() = history + location
 
     fun getPossibleNextStates(maze: Maze): List<RenderState> {
         val leftDirection = direction.turnLeft()
