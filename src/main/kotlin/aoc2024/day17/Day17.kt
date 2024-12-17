@@ -21,22 +21,17 @@ object Day17 {
     }
 
     fun part2(input: List<String>): Long {
+        var valueRegA = 0L
         val valueRegB = input[1].split(": ")[1].toLong()
         val valueRegC = input[2].split(": ")[1].toLong()
 
         val programStr = input[4].split(": ")[1].split(",")
         val program = programStr.map { it.toInt() }
 
-        var valueRegA = 0L
-        var previousOutput = emptyList<String>()
+        var output = emptyList<String>()
         do {
-            val delta = calculateDeltaExponent(programStr, previousOutput)
-            val step = (8L pow delta)
-            valueRegA += step
-
-            val output = runProgram(program, Registers(valueRegA, valueRegB, valueRegC))
-
-            previousOutput = output
+            valueRegA += 8L pow calculateDeltaExponent(programStr, output)
+            output = runProgram(program, Registers(valueRegA, valueRegB, valueRegC))
         } while (output != programStr)
 
         return valueRegA
@@ -61,8 +56,7 @@ private fun calculateDeltaExponent(expected: List<String>, actual: List<String>)
     if (expected.size > actual.size) {
         return expected.lastIndex
     }
-
-    (expected.lastIndex downTo 1).forEach { index ->
+    for(index in expected.lastIndex downTo 1) {
         if (expected[index] != actual[index]) {
             return index
         }
@@ -83,7 +77,6 @@ private data class Registers(var a: Long, var b: Long, var c: Long) {
             else -> throw RuntimeException("Combo Operant '$literalOperant' should not appear in valid program")
         }
     }
-
 }
 
 private fun readOperation(opcode: Int): Operation {
