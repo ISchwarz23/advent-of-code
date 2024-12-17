@@ -1,6 +1,3 @@
-![](https://img.shields.io/static/v1?label=%F0%9F%93%85%20Completed%20Days&message=76&color=blue&style=flat-square)
-![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=149&color=yellow&style=flat-square)
-
 # Advent of Code
 
 ```
@@ -61,7 +58,7 @@ the requested day was already released) and be able to automatically upload your
 session cookie to the file `session.txt` in the project root.
 The file content should look like `session=abc...xyz`.
 
-## Log of my AoC Journey 2024
+## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=34&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -85,7 +82,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 16 | [Reindeer Maze][2024-16]          | ⭐⭐    | Improved to much in the beginning. Part 2 forced me to remove most of the performance improvements. |
 | 17 | [Chronospatial Computer][2024-17] | ⭐⭐    | Part 1 was very simple, but it took me a while to find a solution for part 2.                       |
 
-## Log of my AoC Journey 2023
+## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=15&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -101,7 +98,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 8   | [Haunted Wasteland][2023-8]               | ⭐     |         |
 Had to quit because of sickness. Maybe I will continue in a later point in time.
 
-## Log of my AoC Journey 2022
+## Log of my AoC Journey 2022 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=50&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -134,7 +131,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 25  | [Full of Hot Air][2022-25]          | ⭐⭐    |                                                                                                                                                                                                                                            |
 
 
-## Log of my AoC Journey 2021
+## Log of my AoC Journey 2021 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=50&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
