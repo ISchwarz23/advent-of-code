@@ -2,6 +2,7 @@ package aoc2024.day17
 
 import utils.pow
 
+
 /**
  * My solution for day 17 of Advent of Code 2024.
  * The puzzle can be found at the <a href="https://adventofcode.com/2024/day/17">AoC page</a>.
@@ -9,13 +10,39 @@ import utils.pow
 object Day17 {
 
     fun part1(input: List<String>): String {
-        val valueRegA = input[0].split(": ")[1].toInt()
-        val valueRegB = input[1].split(": ")[1].toInt()
-        val valueRegC = input[2].split(": ")[1].toInt()
-
-        val registers = Registers(valueRegA, valueRegB, valueRegC)
+        val valueRegA = input[0].split(": ")[1].toLong()
+        val valueRegB = input[1].split(": ")[1].toLong()
+        val valueRegC = input[2].split(": ")[1].toLong()
         val program = input[4].split(": ")[1].split(",").map { it.toInt() }
 
+        val registers = Registers(valueRegA, valueRegB, valueRegC)
+
+        return runProgram(program, registers).joinToString(",")
+    }
+
+    fun part2(input: List<String>): Long {
+        val valueRegB = input[1].split(": ")[1].toLong()
+        val valueRegC = input[2].split(": ")[1].toLong()
+
+        val programStr = input[4].split(": ")[1].split(",")
+        val program = programStr.map { it.toInt() }
+
+        var valueRegA = 0L
+        var previousOutput = emptyList<String>()
+        do {
+            val delta = calculateDeltaExponent(programStr, previousOutput)
+            val step = (8L pow delta)
+            valueRegA += step
+
+            val output = runProgram(program, Registers(valueRegA, valueRegB, valueRegC))
+
+            previousOutput = output
+        } while (output != programStr)
+
+        return valueRegA
+    }
+
+    private fun runProgram(program: List<Int>, registers: Registers): List<String> {
         val outputs = mutableListOf<String>()
         var pointer = 0
         while (pointer + 1 < program.size) {
@@ -25,21 +52,29 @@ object Day17 {
             pointer = newPointer
             output?.let { outputs += it }
         }
-
-        return outputs.joinToString(",")
-    }
-
-    fun part2(input: List<String>): Int {
-        return 0
+        return outputs
     }
 
 }
 
-private data class Registers(var a: Int, var b: Int, var c: Int) {
+private fun calculateDeltaExponent(expected: List<String>, actual: List<String>): Int {
+    if (expected.size > actual.size) {
+        return expected.lastIndex
+    }
 
-    fun toComboOperant(literalOperant: Int): Int {
+    (expected.lastIndex downTo 1).forEach { index ->
+        if (expected[index] != actual[index]) {
+            return index
+        }
+    }
+    return 0
+}
+
+private data class Registers(var a: Long, var b: Long, var c: Long) {
+
+    fun toComboOperant(literalOperant: Int): Long {
         if (literalOperant in 0..3) {
-            return literalOperant
+            return literalOperant.toLong()
         }
         return when (literalOperant) {
             4 -> a
@@ -69,13 +104,13 @@ private fun readOperation(opcode: Int): Operation {
 private enum class Operation(val run: (pointer: Int, literalOperant: Int, registers: Registers) -> Pair<Int, String?>) {
     // division
     ADV({pointer, literalOperant, registers ->
-        val result = registers.a.toDouble() / (2 pow registers.toComboOperant(literalOperant))
-        registers.a = result.toInt()
+        val result = registers.a.toDouble() / (2L pow registers.toComboOperant(literalOperant))
+        registers.a = result.toLong()
         Pair(pointer + 2, null)
     }),
     // bitwise X-OR
     BXL({pointer, literalOperant, registers ->
-        registers.b = registers.b xor literalOperant
+        registers.b = registers.b xor literalOperant.toLong()
         Pair(pointer + 2, null)
     }),
     // bitwise X-OR
@@ -85,7 +120,7 @@ private enum class Operation(val run: (pointer: Int, literalOperant: Int, regist
     }),
     // jump
     JNZ({pointer, literalOperant, registers ->
-        if(registers.a == 0) {
+        if(registers.a == 0L) {
             Pair(pointer + 2, null)
         } else {
             Pair(literalOperant, null)
@@ -103,14 +138,14 @@ private enum class Operation(val run: (pointer: Int, literalOperant: Int, regist
     }),
     // division
     BDV({pointer, literalOperant, registers ->
-        val result = registers.a.toDouble() / (2 pow registers.toComboOperant(literalOperant))
-        registers.b = result.toInt()
+        val result = registers.a.toDouble() / (2L pow registers.toComboOperant(literalOperant))
+        registers.b = result.toLong()
         Pair(pointer + 2, null)
     }),
     // division
     CDV({pointer, literalOperant, registers ->
-        val result = registers.a.toDouble() / (2 pow registers.toComboOperant(literalOperant))
-        registers.c = result.toInt()
+        val result = registers.a.toDouble() / (2L pow registers.toComboOperant(literalOperant))
+        registers.c = result.toLong()
         Pair(pointer + 2, null)
     })
 }

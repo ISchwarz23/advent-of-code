@@ -20,3 +20,7 @@ infix fun Int.pow(exponent: Int): Int {
 infix fun Long.pow(exponent: Int): Long {
     return this.toDouble().pow(exponent).toLong()
 }
+
+infix fun Long.pow(exponent: Long): Long {
+    return this.toDouble().pow(exponent.toDouble()).toLong()
+}
