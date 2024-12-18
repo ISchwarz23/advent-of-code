@@ -58,7 +58,7 @@ the requested day was already released) and be able to automatically upload your
 session cookie to the file `session.txt` in the project root.
 The file content should look like `session=abc...xyz`.
 
-## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=34&color=yellow&style=flat-square)
+## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=36&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -81,6 +81,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 15 | [Warehouse Woes][2024-15]         | ⭐⭐    | Had to reimplement everything for part 2.                                                           |
 | 16 | [Reindeer Maze][2024-16]          | ⭐⭐    | Improved to much in the beginning. Part 2 forced me to remove most of the performance improvements. |
 | 17 | [Chronospatial Computer][2024-17] | ⭐⭐    | Part 1 was very simple, but it took me a while to find a solution for part 2.                       |
+| 17 | [RAM Run][2024-18]                | ⭐⭐    | Worked unexpectedly smooth.                                                                         |
 
 ## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=15&color=yellow&style=flat-square)
 
