@@ -1,5 +1,7 @@
 package aoc2023.day08
 
+import utils.MathUtils
+
 
 /**
  * My solution for day 8 of Advent of Code 2023.
@@ -31,13 +33,12 @@ object Day08 {
         val directions = input[0].toCharArray().map { if(it == 'L') Direction.LEFT else Direction.RIGHT }
         val directionSupplier = DirectionSupplier(directions)
 
-        val map = input.drop(2).map { it.split(" = ") }
-            .map { (from, to) -> from to to.drop(1).dropLast(1).split(", ") }
-            .associate { (from, to) -> from to Pair(to[0], to[1]) }
+        val map = input.drop(2).map { "(\\w{3}) = \\((\\w{3}), (\\w{3})\\)".toRegex().matchEntire(it)!!.groupValues }
+            .associate { (_, from, toLeft, toRight) -> from to Pair(toLeft, toRight) }
 
         return map.keys.filter { it.last() == 'A' }
-            .map { getCycleLength(map, directionSupplier, it) }
-            .fold(1L) { value, cycleLength -> value * cycleLength }
+            .map { getCycleLength(map, directionSupplier, it).toLong() }
+            .fold(1L) { value, cycleLength -> MathUtils.leastCommonMultiple(value, cycleLength) }
     }
 
     private fun getCycleLength(
@@ -47,18 +48,17 @@ object Day08 {
     ): Int {
         directionSupplier.reset()
 
-        data class KnownLocation(val location: String, val directionIndex: Int)
-        val knownLocations = hashSetOf<KnownLocation>()
+        var cycleLength = 0
 
-        var currentLocation = KnownLocation(startLocation, directionSupplier.getCurrentIndex())
-        while (!knownLocations.contains(currentLocation)) {
-            knownLocations += currentLocation
-            val directionOptions = map[currentLocation.location] ?: throw RuntimeException("Corrupt Map")
-            val current = if(directionSupplier.getNext() == Direction.LEFT) directionOptions.first else directionOptions.second
-            currentLocation = KnownLocation(current, directionSupplier.getCurrentIndex())
+        var currentLocation = startLocation
+        while (!currentLocation.endsWith("Z")) {
+            cycleLength++
+
+            val directions = map[currentLocation] ?: throw RuntimeException("Corrupt Map")
+            currentLocation = if(directionSupplier.getNext() == Direction.LEFT) directions.first else directions.second
         }
 
-        return knownLocations.size - 1
+        return cycleLength
     }
 
 }
@@ -83,10 +83,6 @@ private class DirectionSupplier(private val directions: List<Direction>) {
 
     fun reset() {
         this.index = 0
-    }
-
-    fun getCurrentIndex(): Int {
-        return index
     }
 
 }

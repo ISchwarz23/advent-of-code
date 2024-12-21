@@ -86,20 +86,20 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 20 | [Race Condition][2024-20]         | ⭐⭐    | First I missunderstood the problem completely. Then my first working solution for part 1 took 2.5h. Finally solved both parts. Unfortunately, solution takes nearly 30 seconds for part 2. |
 | 21 | [Keypad Conundrum][2024-21]       | ⭐⭐    | Took me a while to find a scalable solution. The final solution uses recursion and a cache and takes only about 250ms to solve part 2.                                                     |
 
-## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=15&color=yellow&style=flat-square)
+## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=16&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
-| #   | Name                                      | Stars | Comment |
-|-----|-------------------------------------------|-------|---------|
-| 1   | [Trebuchet?!][2023-1]                     | ⭐⭐    |         |
-| 2   | [Cube Conundrum][2023-2]                  | ⭐⭐    |         |
-| 3   | [Gear Ratios][2023-3]                     | ⭐⭐    |         |
-| 4   | [Scratchcards][2023-4]                    | ⭐⭐    |         |
-| 5   | [If You Give A Seed A Fertilizer][2023-5] | ⭐⭐    |         |
-| 6   | [Wait For It][2023-6]                     | ⭐⭐    |         |
-| 7   | [Camel Cards][2023-7]                     | ⭐⭐    |         |
-| 8   | [Haunted Wasteland][2023-8]               | ⭐     |         |
+| #   | Name                                      | Stars | Comment                                                                |
+|-----|-------------------------------------------|-------|------------------------------------------------------------------------|
+| 1   | [Trebuchet?!][2023-1]                     | ⭐⭐    |                                                                        |
+| 2   | [Cube Conundrum][2023-2]                  | ⭐⭐    |                                                                        |
+| 3   | [Gear Ratios][2023-3]                     | ⭐⭐    |                                                                        |
+| 4   | [Scratchcards][2023-4]                    | ⭐⭐    |                                                                        |
+| 5   | [If You Give A Seed A Fertilizer][2023-5] | ⭐⭐    |                                                                        |
+| 6   | [Wait For It][2023-6]                     | ⭐⭐    |                                                                        |
+| 7   | [Camel Cards][2023-7]                     | ⭐⭐    |                                                                        |
+| 8   | [Haunted Wasteland][2023-8]               | ⭐⭐    | Had to look up how to calculate the lcm, but besides that pretty easy. |
 Had to quit because of sickness. Maybe I will continue in a later point in time.
 
 ## Log of my AoC Journey 2022 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=50&color=yellow&style=flat-square)

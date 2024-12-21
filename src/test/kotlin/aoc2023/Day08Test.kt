@@ -34,7 +34,6 @@ internal class Day08Test {
     }
 
     @Test
-    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day08.part2(inputExamplePart2)
