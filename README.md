@@ -87,21 +87,23 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 21 | [Keypad Conundrum][2024-21]       | ⭐⭐    | Took me a while to find a scalable solution. The final solution uses recursion and a cache and takes only about 250ms to solve part 2.                                                    |
 | 22 | [Monkey Market][2024-22]          | ⭐⭐    | Pretty easy compared with the once from yesterday and the day before yesterday. But my solution takes more than 15s to complete part 2.                                                   |
 
-## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=16&color=yellow&style=flat-square)
+## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=20&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
-| #   | Name                                      | Stars | Comment                                                                |
-|-----|-------------------------------------------|-------|------------------------------------------------------------------------|
-| 1   | [Trebuchet?!][2023-1]                     | ⭐⭐    |                                                                        |
-| 2   | [Cube Conundrum][2023-2]                  | ⭐⭐    |                                                                        |
-| 3   | [Gear Ratios][2023-3]                     | ⭐⭐    |                                                                        |
-| 4   | [Scratchcards][2023-4]                    | ⭐⭐    |                                                                        |
-| 5   | [If You Give A Seed A Fertilizer][2023-5] | ⭐⭐    |                                                                        |
-| 6   | [Wait For It][2023-6]                     | ⭐⭐    |                                                                        |
-| 7   | [Camel Cards][2023-7]                     | ⭐⭐    |                                                                        |
-| 8   | [Haunted Wasteland][2023-8]               | ⭐⭐    | Had to look up how to calculate the lcm, but besides that pretty easy. |
-Had to quit because of sickness. Maybe I will continue in a later point in time.
+| #  | Name                                      | Stars | Comment                                                                |
+|----|-------------------------------------------|-------|------------------------------------------------------------------------|
+| 1  | [Trebuchet?!][2023-1]                     | ⭐⭐    |                                                                        |
+| 2  | [Cube Conundrum][2023-2]                  | ⭐⭐    |                                                                        |
+| 3  | [Gear Ratios][2023-3]                     | ⭐⭐    |                                                                        |
+| 4  | [Scratchcards][2023-4]                    | ⭐⭐    |                                                                        |
+| 5  | [If You Give A Seed A Fertilizer][2023-5] | ⭐⭐    |                                                                        |
+| 6  | [Wait For It][2023-6]                     | ⭐⭐    |                                                                        |
+| 7  | [Camel Cards][2023-7]                     | ⭐⭐    |                                                                        |
+| 8  | [Haunted Wasteland][2023-8]               | ⭐⭐    | Had to look up how to calculate the lcm, but besides that pretty easy. |
+| 9  | [Mirage Maintenance][2023-9]              | ⭐⭐    | Very easy one.                                                         |
+|    | ...                                       |       |                                                                        |
+| 15 | [Lens Library][2023-15]                   | ⭐⭐    |                                                                        |
 
 ## Log of my AoC Journey 2022 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=50&color=yellow&style=flat-square)
 
@@ -238,6 +240,23 @@ I tried to log my results and thoughts for each puzzle after solving it.
 [2023-6]: https://adventofcode.com/2023/day/6
 [2023-7]: https://adventofcode.com/2023/day/7
 [2023-8]: https://adventofcode.com/2023/day/8
+[2023-9]: https://adventofcode.com/2023/day/9
+[2023-10]: https://adventofcode.com/2023/day/10
+[2023-11]: https://adventofcode.com/2023/day/11
+[2023-12]: https://adventofcode.com/2023/day/12
+[2023-13]: https://adventofcode.com/2023/day/13
+[2023-14]: https://adventofcode.com/2023/day/14
+[2023-15]: https://adventofcode.com/2023/day/15
+[2023-16]: https://adventofcode.com/2023/day/16
+[2023-17]: https://adventofcode.com/2023/day/17
+[2023-18]: https://adventofcode.com/2023/day/18
+[2023-19]: https://adventofcode.com/2023/day/19
+[2023-20]: https://adventofcode.com/2023/day/20
+[2023-21]: https://adventofcode.com/2023/day/21
+[2023-22]: https://adventofcode.com/2023/day/22
+[2023-23]: https://adventofcode.com/2023/day/23
+[2023-24]: https://adventofcode.com/2023/day/24
+[2023-25]: https://adventofcode.com/2023/day/25
 
 [2024-1]: https://adventofcode.com/2024/day/1
 [2024-2]: https://adventofcode.com/2024/day/2
