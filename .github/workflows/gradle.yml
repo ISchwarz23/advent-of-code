@@ -17,10 +17,10 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-    - name: Run build and test using Gradle
+    - name: Run build and tests using Gradle
       uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
       with:
-        arguments: build testNonSlow
+        arguments: testNonSlow
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v2
       if: always() # always run even if the previous step fails
