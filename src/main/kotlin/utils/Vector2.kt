@@ -44,6 +44,14 @@ data class Vector2(val x: Long, val y: Long) : Comparable<Vector2> {
         return result.toInt()
     }
 
+    val directNeighbours: List<Vector2>
+        get() = listOf(
+            this + Vector2(1, 0),
+            this + Vector2(0, -1),
+            this + Vector2(-1, 0),
+            this + Vector2(0, 1)
+        )
+
     override fun toString(): String {
         return "($x, $y)"
     }
