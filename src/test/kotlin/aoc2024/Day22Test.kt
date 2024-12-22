@@ -4,7 +4,6 @@ import aoc2024.day22.Day22
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestMethodOrder
 import utils.aocClient
-import utils.readInput
 import utils.readInputAsInts
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,12 +14,13 @@ import kotlin.test.assertEquals
 internal class Day22Test {
 
     private val input = readInputAsInts("aoc2024/day22.txt")
-    private val inputExample = readInputAsInts("aoc2024/day22_example.txt")
+    private val inputExamplePart1 = readInputAsInts("aoc2024/day22_example_part1.txt")
+    private val inputExamplePart2 = readInputAsInts("aoc2024/day22_example_part2.txt")
 
     @Test
     internal fun testPart1() {
         // when
-        val result = Day22.part1(inputExample)
+        val result = Day22.part1(inputExamplePart1)
 
         // then
         assertEquals(37327623, result)
@@ -34,10 +34,10 @@ internal class Day22Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day22.part2(inputExample)
+        val result = Day22.part2(inputExamplePart2)
 
         // then
-        assertEquals(-1, result)
+        assertEquals(23, result)
 
         // submit answer
         val answer = Day22.part2(input)
