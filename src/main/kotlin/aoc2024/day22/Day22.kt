@@ -7,17 +7,17 @@ package aoc2024.day22
 object Day22 {
 
     fun part1(input: List<Int>): Long {
-        return input.map { it.toLong() }.sumOf { initialNumber ->
-            var nextRandomNumber = initialNumber
+        return input.sumOf { initialNumber ->
+            var nextRandomNumber = initialNumber.toLong()
             repeat(2000) { nextRandomNumber = nextRandomNumber.nextPseudoRandomNumber }
             return@sumOf nextRandomNumber
         }
     }
 
     fun part2(input: List<Int>): Int {
-        val stockCharts = input.map { toStockChart(it.toLong()) }
+        val stockCharts = input.map { toStockChart(it) }
         return stockCharts.asSequence()
-            .flatMap { it.changeSequences.asSequence() }
+            .flatMap { stockChart -> stockChart.changeSequences }
             .distinct()
             .maxOf { changeSequence ->
                 stockCharts.sumOf { stock -> stock.getSellPrice(changeSequence) ?: 0 }
@@ -26,12 +26,12 @@ object Day22 {
 
 }
 
-private fun toStockChart(startValue: Long): StockChart {
+private fun toStockChart(startValue: Int): StockChart {
     return StockChart(generateSequence(startValue) { it.nextPseudoRandomNumber }
         .take(2000)
-        .map { "$it".last().digitToInt() }
+        .map { number -> number % 10 } // last digit
         .windowed(2)
-        .map { (firstPrice, secondPrice) -> StockPrice(secondPrice, secondPrice - firstPrice) }
+        .map { (previousPrice, currentPrice) -> StockPrice(currentPrice, currentPrice - previousPrice) }
         .toList())
 }
 
@@ -41,9 +41,7 @@ private data class StockChart(val prices: List<StockPrice>, private val monkeySe
 
     private val changeSequencesToSellPrice = prices.windowed(monkeySellSequenceLength)
         .groupBy({ subChart -> subChart.map { it.priceChange } }) { subChart -> subChart.last().price }
-        .mapValues { (_, prices) ->
-            prices.first()
-        }
+        .mapValues { (_, prices) -> prices.first() }
 
     val changeSequences: Set<List<Int>> = changeSequencesToSellPrice.keys
 
@@ -58,7 +56,14 @@ private data class StockChart(val prices: List<StockPrice>, private val monkeySe
 
 private val Long.nextPseudoRandomNumber: Long
     get() {
-        var nextSecretNumber = ((this * 64) xor this) % 16777216
+        var nextSecretNumber = this
+        nextSecretNumber = ((nextSecretNumber * 64) xor nextSecretNumber) % 16777216
         nextSecretNumber = ((nextSecretNumber / 32) xor nextSecretNumber) % 16777216
-        return ((nextSecretNumber * 2048) xor nextSecretNumber) % 16777216
+        nextSecretNumber = ((nextSecretNumber * 2048) xor nextSecretNumber) % 16777216
+        return nextSecretNumber
+    }
+
+private val Int.nextPseudoRandomNumber: Int
+    get() {
+        return this.toLong().nextPseudoRandomNumber.toInt()
     }
