@@ -18,6 +18,7 @@ internal class Day20Test {
     private val inputExample = readInput("aoc2024/day20_example.txt")
 
     @Test
+    @Tag("slow")
     internal fun testPart1() {
         // when
         val result = Day20.part1(inputExample, 10)
@@ -32,6 +33,7 @@ internal class Day20Test {
     }
 
     @Test
+    @Tag("slow")
     internal fun testPart2() {
         // when
         val result = Day20.part2(inputExample, 50)

@@ -12,12 +12,15 @@ dependencies {
 
 tasks {
     test {
-        useJUnitPlatform {
-            excludeTags("slow")
-
-        }
+        useJUnitPlatform()
     }
     wrapper {
         gradleVersion = "7.3"
+    }
+}
+
+tasks.register<Test>("testNonSlow") {
+    useJUnitPlatform {
+        excludeTags("slow")
     }
 }
