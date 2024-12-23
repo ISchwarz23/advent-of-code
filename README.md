@@ -58,7 +58,7 @@ the requested day was already released) and be able to automatically upload your
 session cookie to the file `session.txt` in the project root.
 The file content should look like `session=abc...xyz`.
 
-## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=44&color=yellow&style=flat-square)
+## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=46&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -86,6 +86,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 20 | [Race Condition][2024-20]         | ⭐⭐    | First I misunderstood the problem completely. Then my first working solution for part 1 took 2.5h. Finally solved both parts. Unfortunately, solution takes nearly 30 seconds for part 2. |
 | 21 | [Keypad Conundrum][2024-21]       | ⭐⭐    | Took me a while to find a scalable solution. The final solution uses recursion and a cache and takes only about 250ms to solve part 2.                                                    |
 | 22 | [Monkey Market][2024-22]          | ⭐⭐    | Pretty easy compared with the once from yesterday and the day before yesterday. But my solution takes more than 15s to complete part 2.                                                   |
+| 23 | [LAN Party][2024-23]              | ⭐⭐    | Improved part 1 by directly starting network at pcs starting with 't'. This improvement made my part 2 not finding any solution. Took me a while to realize this.                         |
 
 ## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=20&color=yellow&style=flat-square)
 
