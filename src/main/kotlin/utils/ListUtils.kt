@@ -10,7 +10,11 @@ fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
     }
 }
 
-fun <T> List<T>.permutationSequence(itemsPerCombination: Int): Sequence<List<T>> {
+fun <T> List<T>.combinations(itemsPerCombination: Int): List<List<T>> {
+    return this.combinationsAsSequence(itemsPerCombination).toList()
+}
+
+fun <T> List<T>.combinationsAsSequence(itemsPerCombination: Int): Sequence<List<T>> {
     if(itemsPerCombination <= 0) {
         throw Error("The permutations need to contain at least one item (requested items per combination: $itemsPerCombination).")
     }

@@ -1,7 +1,7 @@
 package aoc2023.day11
 
 import utils.Vector2
-import utils.permutationSequence
+import utils.combinationsAsSequence
 
 /**
  * My solution for day 11 of Advent of Code 2023.
@@ -19,14 +19,14 @@ object Day11 {
 
     private fun calculateDistances(input: List<List<Char>>, expansionFactor: Long): Long {
         val rawGalaxyCoordinates = input.flatMapIndexed { y: Int, row: List<Char> ->
-            row.mapIndexed { x, c -> if (c == '#') Vector2(x, y) else null }
-        }.filterNotNull()
+            row.mapIndexedNotNull { x, c -> Vector2(x, y).takeIf { c == '#' } }
+        }
 
-        val columnsWithoutGalaxies = MutableList(input[0].size) { it }
-        val rowsWithoutGalaxies = MutableList(input.size) { it }
+        val columnsWithoutGalaxies = MutableList(input[0].size) { it.toLong() }
+        val rowsWithoutGalaxies = MutableList(input.size) { it.toLong() }
         rawGalaxyCoordinates.forEach {
-            columnsWithoutGalaxies -= it.x.toInt()
-            rowsWithoutGalaxies -= it.y.toInt()
+            columnsWithoutGalaxies -= it.x
+            rowsWithoutGalaxies -= it.y
         }
 
         val galaxyCoordinates = rawGalaxyCoordinates.map { rawGalaxyCoordinate ->
@@ -36,7 +36,7 @@ object Day11 {
             )
         }
 
-        return galaxyCoordinates.permutationSequence(2).sumOf { (firstGalaxy, secondsGalaxy) ->
+        return galaxyCoordinates.combinationsAsSequence(2).sumOf { (firstGalaxy, secondsGalaxy) ->
             firstGalaxy.manhattanDistanceTo(secondsGalaxy)
         }
     }
