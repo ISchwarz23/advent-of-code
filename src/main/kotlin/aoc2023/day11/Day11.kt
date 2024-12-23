@@ -10,7 +10,6 @@ import utils.permutationSequence
 object Day11 {
 
     fun part1(input: List<List<Char>>): Long {
-
         return calculateDistances(input, 2)
     }
 

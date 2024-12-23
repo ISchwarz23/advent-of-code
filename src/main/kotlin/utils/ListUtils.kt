@@ -11,6 +11,13 @@ fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
 }
 
 fun <T> List<T>.permutationSequence(itemsPerCombination: Int): Sequence<List<T>> {
+    if(itemsPerCombination <= 0) {
+        throw Error("The permutations need to contain at least one item (requested items per combination: $itemsPerCombination).")
+    }
+    if(itemsPerCombination > size) {
+        throw Error("The permutations need to be shorter than the list itself (items in list: $size, requested items per combination: $itemsPerCombination).")
+    }
+
     val indexes = MutableList(itemsPerCombination) { it }
     indexes[indexes.lastIndex]--
     return generateSequence {
@@ -21,9 +28,9 @@ fun <T> List<T>.permutationSequence(itemsPerCombination: Int): Sequence<List<T>>
             (indexOfIndexToIncrement until indexes.size - 1).forEach {
                 indexes[it + 1] = indexes[it] + 1
             }
-        } while (indexOfIndexToIncrement > 0 && indexes[indexOfIndexToIncrement] > (this.size - indexes.size + 1))
+        } while (indexOfIndexToIncrement > 0 && indexes[indexOfIndexToIncrement] > (size - (indexes.size - indexOfIndexToIncrement)))
 
-        if (indexes.first() > this.size - indexes.size) {
+        if (indexes.first() > size - indexes.size) {
             return@generateSequence null
         } else {
             return@generateSequence indexes.map { this[it] }
