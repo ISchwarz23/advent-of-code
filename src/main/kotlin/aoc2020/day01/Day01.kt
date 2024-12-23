@@ -1,6 +1,6 @@
 package aoc2020.day01
 
-import utils.combinations
+import utils.permutationSequence
 
 /**
  * My solution for day 1 of Advent of Code 2020.
@@ -9,12 +9,12 @@ import utils.combinations
 object Day01 {
 
     fun part1(input: List<Int>): Int {
-        return input.combinations(2).find { it.sum() == 2020 }?.reduce(Int::times)
+        return input.permutationSequence(2).find { it.sum() == 2020 }?.reduce(Int::times)
             ?: error("No combination found")
     }
 
     fun part2(input: List<Int>): Int {
-        return input.combinations(3).find { it.sum() == 2020 }?.reduce(Int::times)
+        return input.permutationSequence(3).find { it.sum() == 2020 }?.reduce(Int::times)
             ?: error("No combination found")
     }
 }

@@ -1,6 +1,7 @@
 package aoc2023.day11
 
 import utils.Vector2
+import utils.permutationSequence
 
 /**
  * My solution for day 11 of Advent of Code 2023.
@@ -9,6 +10,7 @@ import utils.Vector2
 object Day11 {
 
     fun part1(input: List<List<Char>>): Long {
+
         return calculateDistances(input, 2)
     }
 
@@ -35,13 +37,9 @@ object Day11 {
             )
         }
 
-        var distanceSum = 0L
-        galaxyCoordinates.subList(0, galaxyCoordinates.size - 1).forEachIndexed { firstGalaxyIndex, firstGalaxy ->
-            galaxyCoordinates.subList(firstGalaxyIndex + 1, galaxyCoordinates.size).forEach { secondsGalaxy ->
-                distanceSum += firstGalaxy.manhattanDistanceTo(secondsGalaxy)
-            }
+        return galaxyCoordinates.permutationSequence(2).sumOf { (firstGalaxy, secondsGalaxy) ->
+            firstGalaxy.manhattanDistanceTo(secondsGalaxy)
         }
-        return distanceSum
     }
 
 }
