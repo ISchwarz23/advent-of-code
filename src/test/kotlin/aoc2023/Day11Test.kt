@@ -34,13 +34,13 @@ internal class Day11Test {
     @Test
     internal fun testPart2() {
         // when
-        val result = Day11.part2(inputExample)
+        val result = Day11.part2(inputExample, 100)
 
         // then
-        assertEquals(-1, result)
+        assertEquals(8410, result)
 
         // submit answer
-        val answer = Day11.part2(input)
+        val answer = Day11.part2(input, 1000000)
         val submissionResult = aocClient.submit(2023, 11, 2, answer)
         println("Result of Day 11 - Part 2: $answer (Submission: $submissionResult)")
     }

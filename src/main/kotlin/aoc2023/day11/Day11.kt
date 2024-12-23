@@ -9,8 +9,16 @@ import utils.Vector2
 object Day11 {
 
     fun part1(input: List<List<Char>>): Long {
+        return calculateDistances(input, 2)
+    }
+
+    fun part2(input: List<List<Char>>, expansionFactor: Long): Long {
+        return calculateDistances(input, expansionFactor)
+    }
+
+    private fun calculateDistances(input: List<List<Char>>, expansionFactor: Long): Long {
         val rawGalaxyCoordinates = input.flatMapIndexed { y: Int, row: List<Char> ->
-            row.mapIndexed { x, c -> if(c == '#') Vector2(x, y) else null }
+            row.mapIndexed { x, c -> if (c == '#') Vector2(x, y) else null }
         }.filterNotNull()
 
         val columnsWithoutGalaxies = MutableList(input[0].size) { it }
@@ -20,10 +28,12 @@ object Day11 {
             rowsWithoutGalaxies -= it.y.toInt()
         }
 
-        val galaxyCoordinates = rawGalaxyCoordinates.map { rawGalaxyCoordinate -> Vector2(
-            rawGalaxyCoordinate.x + columnsWithoutGalaxies.count { it < rawGalaxyCoordinate.x },
-            rawGalaxyCoordinate.y + rowsWithoutGalaxies.count { it < rawGalaxyCoordinate.y }
-        ) }
+        val galaxyCoordinates = rawGalaxyCoordinates.map { rawGalaxyCoordinate ->
+            Vector2(
+                rawGalaxyCoordinate.x + (expansionFactor - 1) * columnsWithoutGalaxies.count { it < rawGalaxyCoordinate.x },
+                rawGalaxyCoordinate.y + (expansionFactor - 1) * rowsWithoutGalaxies.count { it < rawGalaxyCoordinate.y }
+            )
+        }
 
         var distanceSum = 0L
         galaxyCoordinates.subList(0, galaxyCoordinates.size - 1).forEachIndexed { firstGalaxyIndex, firstGalaxy ->
@@ -32,10 +42,6 @@ object Day11 {
             }
         }
         return distanceSum
-    }
-
-    fun part2(input: List<List<Char>>): Int {
-        return 0
     }
 
 }

@@ -88,7 +88,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 22 | [Monkey Market][2024-22]          | ⭐⭐    | Pretty easy compared with the once from yesterday and the day before yesterday. But my solution takes more than 15s to complete part 2.                                                   |
 | 23 | [LAN Party][2024-23]              | ⭐⭐    | Improved part 1 by directly starting network at pcs starting with 't'. This improvement made my part 2 not finding any solution. Took me a while to realize this.                         |
 
-## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=22&color=yellow&style=flat-square)
+## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=24&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -104,6 +104,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 8  | [Haunted Wasteland][2023-8]               | ⭐⭐    | Had to look up how to calculate the lcm, but besides that pretty easy.                             |
 | 9  | [Mirage Maintenance][2023-9]              | ⭐⭐    | Very easy one.                                                                                     |
 | 10 | [Pipe Maze][2023-10]                      | ⭐⭐    | Part 2 challenged me, until I realized how to identify how a point is inside or outside a polygon. |
+| 11 | [Cosmic Expansion][2023-11]               | ⭐⭐    | Liked this puzzle a lot!                                                                           |
 |    | ...                                       |       |                                                                                                    |
 | 15 | [Lens Library][2023-15]                   | ⭐⭐    |                                                                                                    |
 
