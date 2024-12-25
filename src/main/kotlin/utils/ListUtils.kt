@@ -10,6 +10,24 @@ fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
     }
 }
 
+fun <T> List<T>.permutations(): List<List<T>> {
+    if (isEmpty()) return emptyList()
+
+    fun <T> _allPermutations(list: List<T>): List<List<T>> {
+        if (list.isEmpty()) return listOf(emptyList())
+
+        val result = mutableListOf<List<T>>()
+        for (i in list.indices) {
+            _allPermutations(list - list[i]).forEach {
+                    item -> result.add(item + list[i])
+            }
+        }
+        return result
+    }
+
+    return _allPermutations(this).distinct()
+}
+
 fun <T> List<T>.combinations(itemsPerCombination: Int): List<List<T>> {
     return this.combinationsAsSequence(itemsPerCombination).toList()
 }
