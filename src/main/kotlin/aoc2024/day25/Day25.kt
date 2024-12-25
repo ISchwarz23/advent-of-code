@@ -26,11 +26,13 @@ private data class Schematics(val data: List<String>) {
     val isKey: Boolean = data.first().contains('#')
     val isLock: Boolean = !isKey
 
+    private val maxColumnHeight = height - 2
+
     val columnHeights: List<Int> by lazy {
         if (isKey) {
-            (0 until width).map { x -> (0 until height).first { y -> data[y][x] == '.' } - 1 }
+            (0 until width).map { x -> (1 until height).first { y -> data[y][x] == '.' } - 1 }
         } else {
-            (0 until width).map { x -> 5 - (height - 1 downTo 0).first { y -> data[y][x] == '.' } }
+            (0 until width).map { x -> maxColumnHeight - (height - 1 downTo 0).first { y -> data[y][x] == '.' } }
         }
     }
 
@@ -39,7 +41,7 @@ private data class Schematics(val data: List<String>) {
         if(this.width != other.width) return false
         if(this.height != other.height) return false
 
-        return (0 until width).map { x -> this.columnHeights[x] + other.columnHeights[x] }.all { it <= 5 }
+        return (0 until width).map { x -> this.columnHeights[x] + other.columnHeights[x] }.all { it <= maxColumnHeight }
     }
 
 }
