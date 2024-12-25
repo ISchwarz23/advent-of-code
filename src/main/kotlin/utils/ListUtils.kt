@@ -28,6 +28,27 @@ fun <T> List<T>.permutations(): List<List<T>> {
     return _allPermutations(this).distinct()
 }
 
+fun <T, U> List<T>.combinationsWith(other: List<U>): List<Pair<T, U>> {
+    return combinationsWithAsSequence(other).toList()
+}
+
+fun <T, U> List<T>.combinationsWithAsSequence(other: List<U>): Sequence<Pair<T, U>> {
+    var indexThis = 0
+    var indexOther = -1
+    return generateSequence {
+        indexOther++
+        if (indexOther > other.lastIndex) {
+            indexOther = 0
+            indexThis++
+        }
+        if (indexThis > this.lastIndex) {
+            return@generateSequence null
+        }
+
+        Pair(this[indexThis], other[indexOther])
+    }
+}
+
 fun <T> List<T>.combinations(itemsPerCombination: Int): List<List<T>> {
     return this.combinationsAsSequence(itemsPerCombination).toList()
 }

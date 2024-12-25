@@ -58,7 +58,7 @@ the requested day was already released) and be able to automatically upload your
 session cookie to the file `session.txt` in the project root.
 The file content should look like `session=abc...xyz`.
 
-## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=48&color=yellow&style=flat-square)
+## Log of my AoC Journey 2024 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=50&color=yellow&style=flat-square)
 
 I tried to log my results and thoughts for each puzzle after solving it.
 
@@ -88,6 +88,7 @@ I tried to log my results and thoughts for each puzzle after solving it.
 | 22 | [Monkey Market][2024-22]          | ⭐⭐    | Pretty easy compared with the once from yesterday and the day before yesterday. But my solution takes more than 15s to complete part 2.                                                                                                                                            |
 | 23 | [LAN Party][2024-23]              | ⭐⭐    | Improved part 1 by directly starting network at pcs starting with 't'. This improvement made my part 2 not finding any solution. Took me a while to realize this.                                                                                                                  |
 | 24 | [Crossed Wires][2024-24]          | ⭐⭐    | Part 2 really made me crazy. Tried identifying possible wrong outputs and permuted them which would have calculated for years to find a solution. In the end I just defined how a "add logic structure" should look like and checked where the input for the puzzle was different. |
+| 25 | [Code Chronicle][2024-24]         | ⭐⭐    | Like every year, the last puzzle was very easy.                                                                                                                                                                                                                                    |
 
 ## Log of my AoC Journey 2023 ![](https://img.shields.io/static/v1?label=%E2%AD%90%20Gained%20Stars&message=24&color=yellow&style=flat-square)
 
