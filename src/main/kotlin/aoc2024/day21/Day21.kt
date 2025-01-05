@@ -17,20 +17,20 @@ object Day21 {
         return solve(input, 26)
     }
 
-    private fun solve(input: List<String>, lengthOfRobotChain: Int): Long {
-        return input.sumOf { code ->
-            getNumericValue(code) * getNumberOfInstructions(Keypad.NUMBERS, code.toList(), lengthOfRobotChain)
+    private fun solve(codes: List<String>, lengthOfRobotChain: Int): Long {
+        return codes.sumOf { code ->
+            getNumericValue(code) * getLeastNumberOfInstructions(Keypad.NUMBERS, code.toList(), lengthOfRobotChain)
         }
     }
 
 }
 
 
-private fun getNumericValue(code: String): Long {
-    return code.filter { it < 'A' }.toLong()
+private fun getNumericValue(code: String): Int {
+    return code.takeWhile { char -> char.isDigit() }.toInt()
 }
 
-private fun getNumberOfInstructions(
+private fun getLeastNumberOfInstructions(
     keypad: Keypad,
     buttonsToPress: List<Char>,
     lengthOfRobotChain: Int
@@ -42,12 +42,12 @@ private fun getNumberOfInstructions(
     val buttonSequence = buttonsToPress.toMutableList()
     buttonSequence.add(0, 'A') // robot arm always starts at 'A'
     return buttonSequence.windowed(2).sumOf { (fromButton, toButton) ->
-        getNumberOfInstructions(keypad, fromButton, toButton, lengthOfRobotChain)
+        getLeastNumberOfInstructions(keypad, fromButton, toButton, lengthOfRobotChain)
     }
 }
 
 private val instructionSequenceLengthCache = mutableMapOf<Triple<Char, Char, Int>, Long>()
-private fun getNumberOfInstructions(
+private fun getLeastNumberOfInstructions(
     keypad: Keypad,
     startButton: Char,
     targetButton: Char,
@@ -55,10 +55,9 @@ private fun getNumberOfInstructions(
 ): Long {
     instructionSequenceLengthCache[Triple(startButton, targetButton, lengthOfRobotChain)]?.let { return it }
 
-    val possibleInstructions = keypad.getPossibleInstructions(startButton, targetButton)
-    val numberOfInstructions = possibleInstructions.minOf {
+    val numberOfInstructions = keypad.getValidInstructionsBetween(startButton, targetButton).minOf {
         val buttonsToPress = it + 'A' // need to end sequence with 'A'
-        getNumberOfInstructions(Keypad.DIRECTIONS, buttonsToPress, lengthOfRobotChain - 1)
+        getLeastNumberOfInstructions(Keypad.DIRECTIONS, buttonsToPress, lengthOfRobotChain - 1)
     }
     instructionSequenceLengthCache[Triple(startButton, targetButton, lengthOfRobotChain)] = numberOfInstructions
     return numberOfInstructions
@@ -68,6 +67,8 @@ private fun getNumberOfInstructions(
 private class Keypad(buttonMatrix: List<List<Char>>) {
 
     companion object {
+        const val NOT_A_BUTTON_LABEL = ' '
+
         val NUMBERS = Keypad(
             listOf(
                 listOf('7', '8', '9'),
@@ -88,51 +89,48 @@ private class Keypad(buttonMatrix: List<List<Char>>) {
         row.mapIndexed { x, label -> Pair(label, Vector2(x, y)) }
     }
 
-    val buttons: Map<Char, Vector2> =
-        buttonCoordinates.filter { (label, _) -> label != ' ' }.associateBy({ it.first }) { it.second }
+    private val buttonLabelToLocation: Map<Char, Vector2> =
+        buttonCoordinates.filter { (label, _) -> label != NOT_A_BUTTON_LABEL }.associateBy({ it.first }) { it.second }
 
-    val prohibitedZones: List<Vector2> =
-        buttonCoordinates.filter { (label, _) -> label == ' ' }.map { (_, coords) -> coords }
+    private val prohibitedLocations: List<Vector2> =
+        buttonCoordinates.filter { (label, _) -> label == NOT_A_BUTTON_LABEL }.map { (_, location) -> location }
 
-    fun getPossibleInstructions(fromButtonLabel: Char, toButtonLabel: Char): List<List<Char>> {
-        val fromButton = buttons[fromButtonLabel] ?: throw RuntimeException("Invalid button: '$fromButtonLabel'")
-        val toButton = buttons[toButtonLabel] ?: throw RuntimeException("Invalid button: '$toButtonLabel'")
+    fun getValidInstructionsBetween(fromButtonLabel: Char, toButtonLabel: Char): List<List<Char>> {
+        val fromButtonLocation =
+            buttonLabelToLocation[fromButtonLabel] ?: throw RuntimeException("Invalid button: '$fromButtonLabel'")
+        val toButtonLocation =
+            buttonLabelToLocation[toButtonLabel] ?: throw RuntimeException("Invalid button: '$toButtonLabel'")
 
-        val delta = toButton - fromButton
-        val distances = delta.abs()
-        val xDirection = if (delta.x < 0) '<' else '>'
-        val yDirection = if (delta.y < 0) '^' else 'v'
+        val buttonDistance = toButtonLocation - fromButtonLocation
+        val (noOfXInstructions, noOfYInstructions) = buttonDistance.abs()
 
-        return listOf(
-            List(distances.x.toInt()) { xDirection } + List(distances.y.toInt()) { yDirection },
-            List(distances.y.toInt()) { yDirection } + List(distances.x.toInt()) { xDirection },
-        ).filter { !entersProhibitedArea(fromButtonLabel, it) }.distinct()
+        val xInstruction = if (buttonDistance.x < 0) '<' else '>'
+        val xInstructions = List(noOfXInstructions.toInt()) { xInstruction }
+
+        val yInstruction = if (buttonDistance.y < 0) '^' else 'v'
+        val yInstructions = List(noOfYInstructions.toInt()) { yInstruction }
+
+        // only use paths with one "corner" as going "zickzack" would result in to many instruction for the next robot in the chain
+        return listOf((xInstructions + yInstructions), (yInstructions + xInstructions))
+            .distinct()
+            .filterNot { instructions -> crossesProhibitedLocation(fromButtonLabel, instructions) }
     }
 
-    private fun entersProhibitedArea(startButtonLabel: Char, path: List<Char>): Boolean {
-        val start = buttons[startButtonLabel] ?: throw RuntimeException("Invalid button: '$startButtonLabel'")
-        if (start in prohibitedZones) {
-            return true
-        }
+    private fun crossesProhibitedLocation(startButtonLabel: Char, instructions: List<Char>): Boolean {
+        val start =
+            buttonLabelToLocation[startButtonLabel] ?: throw RuntimeException("Invalid button: '$startButtonLabel'")
 
-        val directions = path.map {
-            when (it) {
+        return instructions.map { instruction ->
+            when (instruction) {
                 '<' -> Vector2(-1, 0)
                 '>' -> Vector2(1, 0)
                 '^' -> Vector2(0, -1)
                 'v' -> Vector2(0, 1)
-                else -> throw RuntimeException("Invalid direction: '$it'")
+                else -> throw RuntimeException("Invalid direction: '$instruction'")
             }
         }
-
-        var currentLocation = start
-        for (direction in directions) {
-            currentLocation += direction
-            if (currentLocation in prohibitedZones) {
-                return true
-            }
-        }
-        return false
+            .runningFold(start) { currentLocation, instruction -> currentLocation + instruction }
+            .any { visitedLocation -> visitedLocation in prohibitedLocations }
     }
 
 }
